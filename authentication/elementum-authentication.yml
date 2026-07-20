@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/elementum-openapi-original.json
+docs: https://docs.elementum.io/api-reference/api-introduction
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+  notes: >-
+    OAuth 2.0 client-credentials only. Obtain a Client ID and Client Secret from User Settings >
+    OAuth (Create New Token > API Access) in the Elementum app; the secret is shown once. Exchange
+    them at the token endpoint using HTTP Basic Auth (client_id:client_secret, base64) with
+    grant_type=client_credentials, or a JSON/form body carrying client_id + client_secret +
+    grant_type. The returned Bearer access token is sent as `Authorization: Bearer <token>` and
+    expires after 24 hours. Service Accounts scope what an automation or agent token can do via
+    role-based permissions and data-access policies (no OAuth scope strings). US and EU regions.
+schemes:
+- name: ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.elementum.io/oauth/token
+    tokenUrl_eu: https://api.eu.elementum.io/oauth/token
+    token_ttl_seconds: 86400
+    scopes: 0
+  sources:
+  - openapi/elementum-openapi-original.json
