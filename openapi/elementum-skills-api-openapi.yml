@@ -1,0 +1,521 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Skills API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Skills
+  description: Manage agent skills
+paths:
+  /apps/{alias}/skills:
+    get:
+      tags:
+      - Skills
+      summary: List skills under an app
+      operationId: listSkills
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Skills
+      summary: Create a skill under an app
+      operationId: createSkill
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      requestBody:
+        description: Skill creation request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillBundleCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /apps/{alias}/skills/{id}:
+    put:
+      tags:
+      - Skills
+      summary: Update a skill by ID
+      operationId: updateSkill
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/passthroughId'
+      requestBody:
+        description: Skill update request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillBundleUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    filter:
+      name: filter
+      in: query
+      description: An RSQL filter string.
+      required: false
+      schema:
+        type: string
+        format: string
+      examples:
+        In:
+          summary: In
+          description: In the provided list
+          value: Number=in=1:2:3:4:5
+        Between:
+          summary: Between
+          description: Between two values
+          value: Number=bt=1:10
+        Equals:
+          summary: Equals
+          description: Equals
+          value: Status==Open
+        LikeIgnoreCase:
+          summary: LikeIgnoreCase
+          description: Contains value, case insensitive
+          value: Title=lki=Incidents
+        And:
+          summary: And
+          description: The and ';' operator
+          value: Created At!=null;Created At=ge=2021-01-01T07:58:30.000Z
+        NotLike:
+          summary: NotLike
+          description: Doesn't contains value
+          value: Title!lk=Incidents
+        -- select --:
+          value: ''
+        Or:
+          summary: Or
+          description: The or ',' operator
+          value: Created At!=null,Created At=ge=2021-01-01T07:58:30.00Z
+        NotLikeIgnoreCase:
+          summary: NotLikeIgnoreCase
+          description: Doesn't contains value, case insensitive
+          value: Title!lki=Incidents
+        GreaterOrEqualTo:
+          summary: GreaterOrEqualTo
+          description: Greater than inclusive
+          value: Created At=ge=2021-01-01T07:58:30.000Z
+        NotBetween:
+          summary: NotBetween
+          description: Not Between two values
+          value: Number!bt=1:10
+        NotIn:
+          summary: NotIn
+          description: Not in the provided list
+          value: Number!in=1:2:3:4:5
+        LessThan:
+          summary: LessThan
+          description: Less than exclusive
+          value: Created At=lt=2022-03-15T07:58:30.000Z
+        Like:
+          summary: Like
+          description: Contains value
+          value: Title=lk=Incidents
+        LessOrEqualTo:
+          summary: LessOrEqualTo
+          description: Less than inclusive
+          value: Created At=le=2021-01-01T07:58:30.000Z
+        NotEquals:
+          summary: NotEquals
+          description: Not Equals
+          value: Created At!=null
+        GreaterThan:
+          summary: GreaterThan
+          description: Greater than exclusive
+          value: Created At=gt=2022-03-15T07:58:30.000Z
+    passthroughId:
+      name: id
+      in: path
+      description: The resource ID
+      required: true
+      schema:
+        type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+  schemas:
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    SkillPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+    SkillUpdateInput:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Skill kind
+          enum:
+          - INTERNAL
+          - CUSTOM
+        discoveryProperties:
+          $ref: '#/components/schemas/SkillDiscoveryProperties'
+        properties:
+          type: object
+          additionalProperties: true
+          description: Type-specific skill configuration
+        description:
+          type: string
+          description: Short summary of what the skill does
+        name:
+          type: string
+          description: The skill's display name
+        status:
+          type: string
+          description: Lifecycle status of the skill
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DRAFT
+        instructions:
+          type: string
+          description: System prompt steering the skill's behavior
+      description: Skill fields to change. Omitted fields keep their current value.
+    AspectCategoryRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The category name
+        id:
+          type: string
+          description: The category ID
+          format: uuid
+    SkillBundleUpdateRequest:
+      required:
+      - skill
+      type: object
+      properties:
+        skill:
+          $ref: '#/components/schemas/SkillUpdateInput'
+        tools:
+          type: array
+          description: Optional tool list. If present, the skill's existing tools are replaced with this list.
+          items:
+            type: object
+            additionalProperties: true
+      description: Body for PUT /v1/apps/{alias}/skills/{id}.
+    SkillDiscoveryProperties:
+      type: object
+      properties:
+        routingPriority:
+          type: number
+          description: Tie-breaker weight when multiple skills match
+        negativeKeywords:
+          type: array
+          description: Keywords that disfavour selecting this skill
+          items:
+            type: string
+        positiveKeywords:
+          type: array
+          description: Keywords that favour selecting this skill
+          items:
+            type: string
+        aliases:
+          type: array
+          description: Alternate names the skill can be referred to by
+          items:
+            type: string
+        exampleUtterances:
+          type: array
+          description: Sample phrases that should route to this skill
+          items:
+            type: string
+      description: Optional metadata that tunes how the skill is discovered and routed to.
+    Aspect:
+      type: object
+      properties:
+        configured:
+          type: boolean
+          description: Whether the aspect has been fully configured
+        status:
+          type: string
+          description: Lifecycle status (DRAFT, ACTIVE, ARCHIVED, …)
+        description:
+          type: string
+          description: The aspect description
+        __typename:
+          type: string
+          description: The aspect variant (AspectApp, AspectElement, AspectTask, AspectTransaction)
+        icon:
+          type: string
+          description: The aspect icon
+        namespace:
+          type: string
+          description: The aspect namespace (lowercase identifier used in URLs)
+        handle:
+          type: string
+          description: The aspect handle (uppercase identifier used in record handles)
+        readOnly:
+          type: boolean
+        sourceType:
+          $ref: '#/components/schemas/AspectSourceType'
+        color:
+          type: string
+          description: The aspect color
+        id:
+          type: string
+          description: The aspect ID
+          format: uuid
+        name:
+          type: string
+          description: The aspect display name
+        category:
+          $ref: '#/components/schemas/AspectCategoryRef'
+    Skill:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Lifecycle status of the skill
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DRAFT
+        tools:
+          type: object
+          additionalProperties: true
+          description: Connection of tools attached to the skill
+        id:
+          type: string
+          description: The skill ID
+          format: uuid
+        properties:
+          type: object
+          additionalProperties: true
+          description: Type-specific skill configuration
+        name:
+          type: string
+          description: The skill's display name
+        type:
+          type: string
+          description: Skill kind
+          enum:
+          - INTERNAL
+          - CUSTOM
+        description:
+          type: string
+          description: Short summary of what the skill does
+        instructions:
+          type: string
+          description: System prompt steering the skill's behavior
+        app:
+          $ref: '#/components/schemas/Aspect'
+      description: A skill returned by the skills endpoints.
+    AspectSourceType:
+      type: string
+      description: Where an aspect's data lives. ELEMENTUM = native; SNOWFLAKE = imported from a connected Snowflake table.
+      enum:
+      - ELEMENTUM
+      - SNOWFLAKE
+    SkillBundleCreateRequest:
+      required:
+      - skill
+      type: object
+      properties:
+        skill:
+          $ref: '#/components/schemas/SkillCreateInput'
+        tools:
+          type: array
+          description: Optional tools to attach to the new skill
+          items:
+            type: object
+            additionalProperties: true
+      description: Body for POST /v1/apps/{alias}/skills.
+    SkillCreateInput:
+      required:
+      - name
+      type: object
+      properties:
+        type:
+          type: string
+          description: Skill kind
+          enum:
+          - INTERNAL
+          - CUSTOM
+        discoveryProperties:
+          $ref: '#/components/schemas/SkillDiscoveryProperties'
+        properties:
+          type: object
+          additionalProperties: true
+          description: Type-specific skill configuration
+        description:
+          type: string
+          description: Short summary of what the skill does
+        name:
+          type: string
+          description: The skill's display name
+        status:
+          type: string
+          description: Lifecycle status of the skill
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DRAFT
+        instructions:
+          type: string
+          description: System prompt steering the skill's behavior
+      description: The skill to create. Owner (ownerType/ownerId) is derived from the URL alias.
+  responses:
+    '401':
+      description: Unauthorized
+    '422':
+      description: Unprocessable Entity
+    '429':
+      description: Too Many Requests
+    '403':
+      description: Forbidden
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '400':
+      description: Bad Request
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

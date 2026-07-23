@@ -1,0 +1,390 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Elements API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Elements
+  description: Manage elements imported from connected cloud sources
+paths:
+  /elements:
+    post:
+      tags:
+      - Elements
+      summary: Import an existing connected-source table as an element
+      operationId: createElement
+      parameters: []
+      requestBody:
+        description: Element creation request (Snowflake import)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElementCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aspect'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /elements/{alias}:
+    get:
+      tags:
+      - Elements
+      summary: Get an element by alias
+      operationId: getElement
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aspect'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    put:
+      tags:
+      - Elements
+      summary: Update an element by alias
+      operationId: updateElement
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      requestBody:
+        description: Element fields to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElementUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aspect'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    AspectFieldInput:
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        lockOnCreate:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/AspectFieldType'
+        description:
+          type: string
+        showOnCreate:
+          type: boolean
+        name:
+          type: string
+          description: Field display name
+        requiredOnClose:
+          type: boolean
+        columnName:
+          type: string
+          description: Underlying source-column name (import mode); leave blank for native modes
+        required:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        semanticTags:
+          type: array
+          items:
+            type: string
+    AspectCategoryRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The category name
+        id:
+          type: string
+          description: The category ID
+          format: uuid
+    AspectSourceType:
+      type: string
+      description: Where an aspect's data lives. ELEMENTUM = native; SNOWFLAKE = imported from a connected Snowflake table.
+      enum:
+      - ELEMENTUM
+      - SNOWFLAKE
+    ElementCreateRequest:
+      required:
+      - categoryId
+      - name
+      type: object
+      properties:
+        recordCreateTypes:
+          $ref: '#/components/schemas/RecordCreateTypesInput'
+        namespace:
+          type: string
+          description: URL namespace. Derived from name (lowercase letters only) when omitted.
+        table:
+          type: string
+          description: Source table name — import mode only; omit in native and native-at-link modes
+        categoryId:
+          type: string
+          description: Aspect category to file the element under
+          format: uuid
+        description:
+          type: string
+          description: Element description
+        allowForwardedEmailIngestion:
+          type: boolean
+        workflowValuePerAutomation:
+          type: number
+        color:
+          type: string
+        titleColumn:
+          type: string
+          description: Source column to tag with the TITLE semantic tag. Must be TEXT. Import mode only.
+        cloudOptions:
+          $ref: '#/components/schemas/CloudOptionsInput'
+        cloudLinkId:
+          type: string
+          description: Cloud link to import from (import mode) or to host a newly-created table on (native-at-link mode)
+          format: uuid
+        schema:
+          type: string
+          description: Source schema — import mode only; omit in native and native-at-link modes
+        handle:
+          type: string
+          description: Record-handle prefix. Derived from name (uppercase letters only) when omitted.
+        allowAnonymousEmailCreation:
+          type: boolean
+        name:
+          type: string
+          description: Element display name
+        icon:
+          type: string
+        allowInlineImageIngestion:
+          type: boolean
+        database:
+          type: string
+          description: Source database — import mode only; omit in native and native-at-link modes
+        readOnly:
+          type: boolean
+        snowflakeWarehouse:
+          type: string
+          description: Warehouse override for this element
+        fields:
+          type: array
+          description: Field definitions for native and native-at-link modes. Must be omitted in import mode.
+          items:
+            $ref: '#/components/schemas/AspectFieldInput'
+        idColumn:
+          type: string
+          description: Source column to tag with the HANDLE semantic tag. Must be TEXT, NUMBER, or HANDLE. Import mode only.
+      description: 'Body for POST /v1/elements. Three modes: (1) import — `cloudLinkId` + `database`/`schema`/`table`/`idColumn`/`titleColumn`; columns are discovered from the source table and `fields` must be omitted. (2) native-at-link — `cloudLinkId` only (no source-table group); a new physical table is created at the cloud link''s configured database/schema; supply `fields` for the schema or omit for system defaults. (3) native — omit both `cloudLinkId` and the source-table group; the element lives on the organization''s system cloud link.'
+    ElementUpdateRequest:
+      type: object
+      properties:
+        recordCreateTypes:
+          $ref: '#/components/schemas/RecordCreateTypesInput'
+        workflowValuePerAutomation:
+          type: number
+        allowForwardedEmailIngestion:
+          type: boolean
+        categoryId:
+          type: string
+          description: Aspect category to file the element under
+          format: uuid
+        description:
+          type: string
+          description: Element description
+        name:
+          type: string
+          description: Element display name
+        allowInlineImageIngestion:
+          type: boolean
+        icon:
+          type: string
+        allowAnonymousEmailCreation:
+          type: boolean
+        color:
+          type: string
+      description: 'Body for PUT /v1/elements/{alias}. Partial update: only the fields present are changed. Source binding (cloud link, source table, field schema) is fixed at create time and cannot be edited here.'
+    AspectFieldType:
+      type: string
+      description: The Elementum field data type
+      enum:
+      - ATTACHMENT_ID
+      - BOOLEAN
+      - DATE
+      - DATETIME
+      - DECIMAL
+      - GROUP_ID
+      - HANDLE
+      - HTML
+      - JSON
+      - MULTI_PICKLIST
+      - NUMBER
+      - PICKLIST
+      - TEXT
+      - USER_ID
+    CloudOptionsInput:
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/SnowflakeOptionsInput'
+    Aspect:
+      type: object
+      properties:
+        configured:
+          type: boolean
+          description: Whether the aspect has been fully configured
+        status:
+          type: string
+          description: Lifecycle status (DRAFT, ACTIVE, ARCHIVED, …)
+        description:
+          type: string
+          description: The aspect description
+        __typename:
+          type: string
+          description: The aspect variant (AspectApp, AspectElement, AspectTask, AspectTransaction)
+        icon:
+          type: string
+          description: The aspect icon
+        namespace:
+          type: string
+          description: The aspect namespace (lowercase identifier used in URLs)
+        handle:
+          type: string
+          description: The aspect handle (uppercase identifier used in record handles)
+        readOnly:
+          type: boolean
+        sourceType:
+          $ref: '#/components/schemas/AspectSourceType'
+        color:
+          type: string
+          description: The aspect color
+        id:
+          type: string
+          description: The aspect ID
+          format: uuid
+        name:
+          type: string
+          description: The aspect display name
+        category:
+          $ref: '#/components/schemas/AspectCategoryRef'
+    SnowflakeOptionsInput:
+      type: object
+      properties:
+        hybridTable:
+          type: boolean
+          description: Use a Snowflake hybrid table
+    RecordCreateTypesInput:
+      type: object
+      properties:
+        agents:
+          type: boolean
+          description: Whether records can be created by agents
+        email:
+          type: boolean
+          description: Whether records can be created via inbound email
+        services:
+          type: boolean
+          description: Whether records can be created by services
+        api:
+          type: boolean
+          description: Whether records can be created via the API
+        automations:
+          type: boolean
+          description: Whether records can be created by automations
+        manual:
+          type: boolean
+          description: Whether records can be created manually in the UI
+  responses:
+    '422':
+      description: Unprocessable Entity
+    '404':
+      description: Not Found
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+    '429':
+      description: Too Many Requests
+  parameters:
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

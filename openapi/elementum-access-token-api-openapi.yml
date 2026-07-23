@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Access Token
+  description: Manage access tokens using OAuth 2.0 standards
+paths:
+  /oauth/token:
+    post:
+      tags:
+      - Access Token
+      summary: Request an access token
+      operationId: requestAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessTokenRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+      servers:
+      - url: /
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    AccessTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      type: object
+      properties:
+        client_secret:
+          type: string
+          description: Your client secret
+        grant_type:
+          type: string
+          description: Must be set to 'client_credentials'
+          enum:
+          - client_credentials
+        client_id:
+          type: string
+          description: Your client id
+    AccessTokenResponse:
+      required:
+      - grant_type
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: number
+        token_type:
+          type: string
+      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
+  responses:
+    '400':
+      description: Bad Request
+    '401':
+      description: Unauthorized
+    '500':
+      description: Internal Server Error
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

@@ -1,0 +1,577 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Groups API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Groups
+  description: Manage groups and group membership
+paths:
+  /groups:
+    get:
+      tags:
+      - Groups
+      summary: List groups in your organization
+      operationId: listGroups
+      parameters:
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Groups
+      summary: Create a group
+      operationId: createGroup
+      parameters: []
+      requestBody:
+        description: The group to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /groups/{groupId}:
+    get:
+      tags:
+      - Groups
+      summary: Get a group by ID
+      operationId: getGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    put:
+      tags:
+      - Groups
+      summary: Update a group
+      operationId: updateGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        description: The group fields to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /groups/{groupId}/users:
+    get:
+      tags:
+      - Groups
+      summary: List users in a group
+      operationId: listGroupUsers
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Groups
+      summary: Add users to a group
+      operationId: addUsersToGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        description: The user IDs to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUserIdsInput'
+        required: true
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - Groups
+      summary: Remove users from a group
+      operationId: removeUsersFromGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        description: The user IDs to remove
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUserIdsInput'
+        required: true
+      responses:
+        '200':
+          description: Ok
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /groups/{groupId}/domains:
+    post:
+      tags:
+      - Groups
+      summary: Add email domains to a group
+      operationId: addDomainsToGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        description: The email domains to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDomainsInput'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupDomainList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - Groups
+      summary: Remove email domains from a group
+      operationId: removeDomainsFromGroup
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        description: The email domains to remove
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDomainsInput'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupDomainList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    groupId:
+      name: groupId
+      in: path
+      description: The group ID (UUID)
+      required: true
+      schema:
+        type: string
+        format: uuid
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+  schemas:
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    GroupUserIdsInput:
+      required:
+      - userIds
+      type: object
+      properties:
+        userIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+      example: '{userIds=[550e8400-e29b-41d4-a716-446655440000]}'
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The group name
+        id:
+          type: string
+          description: The group ID
+          format: uuid
+        assignable:
+          type: boolean
+          description: Whether the group can be assigned to records
+        watchable:
+          type: boolean
+          description: Whether the group can be used as a watcher
+        mentionable:
+          type: boolean
+          description: Whether the group can be mentioned
+        domains:
+          type: array
+          description: Email auto-assignment domains (dynamic groups only)
+          items:
+            $ref: '#/components/schemas/GroupDomain'
+        managed:
+          type: boolean
+          description: Whether the group is system-managed
+        dynamic:
+          type: boolean
+          description: Whether the group is dynamic
+      example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
+    GroupDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email domain
+        id:
+          type: string
+          description: The auto-assignment rule ID
+          format: uuid
+      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
+    UserPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    GroupRequest:
+      type: object
+      properties:
+        watchable:
+          type: boolean
+          description: Whether the group can be used as a watcher
+        dynamic:
+          type: boolean
+          description: Whether the group derives membership from email domains
+        hidden:
+          type: boolean
+          description: Whether the group is hidden
+        tags:
+          type: array
+          description: Group tags
+          items:
+            type: string
+        dataAccess:
+          type: boolean
+          description: Whether the group grants data access
+        name:
+          type: string
+          description: The group name
+        userIds:
+          type: array
+          description: Member user IDs; non-dynamic groups only
+          items:
+            type: string
+            format: uuid
+        domains:
+          type: array
+          description: Email domains for auto-assignment; dynamic groups only
+          items:
+            type: string
+        mentionable:
+          type: boolean
+          description: Whether the group can be mentioned
+        assignable:
+          type: boolean
+          description: Whether the group can be assigned to records
+        approver:
+          type: boolean
+          description: Whether the group can act as an approver
+      example: '{name=Engineering, assignable=true, watchable=true, approver=false, mentionable=true, dynamic=false, dataAccess=false, userIds=[550e8400-e29b-41d4-a716-446655440000]}'
+    GroupDomainsInput:
+      required:
+      - domains
+      type: object
+      properties:
+        domains:
+          type: array
+          description: Email domains for auto-assignment
+          items:
+            type: string
+      example: '{domains=[example.com]}'
+    GroupDomainList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupDomain'
+    GroupPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+  responses:
+    '401':
+      description: Unauthorized
+    '422':
+      description: Unprocessable Entity
+    '429':
+      description: Too Many Requests
+    '403':
+      description: Forbidden
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '400':
+      description: Bad Request
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

@@ -1,0 +1,367 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Records API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Records
+  description: Manage your records
+paths:
+  /{recordType}/{alias}:
+    get:
+      tags:
+      - Records
+      summary: Get the list of records
+      operationId: recordList
+      parameters:
+      - $ref: '#/components/parameters/recordType'
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Records
+      summary: Create a record
+      operationId: createRecord
+      parameters:
+      - $ref: '#/components/parameters/recordType'
+      - $ref: '#/components/parameters/alias'
+      requestBody:
+        description: record to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /{recordType}/{alias}/{id}:
+    get:
+      tags:
+      - Records
+      summary: Find a record by ID
+      operationId: getRecord
+      parameters:
+      - $ref: '#/components/parameters/recordType'
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/recordId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    put:
+      tags:
+      - Records
+      summary: Update a record
+      operationId: updateRecord
+      parameters:
+      - $ref: '#/components/parameters/recordType'
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/recordId'
+      requestBody:
+        description: record to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    filter:
+      name: filter
+      in: query
+      description: An RSQL filter string.
+      required: false
+      schema:
+        type: string
+        format: string
+      examples:
+        In:
+          summary: In
+          description: In the provided list
+          value: Number=in=1:2:3:4:5
+        Between:
+          summary: Between
+          description: Between two values
+          value: Number=bt=1:10
+        Equals:
+          summary: Equals
+          description: Equals
+          value: Status==Open
+        LikeIgnoreCase:
+          summary: LikeIgnoreCase
+          description: Contains value, case insensitive
+          value: Title=lki=Incidents
+        And:
+          summary: And
+          description: The and ';' operator
+          value: Created At!=null;Created At=ge=2021-01-01T07:58:30.000Z
+        NotLike:
+          summary: NotLike
+          description: Doesn't contains value
+          value: Title!lk=Incidents
+        -- select --:
+          value: ''
+        Or:
+          summary: Or
+          description: The or ',' operator
+          value: Created At!=null,Created At=ge=2021-01-01T07:58:30.00Z
+        NotLikeIgnoreCase:
+          summary: NotLikeIgnoreCase
+          description: Doesn't contains value, case insensitive
+          value: Title!lki=Incidents
+        GreaterOrEqualTo:
+          summary: GreaterOrEqualTo
+          description: Greater than inclusive
+          value: Created At=ge=2021-01-01T07:58:30.000Z
+        NotBetween:
+          summary: NotBetween
+          description: Not Between two values
+          value: Number!bt=1:10
+        NotIn:
+          summary: NotIn
+          description: Not in the provided list
+          value: Number!in=1:2:3:4:5
+        LessThan:
+          summary: LessThan
+          description: Less than exclusive
+          value: Created At=lt=2022-03-15T07:58:30.000Z
+        Like:
+          summary: Like
+          description: Contains value
+          value: Title=lk=Incidents
+        LessOrEqualTo:
+          summary: LessOrEqualTo
+          description: Less than inclusive
+          value: Created At=le=2021-01-01T07:58:30.000Z
+        NotEquals:
+          summary: NotEquals
+          description: Not Equals
+          value: Created At!=null
+        GreaterThan:
+          summary: GreaterThan
+          description: Greater than exclusive
+          value: Created At=gt=2022-03-15T07:58:30.000Z
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
+    recordId:
+      name: id
+      in: path
+      description: The record ID
+      required: true
+      schema:
+        type: string
+        format: string
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+  schemas:
+    RecordListItem:
+      type: object
+      properties:
+        cursor:
+          type: string
+        data:
+          $ref: '#/components/schemas/Record'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    Record:
+      type: object
+      additionalProperties:
+        type: string
+      example:
+        Severity: High
+        Description: Complaint received for 3 pallets of product that was shipped on Bad Pallets.
+        Title: Order ID 23456 Logistics CHH Warehouse
+        Created on: '2020-04-04'
+        Assignee: elroy@elementum.com
+        Status: In Progress
+    RecordPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordListItem'
+      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, data={severity=High, description=Complaint received for 3 pallets of product that was shipped on Bad Pallets., title=Order ID 23456 Logistics CHH Warehouse}}, {cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, data={severity=Low, description=Complaint received for 1 pallet of product that was shipped on a Bad Pallet., title=Order ID 1472 Logistics CHH Warehouse}}]}'
+  responses:
+    '401':
+      description: Unauthorized
+    '422':
+      description: Unprocessable Entity
+    '429':
+      description: Too Many Requests
+    '403':
+      description: Forbidden
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '400':
+      description: Bad Request
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

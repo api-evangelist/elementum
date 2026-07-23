@@ -1,0 +1,366 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Users API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Users
+  description: Manage users in your organization
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      summary: List users in your organization
+      operationId: listUsers
+      parameters:
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Users
+      summary: Create a user in your organization
+      operationId: createUser
+      parameters: []
+      requestBody:
+        description: The user to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserInput'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /users/{userId}:
+    get:
+      tags:
+      - Users
+      summary: Get a user by ID
+      operationId: getUser
+      parameters:
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /users/{userId}/deactivate:
+    post:
+      tags:
+      - Users
+      summary: Deactivate a user
+      operationId: deactivateUser
+      parameters:
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    filter:
+      name: filter
+      in: query
+      description: An RSQL filter string.
+      required: false
+      schema:
+        type: string
+        format: string
+      examples:
+        In:
+          summary: In
+          description: In the provided list
+          value: Number=in=1:2:3:4:5
+        Between:
+          summary: Between
+          description: Between two values
+          value: Number=bt=1:10
+        Equals:
+          summary: Equals
+          description: Equals
+          value: Status==Open
+        LikeIgnoreCase:
+          summary: LikeIgnoreCase
+          description: Contains value, case insensitive
+          value: Title=lki=Incidents
+        And:
+          summary: And
+          description: The and ';' operator
+          value: Created At!=null;Created At=ge=2021-01-01T07:58:30.000Z
+        NotLike:
+          summary: NotLike
+          description: Doesn't contains value
+          value: Title!lk=Incidents
+        -- select --:
+          value: ''
+        Or:
+          summary: Or
+          description: The or ',' operator
+          value: Created At!=null,Created At=ge=2021-01-01T07:58:30.00Z
+        NotLikeIgnoreCase:
+          summary: NotLikeIgnoreCase
+          description: Doesn't contains value, case insensitive
+          value: Title!lki=Incidents
+        GreaterOrEqualTo:
+          summary: GreaterOrEqualTo
+          description: Greater than inclusive
+          value: Created At=ge=2021-01-01T07:58:30.000Z
+        NotBetween:
+          summary: NotBetween
+          description: Not Between two values
+          value: Number!bt=1:10
+        NotIn:
+          summary: NotIn
+          description: Not in the provided list
+          value: Number!in=1:2:3:4:5
+        LessThan:
+          summary: LessThan
+          description: Less than exclusive
+          value: Created At=lt=2022-03-15T07:58:30.000Z
+        Like:
+          summary: Like
+          description: Contains value
+          value: Title=lk=Incidents
+        LessOrEqualTo:
+          summary: LessOrEqualTo
+          description: Less than inclusive
+          value: Created At=le=2021-01-01T07:58:30.000Z
+        NotEquals:
+          summary: NotEquals
+          description: Not Equals
+          value: Created At!=null
+        GreaterThan:
+          summary: GreaterThan
+          description: Greater than exclusive
+          value: Created At=gt=2022-03-15T07:58:30.000Z
+    userId:
+      name: userId
+      in: path
+      description: The user ID (UUID)
+      required: true
+      schema:
+        type: string
+        format: uuid
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+  responses:
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
+    '404':
+      description: Not Found
+    '403':
+      description: Forbidden
+    '401':
+      description: Unauthorized
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+  schemas:
+    UserPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+    CreateUserInput:
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: The user's first name
+        neverNotify:
+          type: boolean
+          description: If true, the user will not receive a welcome email
+        lastName:
+          type: string
+          description: The user's last name
+        jobTitle:
+          type: string
+          description: The user's job title (optional)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+      example: '{jobTitle=Engineer, email=jane@example.com, firstName=Jane, lastName=Doe}'
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

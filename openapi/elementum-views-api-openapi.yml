@@ -1,0 +1,476 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Views API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Views
+  description: Manage app views
+paths:
+  /apps/{alias}/views:
+    get:
+      tags:
+      - Views
+      summary: List views under an app
+      operationId: listViews
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/last'
+      - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AspectViewPagedList'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Views
+      summary: Create a view under an app
+      operationId: createView
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      requestBody:
+        description: Full desired state of the new view, plus an optional share set
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AspectViewCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassthroughObject'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /apps/{alias}/views/{id}:
+    get:
+      tags:
+      - Views
+      summary: Get a view by ID
+      operationId: getView
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      - $ref: '#/components/parameters/passthroughId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AspectView'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    put:
+      tags:
+      - Views
+      summary: Update a view under an app
+      operationId: updateView
+      parameters:
+      - $ref: '#/components/parameters/alias'
+      - name: id
+        in: path
+        description: Portable cross-environment identifier (client handle) of the view to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Full desired state of the view, plus an optional share set
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AspectViewUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassthroughObject'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    passthroughId:
+      name: id
+      in: path
+      description: The resource ID
+      required: true
+      schema:
+        type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+  schemas:
+    AspectViewUpdateRequest:
+      required:
+      - view
+      type: object
+      properties:
+        view:
+          $ref: '#/components/schemas/AspectViewInput'
+        share:
+          $ref: '#/components/schemas/AspectViewShareInput'
+      description: 'View update body: the full desired view state plus an optional share set (the view''s handle is on the path).'
+    AspectViewVariantInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The view's display name
+        allowRecordCreation:
+          type: boolean
+          description: Whether records can be created from this view
+        filter:
+          type: object
+          description: Opaque Filter JSON scoping the view's records
+        sort:
+          type: object
+          description: Opaque Sort JSON ordering the view's records
+      additionalProperties: true
+      description: View configuration. Common fields are listed; type-specific fields (columns, density, rows, displayByField, allowedFilterFields, agentId, dashboardId) are accepted and forwarded as-is.
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    PassthroughObject:
+      type: object
+      additionalProperties: true
+      description: Free-form JSON object forwarded to/from the downstream service.
+    AspectViewCreateRequest:
+      required:
+      - handle
+      - view
+      type: object
+      properties:
+        handle:
+          type: string
+          description: Portable cross-environment identifier naming the new view; resolved to the view id (minted if first seen)
+        share:
+          $ref: '#/components/schemas/AspectViewShareInput'
+        view:
+          $ref: '#/components/schemas/AspectViewInput'
+      description: 'View create body: the handle that names the view, its full desired state, plus an optional share set.'
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The group name
+        id:
+          type: string
+          description: The group ID
+          format: uuid
+        assignable:
+          type: boolean
+          description: Whether the group can be assigned to records
+        watchable:
+          type: boolean
+          description: Whether the group can be used as a watcher
+        mentionable:
+          type: boolean
+          description: Whether the group can be mentioned
+        domains:
+          type: array
+          description: Email auto-assignment domains (dynamic groups only)
+          items:
+            $ref: '#/components/schemas/GroupDomain'
+        managed:
+          type: boolean
+          description: Whether the group is system-managed
+        dynamic:
+          type: boolean
+          description: Whether the group is dynamic
+      example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
+    GroupDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email domain
+        id:
+          type: string
+          description: The auto-assignment rule ID
+          format: uuid
+      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
+    AspectView:
+      type: object
+      properties:
+        displayOrder:
+          type: integer
+          description: Sort position among the app's views
+          format: int32
+        share:
+          type: object
+          properties:
+            groups:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
+            users:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+          description: Who the view is shared with; each user/group carries its portable client handle
+        agent:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+          description: Linked agent (agent views only)
+        clientHandle:
+          type: string
+          description: Portable cross-environment identifier minted for this view
+        columns:
+          type: array
+          description: Field IDs shown as columns (list/kanban/calendar)
+          items:
+            type: string
+            format: uuid
+        density:
+          type: string
+          description: Row density (list views)
+        rows:
+          type: integer
+          description: Rows per page (list views)
+          format: int32
+        sort:
+          type: object
+          description: Opaque Sort JSON ordering the view's records
+        allowedFilterFields:
+          type: array
+          description: Field IDs offered as filters (kanban)
+          items:
+            type: string
+            format: uuid
+        filter:
+          type: object
+          description: Opaque Filter JSON scoping the view's records
+        type:
+          type: string
+          description: The view variant (AspectViewList, AspectViewKanban, AspectViewCalendar, AspectViewDashboard, AspectViewAgent)
+        displayByField:
+          type: string
+          description: Grouping field ID (kanban/calendar)
+          format: uuid
+        name:
+          type: string
+          description: The view's display name
+        allowRecordCreation:
+          type: boolean
+          description: Whether records can be created from this view
+        id:
+          type: string
+          description: The view ID
+          format: uuid
+      description: An app view returned by the views endpoints.
+    AspectViewPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AspectView'
+    AspectViewShareInput:
+      type: object
+      properties:
+        groups:
+          type: array
+          description: Client handles of groups to share with
+          items:
+            type: string
+        users:
+          type: array
+          description: Client handles of users to share with
+          items:
+            type: string
+      description: Declarative share set. Omit to leave sharing untouched; present is a full-replace resync.
+    AspectViewInput:
+      type: object
+      properties:
+        agent:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        calendar:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        list:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        kanban:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        dashboard:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+      description: Discriminator wrapper. Exactly one variant field (list, kanban, calendar, dashboard, agent) must be populated.
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+  responses:
+    '401':
+      description: Unauthorized
+    '422':
+      description: Unprocessable Entity
+    '429':
+      description: Too Many Requests
+    '403':
+      description: Forbidden
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '400':
+      description: Bad Request
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/

@@ -1,0 +1,387 @@
+openapi: 3.0.1
+info:
+  title: Elementum Access Token Search Tables API
+  description: Manage access tokens using OAuth 2.0 standards
+  contact:
+    email: apiteam@elementum.io
+  version: 0.0.1
+servers:
+- url: /v1
+tags:
+- name: Search Tables
+  description: Manage search tables (snowflake and linked)
+paths:
+  /aspects/{aspectId}/search-tables:
+    post:
+      tags:
+      - Search Tables
+      summary: Create a snowflake-backed search table
+      operationId: createSnowflakeSearchTable
+      parameters:
+      - $ref: '#/components/parameters/aspectId'
+      requestBody:
+        description: Snowflake search-table configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AspectSearchTableSnowflakeCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTable'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /aspects/{aspectId}/search-tables/{id}:
+    get:
+      tags:
+      - Search Tables
+      summary: Get a search table by ID
+      operationId: getSearchTable
+      parameters:
+      - $ref: '#/components/parameters/aspectId'
+      - $ref: '#/components/parameters/aspectSearchTableId'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTable'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+    put:
+      tags:
+      - Search Tables
+      summary: Update a search table by ID
+      operationId: updateSearchTable
+      parameters:
+      - $ref: '#/components/parameters/aspectId'
+      - $ref: '#/components/parameters/aspectSearchTableId'
+      requestBody:
+        description: Search-table fields to update (snowflake-only today)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AspectSearchTableUpdateInput'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTable'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+  /aspects/{aspectId}/linked-search-tables:
+    post:
+      tags:
+      - Search Tables
+      summary: Create a search table linked to an existing Cortex Search Service
+      operationId: createLinkedSearchTable
+      parameters:
+      - $ref: '#/components/parameters/aspectId'
+      requestBody:
+        description: Linked search-table configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AspectLinkedSearchTableCreateRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTable'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+      security:
+      - ClientCredentials: []
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    AspectSearchTableSnowflakeUpdateInput:
+      type: object
+      properties:
+        warehouse:
+          type: string
+          description: Snowflake warehouse used to maintain the table
+        targetLag:
+          type: integer
+          description: Refresh target-lag amount
+          format: int32
+        duration:
+          $ref: '#/components/schemas/SearchTableTimeUnit'
+    VectorIndex:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/SearchTableField'
+        aiProviderConnector:
+          $ref: '#/components/schemas/AiProviderConnectorRef'
+    SearchTable:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/SearchTableField'
+        linkedDatabase:
+          type: string
+          description: 'Linked-only: database holding the Cortex Search Service'
+        duration:
+          $ref: '#/components/schemas/SearchTableTimeUnit'
+        attributeFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTableField'
+        aiProviderConnector:
+          $ref: '#/components/schemas/AiProviderConnectorRef'
+        status:
+          type: string
+          description: Lifecycle status (PENDING, READY, FAILED, …)
+        displayName:
+          type: string
+          description: The server-assigned display name
+        linkedServiceName:
+          type: string
+          description: 'Linked-only: name of the existing Cortex Search Service'
+        __typename:
+          type: string
+          description: The search-table variant (AspectSearchSnowflakeTable or AspectLinkedSearchTable)
+        warehouse:
+          type: string
+          description: Snowflake warehouse used to maintain the table
+        targetLag:
+          type: integer
+          description: Refresh target-lag amount
+          format: int32
+        errorMessage:
+          type: string
+          description: Populated when status is FAILED
+        textIndexFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTableField'
+        vectorIndexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorIndex'
+        linkedSchema:
+          type: string
+          description: 'Linked-only: schema holding the Cortex Search Service'
+        id:
+          type: string
+          description: The search-table ID
+          format: uuid
+    SearchTableTimeUnit:
+      type: string
+      description: Time unit for search-table refresh duration.
+      enum:
+      - SECONDS
+      - MINUTES
+      - HOURS
+      - DAYS
+    AspectSearchTableUpdateInput:
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/AspectSearchTableSnowflakeUpdateInput'
+    VectorIndexInput:
+      required:
+      - aiProviderConnectorId
+      - fieldId
+      type: object
+      properties:
+        fieldId:
+          type: string
+          description: The aspect field to vectorize
+          format: uuid
+        aiProviderConnectorId:
+          type: string
+          description: The embedding provider connector for this index
+          format: uuid
+    AspectSearchTableSnowflakeCreateRequest:
+      required:
+      - attributeFieldIds
+      - duration
+      - targetLag
+      type: object
+      properties:
+        attributeFieldIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        warehouse:
+          type: string
+          description: Snowflake warehouse used to maintain the table
+        fieldId:
+          type: string
+          description: Legacy single-index field; prefer vectorIndexes for new tables
+          format: uuid
+        duration:
+          $ref: '#/components/schemas/SearchTableTimeUnit'
+        textIndexFieldIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        targetLag:
+          type: integer
+          description: Refresh target-lag amount
+          format: int32
+        aiProviderConnectorId:
+          type: string
+          description: Legacy single-index embedding provider; prefer vectorIndexes
+          format: uuid
+        vectorIndexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorIndexInput'
+    AspectLinkedSearchTableCreateRequest:
+      required:
+      - cloudLinkId
+      - database
+      - schema
+      - serviceName
+      type: object
+      properties:
+        warehouse:
+          type: string
+          description: Optional warehouse override
+        cloudLinkId:
+          type: string
+          description: The cloud link containing the Cortex Search Service
+          format: uuid
+        database:
+          type: string
+          description: Database holding the Cortex Search Service
+        schema:
+          type: string
+          description: Schema holding the Cortex Search Service
+        serviceName:
+          type: string
+          description: Name of the existing Cortex Search Service
+    SearchTableField:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The field name
+        id:
+          type: string
+          description: The field ID
+          format: uuid
+        type:
+          type: string
+          description: The aspect field variant (e.g. AspectTextField, AspectNumberField)
+    AiProviderConnectorRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The AI provider connector ID
+          format: uuid
+  responses:
+    '401':
+      description: Unauthorized
+    '422':
+      description: Unprocessable Entity
+    '429':
+      description: Too Many Requests
+    '403':
+      description: Forbidden
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '400':
+      description: Bad Request
+  parameters:
+    aspectSearchTableId:
+      name: id
+      in: path
+      description: The search-table ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+    aspectId:
+      name: aspectId
+      in: path
+      description: The aspect ID (UUID)
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth/token
+externalDocs:
+  description: Find out more about Elementum
+  url: https://www.elementum.com/
