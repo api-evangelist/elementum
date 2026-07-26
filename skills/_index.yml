@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/elementum-openapi-original.json
+skills:
+- file: elementum-manage-records.md
+  name: Manage Elementum records
+  api: openapi/elementum-openapi-original.json
+  operations: [requestAccessToken, recordList, getRecord, createRecord, updateRecord]
+- file: elementum-record-collaboration.md
+  name: Collaborate on an Elementum record
+  api: openapi/elementum-openapi-original.json
+  operations: [requestAccessToken, createRecordAttachment, createRecordLink, listRecordAttachments, downloadRecordAttachment, createRecordComment, listRecordComments, createRecordWatchers, createRecordRelatedItems]
+- file: elementum-provision-users.md
+  name: Provision Elementum users and groups
+  api: openapi/elementum-openapi-original.json
+  operations: [requestAccessToken, listUsers, createUser, getUser, deactivateUser, listGroups, createGroup, addUsersToGroup, listGroupUsers, removeUsersFromGroup, addDomainsToGroup]

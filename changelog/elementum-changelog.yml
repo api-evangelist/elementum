@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.elementum.io/release-notes/overview
+scheme: date-based monthly release notes (general-availability releases ~twice a month)
+cadence: ~2 GA releases per month, plus a running Upcoming Features (beta) list
+current_period: July 2026
+pages:
+  overview: https://docs.elementum.io/release-notes/overview
+  july_2026: https://docs.elementum.io/release-notes/july-2026
+  june_2026: https://docs.elementum.io/release-notes/june-2026
+  may_2026: https://docs.elementum.io/release-notes/may-2026
+  previous: https://docs.elementum.io/release-notes/previous-releases
+  upcoming: https://docs.elementum.io/release-notes/upcoming-features
+entries:
+- date: '2026-07-15'
+  area: Agents & AI
+  breaking: false
+  highlights:
+  - Conversation timeout & post-conversation record creation for Elementum chat agents (parity with Voice, A2A, Teams, Slack).
+- date: '2026-07-10'
+  area: Automations
+  breaking: false
+  highlights:
+  - Save attachments between apps and from agent interactions directly in automations (cross-app file workflows).
+- date: '2026-07-09'
+  area: Agents & AI, Apps, Platform
+  breaking: false
+  highlights:
+  - 'Studio Agents: Flow Builder — build automations, agents, and flows via natural language with a coding-based agent (Anthropic model).'
+  - Refreshed agent overview page with read-only configuration at a glance.
+  - Org default columns for Table View Widgets, set by app admins.
+  - Custom platform branding (accent color and logo) across the platform and login flow.
+- date: '2026-07-08'
+  area: Platform
+  breaking: false
+  highlights:
+  - Organization Admin object visibility — Org Admins can see every Object and record, with audit logging.
+- date: '2026-07-06'
+  area: Agents & AI
+  breaking: false
+  highlights:
+  - Generate embeddings via AWS Bedrock models natively inside automations (AI Transform task).

@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://docs.elementum.io/support/mcp-server
+server:
+  name: elementum-docs
+  description: >-
+    Official Elementum documentation MCP server. Gives MCP-compatible AI tools (Cursor, Claude
+    Desktop, Claude Code, ChatGPT, and any Streamable HTTP client) real-time, cited access to the
+    live Elementum documentation. Public — no account or credentials required.
+  transport: http
+  url: https://docs.elementum.io/mcp
+  auth: none
+  scope: documentation
+notes: >-
+  This is a documentation MCP server (read/search the docs), not a data-plane MCP server over the
+  REST API. Elementum's platform separately supports building AI agents and connecting external
+  agents via the A2A protocol and Agent Gateways; those are in-platform, not a hosted MCP endpoint
+  for the public REST API. A data-plane MCP surface could be derived from the OpenAPI operations.
+install:
+  claude_code: claude mcp add --transport http elementum-docs https://docs.elementum.io/mcp
+  config: |
+    {
+      "mcpServers": {
+        "elementum-docs": { "url": "https://docs.elementum.io/mcp" }
+      }
+    }

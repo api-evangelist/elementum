@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/elementum-openapi-original.json
+notes: >-
+  Standards conformance derived from the OpenAPI and the developer docs. Elementum publishes no
+  formal certification / trust-center program that was verifiable via probe, so no `Compliance`
+  pointer is asserted here.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenAPI securitySchemes declares oauth2 clientCredentials (token endpoint /oauth/token)
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme or discovery document (/.well-known/openid-configuration returns 401)
+- id: saml2
+  conforms: true
+  evidence: Docs document SAML 2.0 Single Sign-On (administration/sso-saml-setup)
+- id: scim2
+  conforms: true
+  evidence: Docs document SCIM provisioning alongside SAML SSO
+- id: rsql-filtering
+  conforms: true
+  evidence: Search endpoints accept RSQL filter strings in the `filter` query parameter
+- id: relay-cursor-pagination
+  conforms: true
+  evidence: List endpoints use Relay-style first/after/last/before cursor parameters
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses use plain HTTP status codes, not application/problem+json
+- id: opentelemetry
+  conforms: true
+  evidence: Docs document OpenTelemetry trace forwarding (administration/trace-forwarding)

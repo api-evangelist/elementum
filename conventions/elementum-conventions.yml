@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.elementum.io/api-reference/api-introduction
+description: >-
+  Cross-cutting request/response semantics for the Elementum REST API v1, captured from the API
+  reference and derived from the OpenAPI. Cross-links authentication/, errors/, lifecycle/.
+authentication:
+  style: oauth2-client-credentials
+  header: 'Authorization: Bearer <access_token>'
+  token_url: https://api.elementum.io/oauth/token
+  token_ttl_seconds: 86400
+  detail: authentication/elementum-authentication.yml
+base_url:
+  us: https://api.elementum.io/v1
+  eu: https://api.eu.elementum.io/v1
+pagination:
+  style: cursor
+  model: relay
+  params:
+  - first    # number of elements to retrieve after the `after` cursor
+  - after    # starting cursor (forward paging)
+  - last     # number of elements to retrieve before the `before` cursor
+  - before   # starting cursor (backward paging)
+  notes: >-
+    Relay-style cursor pagination on search/list endpoints. Use first+after to page forward and
+    last+before to page backward.
+filtering:
+  style: rsql
+  param: filter
+  operators: [ '==', '!=', '=gt=', '=ge=', '=lt=', '=le=', '=in=', '=out=' ]
+  combine:
+    and: ';'   # URL-encode as %3b; AND takes precedence over OR
+    or: ','    # URL-encode as %2c
+  example: Status==Open;Priority==High
+  docs: https://docs.elementum.io/api-reference/api-introduction
+idempotency:
+  supported: false
+  notes: No documented idempotency-key header or parameter in the OpenAPI or API reference.
+versioning:
+  style: uri-path
+  current: v1
+  detail: lifecycle/elementum-lifecycle.yml
+error_envelope:
+  style: http-status
+  format: standard HTTP status codes (no application/problem+json body schema in the spec)
+  statuses: [200, 201, 202, 204, 400, 401, 403, 404, 422, 429, 500]
+  detail: errors/elementum-problem-types.yml
+rate_limiting:
+  enforced: true
+  signal: HTTP 429 Too Many Requests
+  headers: not documented
+regions: [us, eu]

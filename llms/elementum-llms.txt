@@ -1,0 +1,150 @@
+# Elementum Documentation
+
+## Docs
+
+- [Access Setup Best Practices](https://docs.elementum.io/administration/access-overview.md): Plan domains, groups, roles, and data access before inviting users to your Elementum organization
+- [Account Lockout](https://docs.elementum.io/administration/account-lockout.md): How Elementum protects accounts from brute-force attacks and how locked users can restore access without contacting support.
+- [Activity Log](https://docs.elementum.io/administration/activity-log.md): Review who changed what, when, and through which channel across your Elementum organization.
+- [CloudLink Overview](https://docs.elementum.io/administration/cloudlink-overview.md): What CloudLink is, how it differs from your data warehouse, supported connection types, and the security model behind it.
+- [Connect a REST API via CloudLink](https://docs.elementum.io/administration/connect-rest-api-cloudlink.md): Set up a CloudLink to an external REST API for use in API-powered dropdowns and API Elements.
+- [Connect Snowflake to Elementum](https://docs.elementum.io/administration/connect-snowflake-to-elementum.md): Step-by-step setup for a CloudLink between Snowflake and Elementum, in the order you'll execute it.
+- [Set Up Custom Email Domains](https://docs.elementum.io/administration/custom-email-domains.md): Send email from your organization's domain using DNS verification and DKIM authentication
+- [Deploy Apps between Environments](https://docs.elementum.io/administration/deploy-apps-between-environments.md): Deploy apps from one organization environment to another, configure post-deployment data connections, and review deployment history
+- [External User Re-Authentication](https://docs.elementum.io/administration/external-user-reauth.md): Require external users to periodically re-verify their identity via magic link to maintain access to your organization.
+- [Global Filters](https://docs.elementum.io/administration/global-filters.md): Apply consistent filtering across all workspace widgets for unified cross-functional data analysis
+- [Groups](https://docs.elementum.io/administration/groups.md): Organize users into groups to assign roles, data access, notifications, and approvals at scale
+- [Multi-Factor Authentication (MFA)](https://docs.elementum.io/administration/multi-factor-authentication.md): Add an extra layer of security to your Elementum account with time-based one-time passwords
+- [Notifications](https://docs.elementum.io/administration/notifications.md): Configure app-level and user-level notification preferences with multi-tier notification resolution
+- [Org Structure](https://docs.elementum.io/administration/org-structure.md): Define your organization's employee hierarchy to enable dynamic manager-based approval routing
+- [Platform Branding](https://docs.elementum.io/administration/platform-branding.md): Customize the Elementum accent color and organization logos so the workspace matches your brand.
+- [Profile](https://docs.elementum.io/administration/profile.md): Manage your personal profile, notifications, security, and integrations in Elementum
+- [Roles & Permissions](https://docs.elementum.io/administration/roles-permissions.md): Manage access control through role-based permissions for secure enterprise workflows
+- [Service Accounts](https://docs.elementum.io/administration/service-accounts.md): Create dedicated API users for agents and automations with managed permissions and security controls
+- [AWS PrivateLink for Snowflake CloudLink](https://docs.elementum.io/administration/snowflake-aws-privatelink.md): Connect Elementum on AWS to your Snowflake account over AWS PrivateLink so traffic stays on the AWS network instead of the public internet.
+- [License Patrol with Snowflake CloudLink](https://docs.elementum.io/administration/snowflake-license-patrol.md): Additional setup steps for using License Patrol with your Snowflake CloudLink.
+- [Snowflake Query Profile Table](https://docs.elementum.io/administration/snowflake-query-profile-table.md): What the Query Profile Table is, why Elementum recommends provisioning it, and how to set it up in your Snowflake account.
+- [Accessing Files from Snowflake Stages](https://docs.elementum.io/administration/snowflake-stages.md): Complete guide to accessing and processing files stored in Snowflake stages through Elementum automations
+- [Snowflake Table Types](https://docs.elementum.io/administration/snowflake-table-types.md): Essential guide for choosing between Standard and Hybrid tables to optimize Elementum's performance and cost efficiency
+- [Snowflake Warehouses](https://docs.elementum.io/administration/snowflake-warehouses.md): Essential guide for configuring Snowflake Virtual Warehouses to optimize Elementum's performance and cost efficiency
+- [Single Sign-On (SSO) with SAML 2.0](https://docs.elementum.io/administration/sso-saml-setup.md): Configure SAML 2.0-based Single Sign-On and SCIM provisioning for secure, centralized authentication in Elementum
+- [Trace Forwarding](https://docs.elementum.io/administration/trace-forwarding.md): Configure OpenTelemetry endpoints to stream trace data from Elementum to your observability and AI evaluation platforms.
+- [Understand and Configure Environments](https://docs.elementum.io/administration/understand-organization-environments.md): How environments isolate development and testing from production, plus how to create environments and configure CloudLink for each one
+- [Users](https://docs.elementum.io/administration/users.md): Invite users into your Elementum organization and review their group memberships
+- [Agent Gateways](https://docs.elementum.io/ai-agents/agent-gateways.md): Set up unified entrypoints to all agents in your organization
+- [Agent Architecture & A2A Protocol](https://docs.elementum.io/ai-agents/agents-a2a-protocol.md): How Elementum agents are structured internally, coordinate with external agents via the A2A protocol, and integrate into deterministic workflows
+- [Test Agent Behavior](https://docs.elementum.io/ai-agents/agents-evaluations.md): Define repeatable evaluation suites and scenarios to verify agent behavior and catch regressions before they reach production
+- [Building Agents](https://docs.elementum.io/ai-agents/agents-experience.md): Create, configure, and test conversational AI agents in your app
+- [Interact with Configured Agents](https://docs.elementum.io/ai-agents/agents-interacting.md): How users chat with Elementum agents in apps, Microsoft Teams, Slack, and over the phone, including starting actions, file inputs, and in-chat forms
+- [Agents Overview](https://docs.elementum.io/ai-agents/agents-overview.md): What Elementum agents are, what they can do, and where they fit in your business processes
+- [Agent Phone Integration](https://docs.elementum.io/ai-agents/agents-phone-integration.md): Enable phone call functionality for your agents using Twilio integration
+- [Agent Skills](https://docs.elementum.io/ai-agents/agents-skills.md): Create and manage modular, reusable Skills that agents discover and execute at runtime
+- [Agent Slack Integration](https://docs.elementum.io/ai-agents/agents-slack-integration.md): Deploy your conversational AI agents directly in Slack channels for intelligent team collaboration
+- [Agent Starting Actions](https://docs.elementum.io/ai-agents/agents-starting-actions.md): Configure clickable action chips that greet users and kick off common tasks without typing
+- [Agent Microsoft Teams Integration](https://docs.elementum.io/ai-agents/agents-teams-integration.md): Run conversational agents in Microsoft Teams with conversations tracked in your Elementum app
+- [Agent tools, deployment, and integrations](https://docs.elementum.io/ai-agents/agents-tools-and-deployment.md): Configure agent tools, deploy agents to workflows and channels, use external agents from App Intelligence, and integrate via the A2A protocol
+- [AI in Automations](https://docs.elementum.io/ai-agents/ai-automations.md): Intelligent automation actions that analyze, classify, and transform data using artificial intelligence
+- [AI Models](https://docs.elementum.io/ai-agents/ai-models.md): Comprehensive guide to available AI models, their capabilities, and when to use them
+- [AI Overview](https://docs.elementum.io/ai-agents/ai-overview.md): How Elementum integrates AI providers, services, and agents into your workflows
+- [AI Search](https://docs.elementum.io/ai-agents/ai-search.md): Enable intelligent semantic search across your data using AI embeddings
+- [AI Services](https://docs.elementum.io/ai-agents/ai-services.md): Create and manage AI services for LLMs and embeddings using your configured providers
+- [Anthropic Setup](https://docs.elementum.io/ai-agents/anthropic-setup.md): Configure Anthropic as your AI provider for direct access to Claude models in agents and automations
+- [AWS Bedrock Agents Setup](https://docs.elementum.io/ai-agents/bedrock-agents-setup.md): Connect a Bedrock Agent built in AWS to an Elementum App via App Intelligence, and invoke it from automations
+- [AWS Bedrock Setup](https://docs.elementum.io/ai-agents/bedrock-setup.md): Configure AWS Bedrock as an AI provider for Claude and other Bedrock-hosted models in Elementum AI Services
+- [Google Gemini Setup](https://docs.elementum.io/ai-agents/gemini-setup.md): Configure Google Gemini as your AI provider for language model services
+- [OpenAI Setup](https://docs.elementum.io/ai-agents/openai-setup.md): Configure OpenAI as your AI provider for language model services
+- [Automating AI Document OCR with Elementum and Snowflake](https://docs.elementum.io/ai-agents/snowflake-ai-ocr.md): Extract text from PDFs and images stored in Snowflake stages using AI_PARSE_DOCUMENT OCR capabilities and automated workflows
+- [Snowflake Cortex Agents Setup](https://docs.elementum.io/ai-agents/snowflake-cortex-agents-setup.md): Complete guide to integrating Snowflake Cortex Agents into Elementum Apps through Intelligence configuration
+- [Snowflake Cortex Setup](https://docs.elementum.io/ai-agents/snowflake-cortex-setup.md): Configure Snowflake Cortex as your AI provider for language model and embedding services
+- [Studio Agents](https://docs.elementum.io/ai-agents/studio-agents.md): Build automations, agents, and flows in Elementum through natural language conversation with a coding-based agent
+- [Elementum API](https://docs.elementum.io/api-reference/api-introduction.md): Get started with the Elementum API to integrate with your systems and streamline workflow automation.
+- [Request an access token](https://docs.elementum.io/api-reference/endpoints/access-token/request-an-access-token.md): Obtain a Bearer token using OAuth 2.0 client credentials. Send either (1) JSON body with client_id, client_secret, and grant_type, or (2) application/x-www-form-urlencoded body with grant_type=client_credentials and Basic Auth header (Client ID as username, Client Secret as password). Tokens expire…
+- [Add a link](https://docs.elementum.io/api-reference/endpoints/attachments/add-a-link.md)
+- [Add an Attachment](https://docs.elementum.io/api-reference/endpoints/attachments/add-an-attachment.md): Upload a file attachment to a specific record
+- [Delete a record attachment](https://docs.elementum.io/api-reference/endpoints/attachments/delete-a-record-attachment.md)
+- [Download attachment content](https://docs.elementum.io/api-reference/endpoints/attachments/download-attachment-content.md)
+- [Find an attachment by ID](https://docs.elementum.io/api-reference/endpoints/attachments/find-an-attachment-by-id.md)
+- [Get the list of attachments](https://docs.elementum.io/api-reference/endpoints/attachments/get-the-list-of-attachments.md)
+- [Add a comment](https://docs.elementum.io/api-reference/endpoints/comments/add-a-comment.md)
+- [Get the list of comments](https://docs.elementum.io/api-reference/endpoints/comments/get-the-list-of-comments.md)
+- [Add users to a group](https://docs.elementum.io/api-reference/endpoints/groups/add-users-to-a-group.md)
+- [Get a group by ID](https://docs.elementum.io/api-reference/endpoints/groups/get-a-group-by-id.md)
+- [List groups in your organization](https://docs.elementum.io/api-reference/endpoints/groups/list-groups.md)
+- [List users in a group](https://docs.elementum.io/api-reference/endpoints/groups/list-users-in-a-group.md)
+- [Remove users from a group](https://docs.elementum.io/api-reference/endpoints/groups/remove-users-from-a-group.md)
+- [Create a record](https://docs.elementum.io/api-reference/endpoints/records/create-a-record.md)
+- [Find a record by ID](https://docs.elementum.io/api-reference/endpoints/records/find-a-record-by-id.md)
+- [Get the list of records](https://docs.elementum.io/api-reference/endpoints/records/get-the-list-of-records.md)
+- [Update a record](https://docs.elementum.io/api-reference/endpoints/records/update-a-record.md)
+- [Add a related item](https://docs.elementum.io/api-reference/endpoints/related-items/add-a-related-item.md)
+- [Get the list of related items](https://docs.elementum.io/api-reference/endpoints/related-items/get-the-list-of-related-items.md)
+- [Remove a related item](https://docs.elementum.io/api-reference/endpoints/related-items/remove-a-related-item.md)
+- [Create a user in your organization](https://docs.elementum.io/api-reference/endpoints/users/create-a-user.md)
+- [Deactivate a user](https://docs.elementum.io/api-reference/endpoints/users/deactivate-a-user.md)
+- [Get a user by ID](https://docs.elementum.io/api-reference/endpoints/users/get-a-user-by-id.md)
+- [List users in your organization](https://docs.elementum.io/api-reference/endpoints/users/list-users.md)
+- [Add a watcher](https://docs.elementum.io/api-reference/endpoints/watchers/add-a-watcher.md)
+- [Delete a watcher](https://docs.elementum.io/api-reference/endpoints/watchers/delete-a-watcher.md)
+- [Get the list of watchers](https://docs.elementum.io/api-reference/endpoints/watchers/get-the-list-of-watchers.md)
+- [Analytics](https://docs.elementum.io/data/analytics.md): Build charts and dashboards from Apps, Elements, Tasks, Tables, and CloudLinks data with aggregations, time ranges, and filters
+- [Calculations](https://docs.elementum.io/data/calculations.md): Build formulas to transform values, aggregate related records, and evaluate conditions—in automations, layouts, and anywhere calculations are supported.
+- [Calculations troubleshooting](https://docs.elementum.io/data/calculations-troubleshooting.md): Common calculation gotchas—multi-value fields, array shapes, regex syntax, date parsing—with the recommended pattern for each.
+- [Data Management](https://docs.elementum.io/data/data-best-practices.md): Guidelines for organizing, sharing, and managing data in Elementum
+- [Data Mining](https://docs.elementum.io/data/data-mining.md): Monitor CloudLink-backed table data on a schedule, track per-record match state, and start automations when conditions are met or cleared.
+- [Multi-value fields](https://docs.elementum.io/data/multi-value-fields.md): How multi-select values behave across calculations, Execute Script, Repeat for Each, and Send API Request — with the working pattern for each need.
+- [Reports](https://docs.elementum.io/data/reports.md): Generate dynamic Excel and PDF reports from your data with customizable layouts and automated workflows
+- [Configure Related Records](https://docs.elementum.io/data/showing-relationships.md): Show, filter, and link related records on record detail layouts using the Related Items widget and record action buttons
+- [Tables](https://docs.elementum.io/data/tables.md): Reusable grid views of your data that stay current with underlying sources—shape what you show, combine related information, and share a consistent view with your team.
+- [Best Practices](https://docs.elementum.io/getting-started/best-practices.md): Essential patterns and strategies for building effective Elementum workflows
+- [Build an App](https://docs.elementum.io/getting-started/build-an-app.md): A step-by-step walkthrough for creating your first Elementum app, from initial setup through testing and launch.
+- [Core Concepts](https://docs.elementum.io/getting-started/fundamentals/core-concepts.md): Foundational building blocks for creating custom business workflows in Elementum
+- [Home Page](https://docs.elementum.io/getting-started/home-page.md): An overview of the Elementum home page, including assignments, approvals, and Workspaces.
+- [Getting Started](https://docs.elementum.io/getting-started/quickstart.md): An overview of what it takes to build your first business workflow in Elementum.
+- [Your Guide to Mastering Elementum](https://docs.elementum.io/getting-started/welcome-to-elementum.md): Get started with intelligent workflows used by the world's largest companies.
+- [July 2026](https://docs.elementum.io/release-notes/july-2026.md): Elementum platform releases for July 2026.
+- [June 2026](https://docs.elementum.io/release-notes/june-2026.md): Elementum platform releases for June 2026.
+- [May 2026](https://docs.elementum.io/release-notes/may-2026.md): Elementum platform releases for May 2026.
+- [Release Notes](https://docs.elementum.io/release-notes/overview.md): Monthly release summaries, upcoming features, and earlier platform releases for Elementum.
+- [Previous Releases](https://docs.elementum.io/release-notes/previous-releases.md): Elementum platform releases prior to May 2026.
+- [Upcoming Features](https://docs.elementum.io/release-notes/upcoming-features.md): See what we're working on at Elementum
+- [Launch Your Elementum Learning Path](https://docs.elementum.io/support/elearning-courses.md): Self-paced, role-based training courses to help your team get productive on Elementum.
+- [AI FAQ](https://docs.elementum.io/support/faq/faq-ai.md): Frequently asked questions about AI providers, services, and compliance in Elementum
+- [Objects FAQ](https://docs.elementum.io/support/faq/faq-apps.md): Frequently asked questions about Elementum Objects, including Apps, Elements, Tasks, Tables, and Services.
+- [Automations FAQ](https://docs.elementum.io/support/faq/faq-automations.md): Frequently asked questions about building automations in Elementum, including how to chain automations and share output between them.
+- [MFA FAQ](https://docs.elementum.io/support/faq/faq-mfa.md): Frequently asked questions about Multi-Factor Authentication in Elementum
+- [Connect AI Agents to the Docs](https://docs.elementum.io/support/mcp-server.md): Give AI tools like Cursor, Claude, and ChatGPT real-time access to the Elementum documentation through our Model Context Protocol (MCP) server.
+- [Platform Status](https://docs.elementum.io/support/platform-status.md): Stay informed about the current status of Elementum’s platform and services through our real-time status page
+- [Help & Resources](https://docs.elementum.io/support/resources.md): Get help and support for Elementum
+- [Date and Time Handling](https://docs.elementum.io/support/troubleshooting/date-time-handling.md): This guide explains how Elementum handles date and time values throughout the platform, particularly when integrating with external data sources.
+- [General Troubleshooting](https://docs.elementum.io/support/troubleshooting/general-troubleshooting.md): Common issues and solutions for the Elementum platform, including bulk imports on Snowflake-backed objects and GraphQL API configuration.
+- [Agent Task Automation](https://docs.elementum.io/workflows/agent-task-automation.md): Bridge structured and unstructured workflows by combining deterministic automation with intelligent agent autonomy
+- [Populate Dropdown Fields from External APIs](https://docs.elementum.io/workflows/api-powered-dropdowns.md): Configure dropdown fields that fetch options dynamically from external APIs
+- [App Health](https://docs.elementum.io/workflows/app-health.md): Monitor automation performance and system health
+- [Approval Processes](https://docs.elementum.io/workflows/approval-processes.md): Configure and manage review and sign-off workflows in your applications
+- [Assignment Rules](https://docs.elementum.io/workflows/assignment-rules.md): Automatically assign work to the right team members using configurable routing strategies
+- [Actions Reference](https://docs.elementum.io/workflows/automation-actions-reference.md): Complete reference guide for all automation actions with configuration details, conditions, and walkthrough examples
+- [Automation Best Practices](https://docs.elementum.io/workflows/automation-best-practices.md): Design principles, performance strategies, and proven patterns for building reliable automations
+- [Automation Buttons](https://docs.elementum.io/workflows/automation-buttons.md): Start automations from record details with configurable buttons so users can take actions without leaving the record
+- [Overview](https://docs.elementum.io/workflows/automation-system.md): Event-driven automation that monitors system events and executes predefined actions when conditions are met.
+- [Triggers Reference](https://docs.elementum.io/workflows/automation-triggers-reference.md): Complete reference guide for all automation triggers with configuration examples and use cases
+- [Create a Record](https://docs.elementum.io/workflows/create-a-record.md): All the ways to create records in objects, like Apps and Elements, from manual entry to automated workflows, and how to delete a record when your role allows it
+- [Elementum Intelligence File Reader](https://docs.elementum.io/workflows/elementum-intelligence-file-reader.md): AI-powered document analysis for complex text, image, and PDF documents with custom system prompts
+- [File Reader Overview](https://docs.elementum.io/workflows/file-reader-overview.md): Transform documents and data files into structured information for your automation workflows
+- [File Uploads & Attachments Guide](https://docs.elementum.io/workflows/file-uploads-attachments.md): Complete guide to working with files and attachments in Elementum
+- [Configure Record Creation Layout](https://docs.elementum.io/workflows/form-builder.md): Create custom forms to start new workflows and create records manually
+- [JSON File Reader](https://docs.elementum.io/workflows/json-file-reader.md): Parse JSON data intelligently with AI-assisted field detection and automatic type mapping
+- [Layout Builder](https://docs.elementum.io/workflows/layouts.md): Design, organize, and manage workflow data and features with layouts
+- [Managed Views](https://docs.elementum.io/workflows/managed-views.md): Configure admin-managed List, Kanban, Calendar, Dashboard, and Agent views that users across your organization can share.
+- [Object Data Access](https://docs.elementum.io/workflows/object-data-access.md): Control who can view and edit records on an object through dynamic access policies and per-record sharing
+- [Purchase Orders File Reader](https://docs.elementum.io/workflows/purchase-orders-file-reader.md): Process purchase orders with OCR trained specifically on PO fields and formats
+- [QR Code Scanner](https://docs.elementum.io/workflows/qr-code-scanner.md): Scan QR codes directly from records to automatically populate fields without manual data entry
+- [Service Level Agreements](https://docs.elementum.io/workflows/service-level-agreements.md): Define and enforce time-based targets for resolving records in your Elementum apps
+- [Enable Record Creation through Services](https://docs.elementum.io/workflows/services.md): Enable Services on Apps and Tasks for customer support, help desk, and self-service request portals in Elementum
+- [Surveys](https://docs.elementum.io/workflows/survey-system.md): Streamline information gathering from external parties through survey workflows integrated into your business processes
+- [Table File Reader](https://docs.elementum.io/workflows/table-file-reader.md): Read Excel and CSV files with support for thousands of rows and multiple sheets
+- [Tasks](https://docs.elementum.io/workflows/tasks.md): Create, configure, and manage task-based workflows for assignments and follow-up work
+- [Text File Reader](https://docs.elementum.io/workflows/text-file-reader.md): Extract raw text from images, text documents, and PDFs using OCR technology
+- [Language Settings](https://docs.elementum.io/workflows/translations.md): Localize your app with multi-language support using AI-powered translations
+
+## OpenAPI Specs
+
+- [openapi](https://docs.elementum.io/api-reference/openapi.json)

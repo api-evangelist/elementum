@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/elementum-openapi-original.json
+docs: https://docs.elementum.io/api-reference/api-introduction
+format: http-status
+envelope: >-
+  Elementum uses standard HTTP status codes to signal success or failure. Error responses in the
+  OpenAPI carry a description only (no application/problem+json body schema is declared), so this
+  catalog is the documented status-code registry rather than an RFC 9457 problem-type set.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: The request was improperly formatted or contained invalid parameters.
+- status: 401
+  title: Unauthorized
+  meaning: Your access token is wrong, expired, or you did not provide one.
+- status: 403
+  title: Forbidden
+  meaning: You don't have permission to access the requested resource.
+- status: 404
+  title: Not Found
+  meaning: The requested resource could not be found.
+- status: 422
+  title: Unprocessable Entity
+  meaning: The request was well-formed but could not be processed (validation failed).
+- status: 429
+  title: Too Many Requests
+  meaning: You're sending too many requests; the API rate limit was exceeded.
+  remediation: Back off and retry; see conventions/elementum-conventions.yml rate_limiting.
+- status: 500
+  title: Internal Server Error
+  meaning: We had a problem with our server. Try again later.
+success_statuses:
+- {status: 200, title: OK}
+- {status: 201, title: Created}
+- {status: 202, title: Accepted}
+- {status: 204, title: No Content}

@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.elementum.io/api-reference/api-introduction
+versioning:
+  scheme: uri-path
+  current: v1
+  policy: >-
+    "Our API is versioned to ensure that changes are predictable and non-breaking. The current
+    version is v1, which is specified in the URL of your API requests."
+  docs: https://docs.elementum.io/api-reference/api-introduction
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published API deprecation/sunset policy or RFC 8594 header support found.
+status_page: https://status.elementum.io/
+status_page_api:
+  provider: statuspage
+  summary: https://status.elementum.io/api/v2/summary.json
+  status: https://status.elementum.io/api/v2/status.json
+  components: https://status.elementum.io/api/v2/components.json
+  incidents: https://status.elementum.io/api/v2/incidents.json
+  components_monitored: [Core Platform, API Services, Automations, Agents]
+release_notes: https://docs.elementum.io/release-notes/overview
+upcoming_features: https://docs.elementum.io/release-notes/upcoming-features
+deprecated_operations: []

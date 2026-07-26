@@ -1,8 +1,16 @@
 aid: elementum
 name: Elementum
-description: Elementum is a company surfaced as a portfolio company of lightspeed-venture-partners and
-  added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Elementum is an AI-native process automation and orchestration platform that lets enterprises
+  build custom business workflows that coordinate people, rules, LLMs, and AI agents without moving
+  data out of the customer's own data warehouse (its "Zero Persistence" / CloudLink model, with
+  first-class Snowflake integration). Originally a multi-enterprise supply chain orchestration
+  vendor, Elementum pivoted to general enterprise AI orchestration spanning supply chain, finance,
+  healthcare, and compliance. It exposes a versioned REST API (v1, US and EU regions) secured with
+  OAuth 2.0 client-credentials for records, apps, elements, tasks, attachments, comments, watchers,
+  related items, agents, automations, flows, skills, tables, views, groups, and users, plus a public
+  documentation MCP server, SAML SSO/SCIM provisioning, and service accounts for agents and
+  automations. Elementum is backed by Lightspeed Venture Partners, Snowflake Ventures, and others.
 url: https://raw.githubusercontent.com/api-evangelist/elementum/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,14 +18,340 @@ x-backed-by:
 - lightspeed-venture-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.elementum.ai/opengraph-image-12jlf3?57ba9092a8cf43dd
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- AI
+- Automation
+- Workflow
+- Orchestration
+- Agents
+- Supply Chain
+- No-Code
+- Enterprise
+- Snowflake
+apis:
+- aid: elementum:elementum-access-token-api
+  name: Elementum Access Token API
+  description: Manage access tokens using OAuth 2.0 standards
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Access Token
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-access-token-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-agents-api
+  name: Elementum Agents API
+  description: Manage AI agents
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-agents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-apps-api
+  name: Elementum Apps API
+  description: Compose and manage apps
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-apps-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-attachments-api
+  name: Elementum Attachments API
+  description: Manage the attachments of a record
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-automations-api
+  name: Elementum Automations API
+  description: Manage automations
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-automations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-comments-api
+  name: Elementum Comments API
+  description: Manage the conversation of a record
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-comments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-domains-api
+  name: Elementum Domains API
+  description: Manage organization domains
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-domains-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-elements-api
+  name: Elementum Elements API
+  description: Manage elements imported from connected cloud sources
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Elements
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-elements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-flows-api
+  name: Elementum Flows API
+  description: Manage flows
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-flows-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-groups-api
+  name: Elementum Groups API
+  description: Manage groups and group membership
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-groups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-records-api
+  name: Elementum Records API
+  description: Manage your records
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-records-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-related-items-api
+  name: Elementum Related-items API
+  description: Manage the related items of a record
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Related-items
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-related-items-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-search-tables-api
+  name: Elementum Search Tables API
+  description: Manage search tables (snowflake and linked)
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Search Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-search-tables-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-skills-api
+  name: Elementum Skills API
+  description: Manage agent skills
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Skills
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-skills-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-tables-api
+  name: Elementum Tables API
+  description: 'Manage tables: schemas, fields, joins, and join mappings'
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-tables-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-users-api
+  name: Elementum Users API
+  description: Manage users in your organization
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-views-api
+  name: Elementum Views API
+  description: Manage app views
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Views
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-views-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
+- aid: elementum:elementum-watchers-api
+  name: Elementum Watchers API
+  description: Manage the watchers of a record
+  humanURL: https://docs.elementum.io/api-reference/api-introduction
+  baseURL: https://api.elementum.io/v1
+  tags:
+  - Watchers
+  properties:
+  - type: OpenAPI
+    url: openapi/elementum-watchers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.elementum.io/api-reference/api-introduction
+  - type: APIReference
+    url: https://docs.elementum.io/api-reference/api-introduction
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DeveloperPortal
+  url: https://docs.elementum.io/
+- type: Documentation
+  url: https://docs.elementum.io/getting-started/welcome-to-elementum
+- type: APIReference
+  url: https://docs.elementum.io/api-reference/api-introduction
+- type: GettingStarted
+  url: https://docs.elementum.io/getting-started/quickstart
+- type: Blog
+  url: https://www.elementum.ai/blog
+- type: Support
+  url: https://docs.elementum.io/support/resources
+- type: SignUp
+  url: https://app.elementum.io
+- type: TermsOfService
+  url: https://www.elementum.ai/terms
+- type: PrivacyPolicy
+  url: https://www.elementum.ai/privacy
+- type: Roadmap
+  url: https://docs.elementum.io/release-notes/upcoming-features
+- type: StatusPage
+  url: https://status.elementum.io/
+- type: MCPServer
+  url: mcp/elementum-mcp.yml
+- type: Authentication
+  url: authentication/elementum-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/elementum-agentic-access.yml
+- type: Conventions
+  url: conventions/elementum-conventions.yml
+- type: ErrorCatalog
+  url: errors/elementum-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/elementum-lifecycle.yml
+- type: DataModel
+  url: data-model/elementum-data-model.yml
+- type: Conformance
+  url: conformance/elementum-conformance.yml
+- type: LLMsTxt
+  url: llms/elementum-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: ChangeLog
+  url: changelog/elementum-changelog.yml
+- type: DomainSecurity
+  url: security/elementum-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

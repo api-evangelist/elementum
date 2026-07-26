@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Elementum API
+  version: 1.0.0
+extends: openapi/elementum-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 4
+    x-apievangelist-notes: >-
+      Well-structured REST API with 72 operations across 18 tags, complete 4xx/5xx response coverage,
+      OAuth 2.0 client-credentials, RSQL filtering and Relay cursor pagination. Gaps: relative server
+      URL (/v1) rather than absolute; no application/problem+json error bodies; no idempotency-key
+      support; oauth2 flow declares no scopes.
+- target: $.servers
+  update:
+  - url: https://api.elementum.io/v1
+    description: US region (production)
+  - url: https://api.eu.elementum.io/v1
+    description: EU region (production)
+- target: $.components.securitySchemes.ClientCredentials.flows.clientCredentials
+  update:
+    tokenUrl: https://api.elementum.io/oauth/token
+    x-token-ttl-seconds: 86400
+- target: $.info
+  update:
+    x-apievangelist-conventions: conventions/elementum-conventions.yml
+    x-apievangelist-errors: errors/elementum-problem-types.yml
+    x-apievangelist-authentication: authentication/elementum-authentication.yml

@@ -1,0 +1,100 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/elementum-openapi-original.json
+description: >-
+  Entity-relationship graph derived from the Elementum REST API v1 OpenAPI path structure and
+  schemas. The core domain is an "Object" model: an App / Element / Task (the `recordType` + `alias`
+  addressing) contains Records, and each Record carries attachments, comments, watchers, and related
+  items. Apps also own agents, skills, views, and automations. Organization-level entities include
+  users, groups, domains, tables, flows, and aspects/search-tables.
+entities:
+- name: App
+  addressing: /apps/{alias}
+  notes: A record-bearing Object (one of the recordTypes apps|elements|tasks|transactions).
+- name: Element
+  addressing: /elements/{alias}
+- name: Record
+  addressing: /{recordType}/{alias}/{id}
+- name: Attachment
+  addressing: /{recordType}/{alias}/{id}/attachments/{attachmentId}
+- name: Comment
+  addressing: /{recordType}/{alias}/{id}/comment
+- name: Watcher
+  addressing: /{recordType}/{alias}/{id}/watchers
+- name: RelatedItem
+  addressing: /{recordType}/{alias}/{id}/related-items/{itemId}
+- name: Automation
+  addressing: /{recordType}/{alias}/automations/{id}
+- name: Agent
+  addressing: /apps/{alias}/agents/{id}
+- name: Skill
+  addressing: /apps/{alias}/skills/{id}
+- name: View
+  addressing: /apps/{alias}/views/{id}
+- name: Flow
+  addressing: /flows/{id}
+- name: Table
+  addressing: /tables/{id}
+- name: Aspect
+  addressing: /aspects/{aspectId}
+- name: SearchTable
+  addressing: /aspects/{aspectId}/search-tables/{id}
+- name: User
+  addressing: /users/{userId}
+- name: Group
+  addressing: /groups/{groupId}
+- name: Domain
+  addressing: /domains/{domainId}
+relationships:
+- from: App
+  type: has_many
+  to: Record
+  via: recordType+alias
+- from: Record
+  type: has_many
+  to: Attachment
+  via: attachments
+- from: Record
+  type: has_many
+  to: Comment
+  via: comment
+- from: Record
+  type: has_many
+  to: Watcher
+  via: watchers
+- from: Record
+  type: has_many
+  to: RelatedItem
+  via: related-items
+- from: App
+  type: has_many
+  to: Automation
+  via: automations
+- from: App
+  type: has_many
+  to: Agent
+  via: agents
+- from: App
+  type: has_many
+  to: Skill
+  via: skills
+- from: App
+  type: has_many
+  to: View
+  via: views
+- from: Group
+  type: has_many
+  to: User
+  via: users
+- from: Group
+  type: has_many
+  to: Domain
+  via: domains
+- from: Aspect
+  type: has_many
+  to: SearchTable
+  via: search-tables
+- from: Table
+  type: has_many
+  to: Table
+  via: joins
