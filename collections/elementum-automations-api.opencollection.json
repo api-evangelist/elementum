@@ -1,0 +1,252 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Automations API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List automations under an app or element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/automations",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List automations under an app or element"
+        },
+        {
+          "info": {
+            "name": "Create an automation under an app or element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/:recordType/:alias/automations",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an automation under an app or element"
+        },
+        {
+          "info": {
+            "name": "Validate an automation definition without creating it",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/:recordType/:alias/automations/validate",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Validate an automation definition without creating it"
+        },
+        {
+          "info": {
+            "name": "Get an automation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/automations/:id",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an automation by ID"
+        },
+        {
+          "info": {
+            "name": "Update an automation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/:recordType/:alias/automations/:id",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update an automation by ID"
+        },
+        {
+          "info": {
+            "name": "Delete an automation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/:recordType/:alias/automations/:id",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an automation by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

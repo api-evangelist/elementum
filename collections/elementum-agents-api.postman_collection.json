@@ -1,0 +1,1807 @@
+{
+  "item": [
+    {
+      "id": "d974203d-a453-456f-83e9-bd63cee34c11",
+      "name": "Agents",
+      "description": {
+        "content": "Manage AI agents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b23f845b-1a93-4a9b-b6ff-01426d0d8f80",
+          "name": "List agents under an app",
+          "request": {
+            "name": "List agents under an app",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "100",
+                  "description": "The number of elements to retrieve after the 'after' cursor location"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+                },
+                {
+                  "disabled": false,
+                  "key": "last",
+                  "value": "<integer>",
+                  "description": "The number of elements to retrieve before the 'before' cursor location"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The starting cursor to begin searching, defaults to the end of the list"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "An RSQL filter string."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "510d1ca9-ada5-4cf3-bead-e135fc77bf30",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"has_previous_page\": true,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\",\n    \"has_next_page\": true\n  },\n  \"total\": 7130,\n  \"items\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"e92e9b72-3130-5a1e-fa9a-0f46dfebe02b\",\n      \"maxLength\": 8432,\n      \"reasoningEffort\": \"LOW\",\n      \"description\": \"string\",\n      \"name\": \"string\",\n      \"temperature\": 9961.517310503752\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"5a546764-b8fc-b7c9-acf8-2f9e868b45ab\",\n      \"maxLength\": 8800,\n      \"reasoningEffort\": \"LOW\",\n      \"description\": \"string\",\n      \"name\": \"string\",\n      \"temperature\": 7164.917460653309\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbadaeee-8883-45d2-bf24-377cfd50370b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbaf7255-35c5-4b50-8a40-5d5f9a7ed2c0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2192cb32-60b8-4952-a9e9-f80cb32fef97",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a28a4299-05d3-49e9-9b73-a305c8828b91",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3cae980e-51ba-4df0-9730-42bb9ae39aa6",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3531390-7b1f-4749-b03f-9067817a30cd",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb91316f-043f-4ada-9c43-d59985149d3d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Number=in=1:2:3:4:5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6067adf-54ac-468f-b1ba-64cda994985d",
+          "name": "Create an agent under an app",
+          "request": {
+            "name": "Create an agent under an app",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": 4871.660871137266\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 2162.335808986532,\n      \"key_2\": \"string\",\n      \"key_3\": false\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 9250\n    },\n    {\n      \"key_0\": 1863.9432193038851\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f0460bc-18c2-4a7d-9b5c-7e211bc3e198",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4277.777865261491,\n  \"key_1\": 3439,\n  \"key_2\": 7952.025556553074\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab477d21-8e8e-4091-b868-e5fca4d793c4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d3bab756-48d3-4a0c-9a58-9c095e6162e5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9910696a-90d6-4a3e-b62d-e3d16f558526",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d13853a-3c1e-4345-8049-19be49909890",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "769dabcd-d133-4982-ae9a-0fe692921870",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee4c6265-0f53-49b4-be39-430fc0ce8d81",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af7e00e3-34e5-408f-beb9-fe6a4f84b1b9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 8222.379824211874,\n      \"key_1\": 7424.5390766538985\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef83b31b-eeb6-4923-a9c4-40a27f5b9f8b",
+          "name": "Update an agent by ID",
+          "request": {
+            "name": "Update an agent by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "agents",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The resource ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": 1118,\n      \"key_1\": 5516\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 4672.738038738639\n    },\n    {\n      \"key_0\": true\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7626b1a-0ef6-4407-abe7-cd3d4dd5f623",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4277.777865261491,\n  \"key_1\": 3439,\n  \"key_2\": 7952.025556553074\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f834a49-02ad-4b8e-b4d8-6f31b8156395",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7df639c1-e6b4-4095-9980-00413c5bebc0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ade07fa-6241-4f48-a1e9-2fd5c57da5d5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d054dcbd-eaff-4994-93fe-ceeb3c5c2da5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea8df8c8-c4eb-4125-aaf2-2af0716ee509",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ce3d146-57ad-489b-8860-37990de9338c",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e7e215d-d95f-4d71-bf84-bb1709e96ba3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"elementum\": {\n      \"avatarAttachmentId\": \"<uuid>\",\n      \"maxLength\": \"<integer>\",\n      \"firstMessage\": \"<string>\",\n      \"reasoningEffort\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"temperature\": \"<number>\",\n      \"instructions\": \"<string>\"\n    }\n  },\n  \"tools\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 8757.904247838751,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 2914,\n      \"key_1\": true\n    }\n  ],\n  \"a2aSkills\": [\n    {\n      \"key_0\": 7515.631620329695,\n      \"key_1\": 2842.384482735988,\n      \"key_2\": 9339\n    },\n    {\n      \"key_0\": 336.859405600447\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4f6e9902-298f-403b-be02-8cc8efe93ed6",
+    "name": "Elementum Access Token Agents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage access tokens using OAuth 2.0 standards\n\nContact Support:\n Email: apiteam@elementum.io",
+      "type": "text/plain"
+    }
+  }
+}

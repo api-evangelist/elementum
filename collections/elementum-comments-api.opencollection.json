@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Comments API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/:id/comment",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve after the 'after' cursor location"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve before the 'before' cursor location"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the end of the list"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of comments"
+        },
+        {
+          "info": {
+            "name": "Add a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/:recordType/:alias/:id/comment",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a comment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

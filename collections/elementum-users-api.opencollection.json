@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Users API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users in your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/users",
+            "params": [
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve after the 'after' cursor location"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve before the 'before' cursor location"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the end of the list"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An RSQL filter string."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List users in your organization"
+        },
+        {
+          "info": {
+            "name": "Create a user in your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a user in your organization"
+        },
+        {
+          "info": {
+            "name": "Get a user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a user by ID"
+        },
+        {
+          "info": {
+            "name": "Deactivate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/users/:userId/deactivate",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deactivate a user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,394 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Tables API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tables in your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/tables",
+            "params": [
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve after the 'after' cursor location"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve before the 'before' cursor location"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the end of the list"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List tables in your organization"
+        },
+        {
+          "info": {
+            "name": "Create a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a table"
+        },
+        {
+          "info": {
+            "name": "Get a table by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a table by ID"
+        },
+        {
+          "info": {
+            "name": "Update a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a table"
+        },
+        {
+          "info": {
+            "name": "Delete a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a table"
+        },
+        {
+          "info": {
+            "name": "Add a join to a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/tables/:id/joins",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a join to a table"
+        },
+        {
+          "info": {
+            "name": "Update a table join",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/tables/:id/joins/:joinId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              },
+              {
+                "name": "joinId",
+                "value": "",
+                "type": "path",
+                "description": "The table-join ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a table join"
+        },
+        {
+          "info": {
+            "name": "Delete a table join",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/tables/:id/joins/:joinId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              },
+              {
+                "name": "joinId",
+                "value": "",
+                "type": "path",
+                "description": "The table-join ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a table join"
+        },
+        {
+          "info": {
+            "name": "Create value mappings on a join-field pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/tables/:id/join-fields/:joinFieldsId/mappings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              },
+              {
+                "name": "joinFieldsId",
+                "value": "",
+                "type": "path",
+                "description": "The table-join-fields ID (UUID); identifies a single (leftField, rightField) pair inside a join"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create value mappings on a join-field pair"
+        },
+        {
+          "info": {
+            "name": "Update value mappings on a join-field pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/tables/:id/join-fields/:joinFieldsId/mappings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              },
+              {
+                "name": "joinFieldsId",
+                "value": "",
+                "type": "path",
+                "description": "The table-join-fields ID (UUID); identifies a single (leftField, rightField) pair inside a join"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update value mappings on a join-field pair"
+        },
+        {
+          "info": {
+            "name": "Delete value mappings on a join-field pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/tables/:id/join-fields/:joinFieldsId/mappings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The table ID (UUID)"
+              },
+              {
+                "name": "joinFieldsId",
+                "value": "",
+                "type": "path",
+                "description": "The table-join-fields ID (UUID); identifies a single (leftField, rightField) pair inside a join"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete value mappings on a join-field pair"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

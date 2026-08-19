@@ -1,0 +1,328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Groups API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List groups in your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/groups",
+            "params": [
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve after the 'after' cursor location"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve before the 'before' cursor location"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the end of the list"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List groups in your organization"
+        },
+        {
+          "info": {
+            "name": "Create a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a group"
+        },
+        {
+          "info": {
+            "name": "Get a group by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a group by ID"
+        },
+        {
+          "info": {
+            "name": "Update a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a group"
+        },
+        {
+          "info": {
+            "name": "List users in a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/groups/:groupId/users",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve after the 'after' cursor location"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "The number of elements to retrieve before the 'before' cursor location"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "The starting cursor to begin searching, defaults to the end of the list"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List users in a group"
+        },
+        {
+          "info": {
+            "name": "Add users to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/groups/:groupId/users",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add users to a group"
+        },
+        {
+          "info": {
+            "name": "Remove users from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/groups/:groupId/users",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove users from a group"
+        },
+        {
+          "info": {
+            "name": "Add email domains to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/groups/:groupId/domains",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add email domains to a group"
+        },
+        {
+          "info": {
+            "name": "Remove email domains from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/groups/:groupId/domains",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The group ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove email domains from a group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

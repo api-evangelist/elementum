@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Search Tables API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a snowflake-backed search table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/aspects/:aspectId/search-tables",
+            "params": [
+              {
+                "name": "aspectId",
+                "value": "",
+                "type": "path",
+                "description": "The aspect ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a snowflake-backed search table"
+        },
+        {
+          "info": {
+            "name": "Get a search table by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/aspects/:aspectId/search-tables/:id",
+            "params": [
+              {
+                "name": "aspectId",
+                "value": "",
+                "type": "path",
+                "description": "The aspect ID (UUID)"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The search-table ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a search table by ID"
+        },
+        {
+          "info": {
+            "name": "Update a search table by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/aspects/:aspectId/search-tables/:id",
+            "params": [
+              {
+                "name": "aspectId",
+                "value": "",
+                "type": "path",
+                "description": "The aspect ID (UUID)"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The search-table ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a search table by ID"
+        },
+        {
+          "info": {
+            "name": "Create a search table linked to an existing Cortex Search Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/aspects/:aspectId/linked-search-tables",
+            "params": [
+              {
+                "name": "aspectId",
+                "value": "",
+                "type": "path",
+                "description": "The aspect ID (UUID)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a search table linked to an existing Cortex Search Service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

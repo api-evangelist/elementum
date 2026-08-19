@@ -1,0 +1,2207 @@
+{
+  "item": [
+    {
+      "id": "e1a5c9dc-ab8d-4ee4-8968-53c5af00b5f6",
+      "name": "Search Tables",
+      "description": {
+        "content": "Manage search tables (snowflake and linked)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e47420f1-8540-41fc-ae2e-5b77b6395302",
+          "name": "Create a snowflake-backed search table",
+          "request": {
+            "name": "Create a snowflake-backed search table",
+            "description": {},
+            "url": {
+              "path": [
+                "aspects",
+                ":aspectId",
+                "search-tables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "aspectId",
+                  "description": "(Required) The aspect ID (UUID)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "382d40cc-06eb-465f-8182-ce6ceb77e7fd",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": {\n    \"name\": \"string\",\n    \"id\": \"089a1a48-b592-a126-d54f-a8cacad73ab1\",\n    \"type\": \"string\"\n  },\n  \"linkedDatabase\": \"string\",\n  \"duration\": \"<string>\",\n  \"attributeFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"287f0267-db4a-9ada-c33e-bda093eeeb89\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"042cc386-e8c6-e8af-2d44-9cf496a87e1e\",\n      \"type\": \"string\"\n    }\n  ],\n  \"aiProviderConnector\": {\n    \"id\": \"34da5027-8caa-3a65-14f6-85232829897b\"\n  },\n  \"status\": \"string\",\n  \"displayName\": \"string\",\n  \"linkedServiceName\": \"string\",\n  \"__typename\": \"string\",\n  \"warehouse\": \"string\",\n  \"targetLag\": 81,\n  \"errorMessage\": \"string\",\n  \"textIndexFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"3b973c3d-e0b2-6bfa-8675-e34bc2a8c333\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"a8633f07-2b5c-4eb1-9405-1a2b90ee74be\",\n      \"type\": \"string\"\n    }\n  ],\n  \"vectorIndexes\": [\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"3aa880be-0b6a-00d3-445b-b5d322846453\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"11869e47-ec26-e3f3-ea10-69c3948b771e\"\n      }\n    },\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"b25c7a19-02d5-8ab7-cbb7-7cc39b5ddfcf\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"c96a8781-d7d6-75a1-b6fc-3b211d1e0942\"\n      }\n    }\n  ],\n  \"linkedSchema\": \"string\",\n  \"id\": \"b5a54a5b-f9fa-f3ae-c5e6-0975892d2c84\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b155875-2732-42de-b1af-eab5d9055a4f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcd9967e-2034-41ad-a852-727b508da90f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b7263ba-684b-48d6-a789-df191c30a173",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4263e6a-bfdf-4607-a779-e3b921f786f9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9036bae1-96ea-4d0e-9896-c7e7c3367036",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "841c9add-7cce-4970-82f1-4a9667036936",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0dcf97b-1db7-4f35-b8ed-a8e4af3df37d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"duration\": \"<string>\",\n  \"targetLag\": \"<integer>\",\n  \"warehouse\": \"<string>\",\n  \"fieldId\": \"<uuid>\",\n  \"textIndexFieldIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"aiProviderConnectorId\": \"<uuid>\",\n  \"vectorIndexes\": [\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    },\n    {\n      \"aiProviderConnectorId\": \"<uuid>\",\n      \"fieldId\": \"<uuid>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57e5173a-60da-46f5-b1ed-c66f8fabea71",
+          "name": "Get a search table by ID",
+          "request": {
+            "name": "Get a search table by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "aspects",
+                ":aspectId",
+                "search-tables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "aspectId",
+                  "description": "(Required) The aspect ID (UUID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The search-table ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70ab9ac9-6488-4254-a4d6-5c8f1d3ce54d",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": {\n    \"name\": \"string\",\n    \"id\": \"be8db4ed-963f-65fd-9e7c-7fec128488e7\",\n    \"type\": \"string\"\n  },\n  \"linkedDatabase\": \"string\",\n  \"duration\": \"<string>\",\n  \"attributeFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"dd96411f-d4a6-7f17-f20c-301710204a41\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"e6eb58c2-86d4-9abf-e0c1-899390fa69c0\",\n      \"type\": \"string\"\n    }\n  ],\n  \"aiProviderConnector\": {\n    \"id\": \"626a13d9-a34d-466c-14a0-037ef0df2690\"\n  },\n  \"status\": \"string\",\n  \"displayName\": \"string\",\n  \"linkedServiceName\": \"string\",\n  \"__typename\": \"string\",\n  \"warehouse\": \"string\",\n  \"targetLag\": 6994,\n  \"errorMessage\": \"string\",\n  \"textIndexFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"d0537bf2-30d4-8759-ca9f-2b2df7fdbaa0\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"8667efd5-a874-71e4-3e64-8903605e517c\",\n      \"type\": \"string\"\n    }\n  ],\n  \"vectorIndexes\": [\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"6bc04098-97fd-1f2f-2532-c48ade2c7f30\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"96bc1e87-0d42-3a0f-21c6-95621e12d25b\"\n      }\n    },\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"06d6fbff-5537-14f2-7f8b-d939fa9d945c\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"157e4cfa-afcb-bdae-dbc4-4f0c6f02a170\"\n      }\n    }\n  ],\n  \"linkedSchema\": \"string\",\n  \"id\": \"4acdcc9e-d7c8-ec07-7162-93320b95fd33\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c95431a-a13c-44a2-b740-cef4bf9bd53a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1a3f227-0dcb-4392-91a6-01ee1a039635",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69c96305-e2c9-43f9-9bea-4ced84d7f8f0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44e259f8-3e42-45d1-821d-96b1a8a1768a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2a71b18-f53f-4c7f-a3c6-706903dd7286",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6c8e056-3d9b-4191-ba56-f61afd92ec98",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec390f23-fc5e-4af2-b2b7-904dea54889c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23f83189-8d16-4d58-b28c-18a142989f20",
+          "name": "Update a search table by ID",
+          "request": {
+            "name": "Update a search table by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "aspects",
+                ":aspectId",
+                "search-tables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "aspectId",
+                  "description": "(Required) The aspect ID (UUID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The search-table ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3af722e6-422b-4e50-8c1f-531fe7b3f2d5",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": {\n    \"name\": \"string\",\n    \"id\": \"be8db4ed-963f-65fd-9e7c-7fec128488e7\",\n    \"type\": \"string\"\n  },\n  \"linkedDatabase\": \"string\",\n  \"duration\": \"<string>\",\n  \"attributeFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"dd96411f-d4a6-7f17-f20c-301710204a41\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"e6eb58c2-86d4-9abf-e0c1-899390fa69c0\",\n      \"type\": \"string\"\n    }\n  ],\n  \"aiProviderConnector\": {\n    \"id\": \"626a13d9-a34d-466c-14a0-037ef0df2690\"\n  },\n  \"status\": \"string\",\n  \"displayName\": \"string\",\n  \"linkedServiceName\": \"string\",\n  \"__typename\": \"string\",\n  \"warehouse\": \"string\",\n  \"targetLag\": 6994,\n  \"errorMessage\": \"string\",\n  \"textIndexFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"d0537bf2-30d4-8759-ca9f-2b2df7fdbaa0\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"8667efd5-a874-71e4-3e64-8903605e517c\",\n      \"type\": \"string\"\n    }\n  ],\n  \"vectorIndexes\": [\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"6bc04098-97fd-1f2f-2532-c48ade2c7f30\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"96bc1e87-0d42-3a0f-21c6-95621e12d25b\"\n      }\n    },\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"06d6fbff-5537-14f2-7f8b-d939fa9d945c\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"157e4cfa-afcb-bdae-dbc4-4f0c6f02a170\"\n      }\n    }\n  ],\n  \"linkedSchema\": \"string\",\n  \"id\": \"4acdcc9e-d7c8-ec07-7162-93320b95fd33\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78a090c8-ad4a-4ca5-ad56-969cf55e7f7a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f888de6-e337-419b-adda-ed501dbae81f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f57f675-036e-441c-ad05-712e2013f4af",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88f2ad4e-abbd-4654-b6c2-f8a3b6e6abad",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ae138bf-5432-482c-bb5d-c505b252deb1",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f9a4fac-3034-46b5-92d0-41ae4395177f",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "040fca77-0d3d-4c19-8c57-f54495286ee1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "search-tables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The search-table ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snowflake\": {\n    \"warehouse\": \"<string>\",\n    \"targetLag\": \"<integer>\",\n    \"duration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b5829c6-b524-4a6d-a9b5-48368f297b6f",
+          "name": "Create a search table linked to an existing Cortex Search Service",
+          "request": {
+            "name": "Create a search table linked to an existing Cortex Search Service",
+            "description": {},
+            "url": {
+              "path": [
+                "aspects",
+                ":aspectId",
+                "linked-search-tables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "aspectId",
+                  "description": "(Required) The aspect ID (UUID)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "638bc6ce-5f15-4204-8db7-4e69b942bb6a",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field\": {\n    \"name\": \"string\",\n    \"id\": \"be8db4ed-963f-65fd-9e7c-7fec128488e7\",\n    \"type\": \"string\"\n  },\n  \"linkedDatabase\": \"string\",\n  \"duration\": \"<string>\",\n  \"attributeFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"dd96411f-d4a6-7f17-f20c-301710204a41\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"e6eb58c2-86d4-9abf-e0c1-899390fa69c0\",\n      \"type\": \"string\"\n    }\n  ],\n  \"aiProviderConnector\": {\n    \"id\": \"626a13d9-a34d-466c-14a0-037ef0df2690\"\n  },\n  \"status\": \"string\",\n  \"displayName\": \"string\",\n  \"linkedServiceName\": \"string\",\n  \"__typename\": \"string\",\n  \"warehouse\": \"string\",\n  \"targetLag\": 6994,\n  \"errorMessage\": \"string\",\n  \"textIndexFields\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"d0537bf2-30d4-8759-ca9f-2b2df7fdbaa0\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"8667efd5-a874-71e4-3e64-8903605e517c\",\n      \"type\": \"string\"\n    }\n  ],\n  \"vectorIndexes\": [\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"6bc04098-97fd-1f2f-2532-c48ade2c7f30\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"96bc1e87-0d42-3a0f-21c6-95621e12d25b\"\n      }\n    },\n    {\n      \"field\": {\n        \"name\": \"string\",\n        \"id\": \"06d6fbff-5537-14f2-7f8b-d939fa9d945c\",\n        \"type\": \"string\"\n      },\n      \"aiProviderConnector\": {\n        \"id\": \"157e4cfa-afcb-bdae-dbc4-4f0c6f02a170\"\n      }\n    }\n  ],\n  \"linkedSchema\": \"string\",\n  \"id\": \"4acdcc9e-d7c8-ec07-7162-93320b95fd33\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42e138d8-cce9-48e6-a6e5-8e9643a47f6c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03599d52-a5e9-43d1-b0d3-e551f5ed026a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "826003bb-26da-4e46-b97b-22adbce67934",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51a9daa4-323a-427c-8fbb-abe2802dde0f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0752d48-ae72-483e-94bd-abed8508a902",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b891b9b4-0439-4161-9ef2-833affb68fbc",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8bb9daa6-6726-4989-b837-ae29afb4cf09",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspects",
+                    ":aspectId",
+                    "linked-search-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aspectId",
+                      "description": "(Required) The aspect ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cloudLinkId\": \"<uuid>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"warehouse\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "983734f6-57af-485f-9553-1fa983f2f20b",
+    "name": "Elementum Access Token Search Tables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage access tokens using OAuth 2.0 standards\n\nContact Support:\n Email: apiteam@elementum.io",
+      "type": "text/plain"
+    }
+  }
+}

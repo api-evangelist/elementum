@@ -1,0 +1,1428 @@
+{
+  "item": [
+    {
+      "id": "be3ff9ed-a1ca-4107-a050-5bee75cc7ff2",
+      "name": "Elements",
+      "description": {
+        "content": "Manage elements imported from connected cloud sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afddafb9-a486-480c-870a-9f8c1066fd2a",
+          "name": "Import an existing connected-source table as an element",
+          "request": {
+            "name": "Import an existing connected-source table as an element",
+            "description": {},
+            "url": {
+              "path": [
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a67bca15-b213-4c29-b9e2-d98c56e432c6",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configured\": false,\n  \"status\": \"string\",\n  \"description\": \"string\",\n  \"__typename\": \"string\",\n  \"icon\": \"string\",\n  \"namespace\": \"string\",\n  \"handle\": \"string\",\n  \"readOnly\": false,\n  \"sourceType\": \"SNOWFLAKE\",\n  \"color\": \"string\",\n  \"id\": \"77df48ea-c89e-e843-4e84-83dbf2857e18\",\n  \"name\": \"string\",\n  \"category\": {\n    \"name\": \"string\",\n    \"id\": \"ee5cb3a6-5dab-1cf3-3acb-79bcb90c2506\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa3b26cb-0dd8-454c-9be2-2e8d30b8c8ae",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5998c30-d4a7-4fff-b780-5279df13e9aa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ed80d50-209e-4ab1-8ad5-5deef105955a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ee3f2dd-136b-437d-a06e-0ce939e4ce4d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3b3d57e-ba1a-4089-87d1-ce2502ad3160",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "416c2b9a-9d3f-46ec-8325-342dc68d7f09",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "289b25da-28b9-4bde-a950-be0407788d65",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"namespace\": \"<string>\",\n  \"table\": \"<string>\",\n  \"description\": \"<string>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"color\": \"<string>\",\n  \"titleColumn\": \"<string>\",\n  \"cloudOptions\": {\n    \"snowflake\": {\n      \"hybridTable\": \"<boolean>\"\n    }\n  },\n  \"cloudLinkId\": \"<uuid>\",\n  \"schema\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"database\": \"<string>\",\n  \"readOnly\": \"<boolean>\",\n  \"snowflakeWarehouse\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"lockOnCreate\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"showOnCreate\": \"<boolean>\",\n      \"requiredOnClose\": \"<boolean>\",\n      \"columnName\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"semanticTags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"idColumn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85080349-f5ef-4115-a04c-c9bc6bc82713",
+          "name": "Get an element by alias",
+          "request": {
+            "name": "Get an element by alias",
+            "description": {},
+            "url": {
+              "path": [
+                "elements",
+                ":alias"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "47b0073a-bae4-42af-9a60-1446c48ea03c",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configured\": false,\n  \"status\": \"string\",\n  \"description\": \"string\",\n  \"__typename\": \"string\",\n  \"icon\": \"string\",\n  \"namespace\": \"string\",\n  \"handle\": \"string\",\n  \"readOnly\": false,\n  \"sourceType\": \"SNOWFLAKE\",\n  \"color\": \"string\",\n  \"id\": \"77df48ea-c89e-e843-4e84-83dbf2857e18\",\n  \"name\": \"string\",\n  \"category\": {\n    \"name\": \"string\",\n    \"id\": \"ee5cb3a6-5dab-1cf3-3acb-79bcb90c2506\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fe36c2e-5b30-4d1e-9da9-7d648f26e8ce",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc63b8ee-5c77-4ea4-b73e-20cc7201964f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f5f630c-c064-49a5-a9c1-fbff229748eb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cab67bba-582c-42dc-909d-5f03fddfc176",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ab45345-6701-4ed3-a1d1-725bbc7c96da",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b5a8e50-75fb-443b-bbaa-0bdb7ed47aad",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f389c0c1-0960-4074-a7b9-6979e360e114",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "535dd5b3-5d0f-4464-872b-a5d155db4e85",
+          "name": "Update an element by alias",
+          "request": {
+            "name": "Update an element by alias",
+            "description": {},
+            "url": {
+              "path": [
+                "elements",
+                ":alias"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47298921-10df-4495-98dd-007170ee0979",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configured\": false,\n  \"status\": \"string\",\n  \"description\": \"string\",\n  \"__typename\": \"string\",\n  \"icon\": \"string\",\n  \"namespace\": \"string\",\n  \"handle\": \"string\",\n  \"readOnly\": false,\n  \"sourceType\": \"SNOWFLAKE\",\n  \"color\": \"string\",\n  \"id\": \"77df48ea-c89e-e843-4e84-83dbf2857e18\",\n  \"name\": \"string\",\n  \"category\": {\n    \"name\": \"string\",\n    \"id\": \"ee5cb3a6-5dab-1cf3-3acb-79bcb90c2506\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2c6b347-ee72-4e70-8660-762e13b45252",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3683c21c-d833-4401-9f57-739d8af811b4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6090d254-97a9-402a-b60a-fe8a1cec93fa",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae086ed5-1f8d-4ecc-b026-74e4192abc0f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a5b64c3-9d12-4392-b12c-eec9578eee5f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2fccb2b0-9284-4cb2-a27d-80e535bca05f",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e56ea80-e7b4-42c3-b069-6aeb7b40e1d9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordCreateTypes\": {\n    \"agents\": \"<boolean>\",\n    \"email\": \"<boolean>\",\n    \"services\": \"<boolean>\",\n    \"api\": \"<boolean>\",\n    \"automations\": \"<boolean>\",\n    \"manual\": \"<boolean>\"\n  },\n  \"workflowValuePerAutomation\": \"<number>\",\n  \"allowForwardedEmailIngestion\": \"<boolean>\",\n  \"categoryId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"allowInlineImageIngestion\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"allowAnonymousEmailCreation\": \"<boolean>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d1afd426-1aad-4e05-9c15-83be7c5a79e8",
+    "name": "Elementum Access Token Elements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage access tokens using OAuth 2.0 standards\n\nContact Support:\n Email: apiteam@elementum.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Elements API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import an existing connected-source table as an element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/elements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Import an existing connected-source table as an element"
+        },
+        {
+          "info": {
+            "name": "Get an element by alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/elements/:alias",
+            "params": [
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an element by alias"
+        },
+        {
+          "info": {
+            "name": "Update an element by alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/elements/:alias",
+            "params": [
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update an element by alias"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

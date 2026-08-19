@@ -1,0 +1,284 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elementum Access Token Attachments API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/:id/attachments",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of attachments"
+        },
+        {
+          "info": {
+            "name": "Add an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/:recordType/:alias/:id/attachments",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add an attachment"
+        },
+        {
+          "info": {
+            "name": "Add a link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/:recordType/:alias/:id/attachments/url-links",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a link"
+        },
+        {
+          "info": {
+            "name": "Find an attachment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/:id/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              },
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the attachment"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Find an attachment by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a record attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/:recordType/:alias/:id/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              },
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the attachment"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a record attachment"
+        },
+        {
+          "info": {
+            "name": "Download attachment content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/:recordType/:alias/:id/attachments/:attachmentId/content",
+            "params": [
+              {
+                "name": "recordType",
+                "value": "",
+                "type": "path",
+                "description": "'apps', 'elements', 'tasks', or 'transactions'"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The app's namespace or its UUID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The record ID"
+              },
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the attachment"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Download attachment content"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

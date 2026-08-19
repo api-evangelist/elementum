@@ -1,0 +1,2291 @@
+{
+  "item": [
+    {
+      "id": "2fdc7963-15bc-4324-bfcb-78b0bcd79c91",
+      "name": "Views",
+      "description": {
+        "content": "Manage app views",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "647c2c58-2277-418e-856f-d9629395578b",
+          "name": "List views under an app",
+          "request": {
+            "name": "List views under an app",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "100",
+                  "description": "The number of elements to retrieve after the 'after' cursor location"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The starting cursor to begin searching, defaults to the beginning of the list"
+                },
+                {
+                  "disabled": false,
+                  "key": "last",
+                  "value": "<integer>",
+                  "description": "The number of elements to retrieve before the 'before' cursor location"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "The starting cursor to begin searching, defaults to the end of the list"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44d4b299-f476-48fc-8417-cfdb72f72430",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"has_previous_page\": true,\n    \"start_cursor\": \"string\",\n    \"end_cursor\": \"string\",\n    \"has_next_page\": true\n  },\n  \"total\": 8482,\n  \"items\": [\n    {\n      \"displayOrder\": 8191,\n      \"share\": {\n        \"groups\": [\n          {\n            \"name\": \"string\",\n            \"id\": \"f25d686c-cfeb-d5f0-ca08-69fd071a6bf9\",\n            \"assignable\": false,\n            \"watchable\": true,\n            \"mentionable\": false,\n            \"domains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"managed\": false,\n            \"dynamic\": true\n          },\n          {\n            \"name\": \"string\",\n            \"id\": \"01f79736-c07b-0553-87a3-2917f955315b\",\n            \"assignable\": false,\n            \"watchable\": true,\n            \"mentionable\": true,\n            \"domains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"managed\": true,\n            \"dynamic\": true\n          }\n        ],\n        \"users\": [\n          {\n            \"lastName\": \"string\",\n            \"firstName\": \"string\",\n            \"id\": \"03e0e33b-0690-7fd3-8343-bd5a35ad9567\",\n            \"status\": \"string\",\n            \"email\": \"1Txp9YBsU@XAlhZ.qr\",\n            \"jobTitle\": \"string\"\n          },\n          {\n            \"lastName\": \"string\",\n            \"firstName\": \"string\",\n            \"id\": \"9bd45885-38cd-576e-6ea4-7aa2c0b10e66\",\n            \"status\": \"string\",\n            \"email\": \"xHmbRtjEHs@kLHCDgOmKwhVkMgcdkJTOinquKMXHPXU.hvd\",\n            \"jobTitle\": \"string\"\n          }\n        ]\n      },\n      \"agent\": {\n        \"id\": \"43a33bda-e24f-a13f-ab59-84207dadbe4e\"\n      },\n      \"clientHandle\": \"string\",\n      \"columns\": [\n        \"7499dae6-0033-1b6e-4172-b60f61c187fe\",\n        \"5cb6dbf6-3852-0cc5-b3d2-8d9b5197a342\"\n      ],\n      \"density\": \"string\",\n      \"rows\": 1068,\n      \"sort\": {},\n      \"allowedFilterFields\": [\n        \"e1a34410-a360-4da2-2698-1df7c3aea2d0\",\n        \"a3177429-8d04-5a2f-a511-87df97abc64a\"\n      ],\n      \"filter\": {},\n      \"type\": \"string\",\n      \"displayByField\": \"25157c4f-3b61-9a6c-2e07-b4111f47540c\",\n      \"name\": \"string\",\n      \"allowRecordCreation\": true,\n      \"id\": \"dd39b34c-361b-9922-2b51-68a31a41ad0c\"\n    },\n    {\n      \"displayOrder\": 8703,\n      \"share\": {\n        \"groups\": [\n          {\n            \"name\": \"string\",\n            \"id\": \"d972a066-8cad-5ecf-2305-28899e579248\",\n            \"assignable\": true,\n            \"watchable\": true,\n            \"mentionable\": false,\n            \"domains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"managed\": true,\n            \"dynamic\": false\n          },\n          {\n            \"name\": \"string\",\n            \"id\": \"4c0920c8-708a-18e5-3d6f-da59b97b4db6\",\n            \"assignable\": false,\n            \"watchable\": false,\n            \"mentionable\": false,\n            \"domains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"managed\": true,\n            \"dynamic\": true\n          }\n        ],\n        \"users\": [\n          {\n            \"lastName\": \"string\",\n            \"firstName\": \"string\",\n            \"id\": \"5921b822-297e-dfcd-84a1-ae491e7ec422\",\n            \"status\": \"string\",\n            \"email\": \"lKc4ZPT@qm.rqhs\",\n            \"jobTitle\": \"string\"\n          },\n          {\n            \"lastName\": \"string\",\n            \"firstName\": \"string\",\n            \"id\": \"506d1902-ad2e-0bc7-e0f6-fb998d6a3664\",\n            \"status\": \"string\",\n            \"email\": \"5pOcsI7bND4Jn@CfMeTNVQwWBBuySAdqCeNWFzyG.sz\",\n            \"jobTitle\": \"string\"\n          }\n        ]\n      },\n      \"agent\": {\n        \"id\": \"b0388bac-34dd-51b2-f11a-310f775171e9\"\n      },\n      \"clientHandle\": \"string\",\n      \"columns\": [\n        \"287d34c5-781f-c144-1900-3e9f206b86fb\",\n        \"3f4d74b2-80fd-31b6-3d0b-948f1f7e0460\"\n      ],\n      \"density\": \"string\",\n      \"rows\": 9407,\n      \"sort\": {},\n      \"allowedFilterFields\": [\n        \"00208dcd-7d60-d6b2-285b-53b848674dd0\",\n        \"c1751787-9611-05aa-4ede-207dbf2f9dce\"\n      ],\n      \"filter\": {},\n      \"type\": \"string\",\n      \"displayByField\": \"771bf3f3-19de-8118-281b-1da54e7a966f\",\n      \"name\": \"string\",\n      \"allowRecordCreation\": true,\n      \"id\": \"97d89684-9d50-888d-fce0-330accacbbb0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75f01235-4e2f-45ee-9a16-c5d347b3d739",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9108b279-dd0a-4a84-ba64-00f8a679fbf7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b40f2085-a6c3-4a25-af4a-b445768c5d6e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "375bf1df-e4e1-4422-aaa1-a62488f3cfc1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c7b1d22-2202-4055-a454-a548f79d7d1e",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7f3d156-124a-4351-bc1d-9140815aa680",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6684e8a0-6084-44f7-a103-1020af0df650",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72d9f97d-b45d-4f04-832a-5b7e73f8b079",
+          "name": "Create a view under an app",
+          "request": {
+            "name": "Create a view under an app",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 3576,\n      \"key_1\": false\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": false,\n      \"key_3\": true\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": false,\n      \"key_3\": 8902.46436460419\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ea37e62-bbe1-40d1-ae11-b2445aee933c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": 239\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1924610a-4f69-405a-9e74-43f90a61796a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e0d8cba-d5c7-41d9-a773-06c3948c89f3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a5cb90c-b9b1-460e-9008-4bd64bf5e5e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3cbfefd6-8930-4f2a-9ca2-1c80dc22c2c1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08ccf7a2-6025-4519-99d2-9c23c4f275d3",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e98a0ac-35bf-4039-b106-f6aedec0db06",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16c9e824-6aa3-43b2-8ee5-3c64cba05253",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handle\": \"<string>\",\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 115.90631349138292,\n      \"key_1\": 4751.201063795755\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ac75950-150d-4d62-98c2-a6bc8637e10f",
+          "name": "Get a view by ID",
+          "request": {
+            "name": "Get a view by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "views",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The resource ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e99a87b5-0454-4c5d-ba6f-5d125c839ea2",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"displayOrder\": 8753,\n  \"share\": {\n    \"groups\": [\n      {\n        \"name\": \"string\",\n        \"id\": \"48fecb86-2827-d405-6973-b1fae3a2e2d5\",\n        \"assignable\": true,\n        \"watchable\": false,\n        \"mentionable\": false,\n        \"domains\": [\n          {\n            \"domain\": \"string\",\n            \"id\": \"9b2df7ca-b9c0-3231-315c-a6726c34e03f\"\n          },\n          {\n            \"domain\": \"string\",\n            \"id\": \"244492a2-284e-930f-81a0-d3eebf0abb5e\"\n          }\n        ],\n        \"managed\": true,\n        \"dynamic\": true\n      },\n      {\n        \"name\": \"string\",\n        \"id\": \"6a445942-93a6-67c5-a0f5-a720f904169f\",\n        \"assignable\": false,\n        \"watchable\": false,\n        \"mentionable\": false,\n        \"domains\": [\n          {\n            \"domain\": \"string\",\n            \"id\": \"538ee5d4-ccd5-6b8b-5c3d-38fce165e37c\"\n          },\n          {\n            \"domain\": \"string\",\n            \"id\": \"bed42693-5d81-d36c-c427-518c18cee51a\"\n          }\n        ],\n        \"managed\": true,\n        \"dynamic\": true\n      }\n    ],\n    \"users\": [\n      {\n        \"lastName\": \"string\",\n        \"firstName\": \"string\",\n        \"id\": \"aac486fa-dcf7-dff6-72c1-55da8e349fae\",\n        \"status\": \"string\",\n        \"email\": \"uvG@FwkrVFzGMJfUoGrVPRABzrl.pz\",\n        \"jobTitle\": \"string\"\n      },\n      {\n        \"lastName\": \"string\",\n        \"firstName\": \"string\",\n        \"id\": \"7621d8df-02b6-134e-28cb-d98924b4fe61\",\n        \"status\": \"string\",\n        \"email\": \"ipCnpAs@nmKTBsqOTxdIMT.jbnw\",\n        \"jobTitle\": \"string\"\n      }\n    ]\n  },\n  \"agent\": {\n    \"id\": \"e96b94ea-6d19-1854-4668-d9f9793b1672\"\n  },\n  \"clientHandle\": \"string\",\n  \"columns\": [\n    \"08d35214-ad5f-5f2d-a813-93fba9a510aa\",\n    \"b778ff86-abe7-0326-4960-6b45bd2eca14\"\n  ],\n  \"density\": \"string\",\n  \"rows\": 5957,\n  \"sort\": {},\n  \"allowedFilterFields\": [\n    \"aacddc43-304f-2c8c-76f6-fd2f4b2fd24e\",\n    \"f583d316-e4e6-183a-24c1-13c6b363b798\"\n  ],\n  \"filter\": {},\n  \"type\": \"string\",\n  \"displayByField\": \"b37c1a2e-670a-d70b-764d-6986032bed53\",\n  \"name\": \"string\",\n  \"allowRecordCreation\": false,\n  \"id\": \"99092776-0aa4-147e-d65c-04853289fcaf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6664d1e4-6236-4eaf-b4cd-f9bd1051e45d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90214f83-49ea-440a-9818-9dba1468dd5a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7dba129f-bc76-4dd8-ad3c-5a8444780dc2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e772e51-cf57-44dd-8e49-7cacbe6c9bf4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a093fa39-7e98-456c-a78f-c17be859c90b",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "933b4ef2-5e23-447a-a2c4-ac9d7d451164",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13f85dfe-b47f-4bb5-ae21-521438182ef5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11aad447-6471-4ae8-93d9-a7b7f7ee32e3",
+          "name": "Update a view under an app",
+          "request": {
+            "name": "Update a view under an app",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":alias",
+                "views",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) The app's namespace or its UUID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2410,\n      \"key_1\": 12\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "408a320a-c582-4290-b62d-4225f87e9b7a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": 239\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3cb68d3-6002-4e98-8d00-fe3f4bd26961",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30b4c6c1-2beb-45b3-b08e-5d1acf4c4357",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ba8a953-cb30-44ab-b86b-4ce45d35990f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d287534-9702-42b1-bd6d-261d799fa158",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0fda012-cf42-49d3-8bb0-fbfd5b907553",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9bbce2b-d0f6-41e9-b983-02ec15c8601b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31ac4f03-5fc2-49ed-887a-1a58af750c05",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":alias",
+                    "views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) The app's namespace or its UUID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Portable cross-environment identifier (client handle) of the view to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view\": {\n    \"agent\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\"\n    },\n    \"calendar\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": \"string\"\n    },\n    \"list\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true\n    },\n    \"kanban\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": 2271.8598581144843,\n      \"key_1\": 3068.1698077861374\n    },\n    \"dashboard\": {\n      \"name\": \"<string>\",\n      \"allowRecordCreation\": \"<boolean>\",\n      \"filter\": \"<object>\",\n      \"sort\": \"<object>\",\n      \"key_0\": true,\n      \"key_1\": true\n    }\n  },\n  \"share\": {\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff1def46-95ca-4541-a38a-7f09df42b76f",
+    "name": "Elementum Access Token Views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage access tokens using OAuth 2.0 standards\n\nContact Support:\n Email: apiteam@elementum.io",
+      "type": "text/plain"
+    }
+  }
+}

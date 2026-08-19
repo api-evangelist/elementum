@@ -1,0 +1,987 @@
+{
+  "item": [
+    {
+      "id": "41a1041b-0d6a-41f2-8266-979e2200ccc8",
+      "name": "Domains",
+      "description": {
+        "content": "Manage organization domains",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08799a63-cd74-4633-9540-8ac334621743",
+          "name": "Create an organization domain",
+          "request": {
+            "name": "Create an organization domain",
+            "description": {},
+            "url": {
+              "path": [
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f1e390d-2de9-48bf-a969-a2603551aa0e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain\": \"string\",\n  \"internal\": false,\n  \"approved\": true,\n  \"id\": \"9a174820-a817-20f3-fd17-d7098db089bd\",\n  \"startUrl\": \"string\",\n  \"selfRegistration\": false,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"sso\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efb4f25f-73ea-4732-921f-2d9e6437b298",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e2b705c-c08f-4a14-bf19-b3e9f13b45b6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22e0c7aa-7028-482b-a065-ea5461f5ca67",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc10ed81-a425-4a6f-9646-bda35e2c0535",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0d560ec-093c-49d0-b0c4-3c3efb192822",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c7798d8-6455-4380-aa1f-b0a6955f690e",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e7b50e6-cea9-48a8-a19b-32b940d29eb1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "918607b9-7ccc-4667-89ef-bb972dd437f9",
+          "name": "Update an organization domain",
+          "request": {
+            "name": "Update an organization domain",
+            "description": {},
+            "url": {
+              "path": [
+                "domains",
+                ":domainId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "domainId",
+                  "description": "(Required) The organization domain ID (UUID)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92abd8be-b623-4e35-9bd4-88d6d6ecaf50",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain\": \"string\",\n  \"internal\": false,\n  \"approved\": true,\n  \"id\": \"9a174820-a817-20f3-fd17-d7098db089bd\",\n  \"startUrl\": \"string\",\n  \"selfRegistration\": false,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"sso\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f8db1c1-0def-410d-a130-674034acac96",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97f21f68-d35a-4b9e-a4a5-bbad74f7948e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1dc7885-3d06-44cc-8be8-448ef109d14c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dc2802b-490f-4877-97ec-e1a48fdaa71a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b2c9543-01b3-4298-9c02-980d5add34ce",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09ee799d-45e9-4bad-840c-1064b44521d3",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dded780-a98e-433e-9566-8e5c4fdb463c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domainId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "domainId",
+                      "description": "(Required) The organization domain ID (UUID)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailDomain\": {\n    \"domain\": \"<string>\"\n  },\n  \"managedDomain\": {\n    \"domain\": \"<string>\",\n    \"sso\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"startUrl\": \"<string>\",\n    \"selfRegistration\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"approved\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e98b0c89-baf6-4595-9c96-5797c6e768c1",
+    "name": "Elementum Access Token Domains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage access tokens using OAuth 2.0 standards\n\nContact Support:\n Email: apiteam@elementum.io",
+      "type": "text/plain"
+    }
+  }
+}
