@@ -36,6 +36,17 @@ created: '2026-07-17'
 modified: '2026-07-19'
 tags:
 - Company
+- Artificial Intelligence
+- Automation
+- Workflows
+- Orchestration
+- Agents
+- Supply Chain
+- No-Code
+- Enterprise
+- Snowflake
+tags_raw:
+- Company
 - AI
 - Automation
 - Workflow
@@ -80,6 +91,8 @@ apis:
   humanURL: https://docs.elementum.io/api-reference/api-introduction
   baseURL: https://api.elementum.io/v1
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -178,6 +191,8 @@ apis:
   humanURL: https://docs.elementum.io/api-reference/api-introduction
   baseURL: https://api.elementum.io/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -262,6 +277,8 @@ apis:
   humanURL: https://docs.elementum.io/api-reference/api-introduction
   baseURL: https://api.elementum.io/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
