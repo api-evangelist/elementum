@@ -333,6 +333,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Website
+  url: https://www.elementum.io/
 - type: Overlay
   url: overlays/elementum-openapi-overlay.yaml
 - type: DeveloperPortal
