@@ -133,6 +133,8 @@ apis:
   humanURL: https://docs.elementum.io/api-reference/api-introduction
   baseURL: https://api.elementum.io/v1
   tags:
+  - Automation
+  tags_raw:
   - Automations
   properties:
   - type: OpenAPI
@@ -189,6 +191,8 @@ apis:
   humanURL: https://docs.elementum.io/api-reference/api-introduction
   baseURL: https://api.elementum.io/v1
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
