@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Elementum Access Token Users API
-  description: Manage access tokens using OAuth 2.0 standards
+  title: Elementum Users API
+  description: Manage users in your organization
   contact:
     email: apiteam@elementum.io
   version: 0.0.1
@@ -149,6 +149,93 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  responses:
+    '429':
+      description: Too Many Requests
+    '404':
+      description: Not Found
+    '401':
+      description: Unauthorized
+    '400':
+      description: Bad Request
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
+    '500':
+      description: Internal Server Error
+  schemas:
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+    CreateUserInput:
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: The user's first name
+        neverNotify:
+          type: boolean
+          description: If true, the user will not receive a welcome email
+        lastName:
+          type: string
+          description: The user's last name
+        jobTitle:
+          type: string
+          description: The user's job title (optional)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+      example: '{jobTitle=Engineer, email=jane@example.com, firstName=Jane, lastName=Doe}'
+    UserPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
   parameters:
     last:
       name: last
@@ -160,13 +247,24 @@ components:
         minimum: 1
         type: integer
         format: int32
-    after:
-      name: after
+    before:
+      name: before
       in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
+      description: The starting cursor to begin searching, defaults to the end of the list
       required: false
       schema:
         type: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
     filter:
       name: filter
       in: query
@@ -242,6 +340,13 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
     userId:
       name: userId
       in: path
@@ -250,111 +355,6 @@ components:
       schema:
         type: string
         format: uuid
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-  responses:
-    '429':
-      description: Too Many Requests
-    '422':
-      description: Unprocessable Entity
-    '404':
-      description: Not Found
-    '403':
-      description: Forbidden
-    '401':
-      description: Unauthorized
-    '400':
-      description: Bad Request
-    '500':
-      description: Internal Server Error
-  schemas:
-    UserPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    User:
-      type: object
-      properties:
-        lastName:
-          type: string
-          description: The user's last name
-        firstName:
-          type: string
-          description: The user's first name
-        id:
-          type: string
-          description: The user ID
-          format: uuid
-        status:
-          type: string
-          description: The user's organization status (ACTIVE, INACTIVE)
-        email:
-          type: string
-          description: The user's email address
-          format: email
-        jobTitle:
-          type: string
-          description: The user's job title
-      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
-    CreateUserInput:
-      required:
-      - email
-      - firstName
-      - lastName
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: The user's first name
-        neverNotify:
-          type: boolean
-          description: If true, the user will not receive a welcome email
-        lastName:
-          type: string
-          description: The user's last name
-        jobTitle:
-          type: string
-          description: The user's job title (optional)
-        email:
-          type: string
-          description: The user's email address
-          format: email
-      example: '{jobTitle=Engineer, email=jane@example.com, firstName=Jane, lastName=Doe}'
   securitySchemes:
     ClientCredentials:
       type: oauth2

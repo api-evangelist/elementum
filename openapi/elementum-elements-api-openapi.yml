@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Elementum Access Token Elements API
-  description: Manage access tokens using OAuth 2.0 standards
+  title: Elementum Elements API
+  description: Manage elements imported from connected cloud sources
   contact:
     email: apiteam@elementum.io
   version: 0.0.1
@@ -120,7 +120,68 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  responses:
+    '429':
+      description: Too Many Requests
+    '404':
+      description: Not Found
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '422':
+      description: Unprocessable Entity
+    '500':
+      description: Internal Server Error
   schemas:
+    SnowflakeOptionsInput:
+      type: object
+      properties:
+        hybridTable:
+          type: boolean
+          description: Use a Snowflake hybrid table
+    Aspect:
+      type: object
+      properties:
+        configured:
+          type: boolean
+          description: Whether the aspect has been fully configured
+        status:
+          type: string
+          description: Lifecycle status (DRAFT, ACTIVE, ARCHIVED, …)
+        description:
+          type: string
+          description: The aspect description
+        __typename:
+          type: string
+          description: The aspect variant (AspectApp, AspectElement, AspectTask, AspectTransaction)
+        icon:
+          type: string
+          description: The aspect icon
+        namespace:
+          type: string
+          description: The aspect namespace (lowercase identifier used in URLs)
+        handle:
+          type: string
+          description: The aspect handle (uppercase identifier used in record handles)
+        readOnly:
+          type: boolean
+        sourceType:
+          $ref: '#/components/schemas/AspectSourceType'
+        color:
+          type: string
+          description: The aspect color
+        id:
+          type: string
+          description: The aspect ID
+          format: uuid
+        name:
+          type: string
+          description: The aspect display name
+        category:
+          $ref: '#/components/schemas/AspectCategoryRef'
     AspectFieldInput:
       required:
       - name
@@ -153,6 +214,60 @@ components:
           type: array
           items:
             type: string
+    RecordCreateTypesInput:
+      type: object
+      properties:
+        agents:
+          type: boolean
+          description: Whether records can be created by agents
+        email:
+          type: boolean
+          description: Whether records can be created via inbound email
+        services:
+          type: boolean
+          description: Whether records can be created by services
+        api:
+          type: boolean
+          description: Whether records can be created via the API
+        automations:
+          type: boolean
+          description: Whether records can be created by automations
+        manual:
+          type: boolean
+          description: Whether records can be created manually in the UI
+    CloudOptionsInput:
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/SnowflakeOptionsInput'
+    ElementUpdateRequest:
+      type: object
+      properties:
+        recordCreateTypes:
+          $ref: '#/components/schemas/RecordCreateTypesInput'
+        workflowValuePerAutomation:
+          type: number
+        allowForwardedEmailIngestion:
+          type: boolean
+        categoryId:
+          type: string
+          description: Aspect category to file the element under
+          format: uuid
+        description:
+          type: string
+          description: Element description
+        name:
+          type: string
+          description: Element display name
+        allowInlineImageIngestion:
+          type: boolean
+        icon:
+          type: string
+        allowAnonymousEmailCreation:
+          type: boolean
+        color:
+          type: string
+      description: 'Body for PUT /v1/elements/{alias}. Partial update: only the fields present are changed. Source binding (cloud link, source table, field schema) is fixed at create time and cannot be edited here.'
     AspectCategoryRef:
       type: object
       properties:
@@ -163,6 +278,24 @@ components:
           type: string
           description: The category ID
           format: uuid
+    AspectFieldType:
+      type: string
+      description: The Elementum field data type
+      enum:
+      - ATTACHMENT_ID
+      - BOOLEAN
+      - DATE
+      - DATETIME
+      - DECIMAL
+      - GROUP_ID
+      - HANDLE
+      - HTML
+      - JSON
+      - MULTI_PICKLIST
+      - NUMBER
+      - PICKLIST
+      - TEXT
+      - USER_ID
     AspectSourceType:
       type: string
       description: Where an aspect's data lives. ELEMENTUM = native; SNOWFLAKE = imported from a connected Snowflake table.
@@ -237,139 +370,6 @@ components:
           type: string
           description: Source column to tag with the HANDLE semantic tag. Must be TEXT, NUMBER, or HANDLE. Import mode only.
       description: 'Body for POST /v1/elements. Three modes: (1) import — `cloudLinkId` + `database`/`schema`/`table`/`idColumn`/`titleColumn`; columns are discovered from the source table and `fields` must be omitted. (2) native-at-link — `cloudLinkId` only (no source-table group); a new physical table is created at the cloud link''s configured database/schema; supply `fields` for the schema or omit for system defaults. (3) native — omit both `cloudLinkId` and the source-table group; the element lives on the organization''s system cloud link.'
-    ElementUpdateRequest:
-      type: object
-      properties:
-        recordCreateTypes:
-          $ref: '#/components/schemas/RecordCreateTypesInput'
-        workflowValuePerAutomation:
-          type: number
-        allowForwardedEmailIngestion:
-          type: boolean
-        categoryId:
-          type: string
-          description: Aspect category to file the element under
-          format: uuid
-        description:
-          type: string
-          description: Element description
-        name:
-          type: string
-          description: Element display name
-        allowInlineImageIngestion:
-          type: boolean
-        icon:
-          type: string
-        allowAnonymousEmailCreation:
-          type: boolean
-        color:
-          type: string
-      description: 'Body for PUT /v1/elements/{alias}. Partial update: only the fields present are changed. Source binding (cloud link, source table, field schema) is fixed at create time and cannot be edited here.'
-    AspectFieldType:
-      type: string
-      description: The Elementum field data type
-      enum:
-      - ATTACHMENT_ID
-      - BOOLEAN
-      - DATE
-      - DATETIME
-      - DECIMAL
-      - GROUP_ID
-      - HANDLE
-      - HTML
-      - JSON
-      - MULTI_PICKLIST
-      - NUMBER
-      - PICKLIST
-      - TEXT
-      - USER_ID
-    CloudOptionsInput:
-      type: object
-      properties:
-        snowflake:
-          $ref: '#/components/schemas/SnowflakeOptionsInput'
-    Aspect:
-      type: object
-      properties:
-        configured:
-          type: boolean
-          description: Whether the aspect has been fully configured
-        status:
-          type: string
-          description: Lifecycle status (DRAFT, ACTIVE, ARCHIVED, …)
-        description:
-          type: string
-          description: The aspect description
-        __typename:
-          type: string
-          description: The aspect variant (AspectApp, AspectElement, AspectTask, AspectTransaction)
-        icon:
-          type: string
-          description: The aspect icon
-        namespace:
-          type: string
-          description: The aspect namespace (lowercase identifier used in URLs)
-        handle:
-          type: string
-          description: The aspect handle (uppercase identifier used in record handles)
-        readOnly:
-          type: boolean
-        sourceType:
-          $ref: '#/components/schemas/AspectSourceType'
-        color:
-          type: string
-          description: The aspect color
-        id:
-          type: string
-          description: The aspect ID
-          format: uuid
-        name:
-          type: string
-          description: The aspect display name
-        category:
-          $ref: '#/components/schemas/AspectCategoryRef'
-    SnowflakeOptionsInput:
-      type: object
-      properties:
-        hybridTable:
-          type: boolean
-          description: Use a Snowflake hybrid table
-    RecordCreateTypesInput:
-      type: object
-      properties:
-        agents:
-          type: boolean
-          description: Whether records can be created by agents
-        email:
-          type: boolean
-          description: Whether records can be created via inbound email
-        services:
-          type: boolean
-          description: Whether records can be created by services
-        api:
-          type: boolean
-          description: Whether records can be created via the API
-        automations:
-          type: boolean
-          description: Whether records can be created by automations
-        manual:
-          type: boolean
-          description: Whether records can be created manually in the UI
-  responses:
-    '422':
-      description: Unprocessable Entity
-    '404':
-      description: Not Found
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '400':
-      description: Bad Request
-    '500':
-      description: Internal Server Error
-    '429':
-      description: Too Many Requests
   parameters:
     alias:
       name: alias

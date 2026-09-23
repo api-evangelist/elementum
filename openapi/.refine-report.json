@@ -1,24 +1,7 @@
 {
   "provider": "elementum",
   "sources": [
-    "elementum-access-token-api-openapi.yml",
-    "elementum-agents-api-openapi.yml",
-    "elementum-apps-api-openapi.yml",
-    "elementum-attachments-api-openapi.yml",
-    "elementum-automations-api-openapi.yml",
-    "elementum-comments-api-openapi.yml",
-    "elementum-domains-api-openapi.yml",
-    "elementum-elements-api-openapi.yml",
-    "elementum-flows-api-openapi.yml",
-    "elementum-groups-api-openapi.yml",
-    "elementum-records-api-openapi.yml",
-    "elementum-related-items-api-openapi.yml",
-    "elementum-search-tables-api-openapi.yml",
-    "elementum-skills-api-openapi.yml",
-    "elementum-tables-api-openapi.yml",
-    "elementum-users-api-openapi.yml",
-    "elementum-views-api-openapi.yml",
-    "elementum-watchers-api-openapi.yml"
+    "_original/elementum-openapi-original.json"
   ],
   "outputs": [
     "elementum-access-token-api-openapi.yml",
@@ -43,6 +26,29 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "elementum-openapi-original.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "elementum-access-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-automations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-elements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-flows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-related-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-search-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-skills-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-views-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elementum-watchers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

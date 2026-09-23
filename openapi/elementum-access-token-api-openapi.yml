@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Elementum Access Token API
   description: Manage access tokens using OAuth 2.0 standards
@@ -41,6 +41,18 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
+    AccessTokenResponse:
+      required:
+      - grant_type
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: number
+        token_type:
+          type: string
+      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
     AccessTokenRequest:
       required:
       - client_id
@@ -59,23 +71,11 @@ components:
         client_id:
           type: string
           description: Your client id
-    AccessTokenResponse:
-      required:
-      - grant_type
-      type: object
-      properties:
-        access_token:
-          type: string
-        expires_in:
-          type: number
-        token_type:
-          type: string
-      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
   responses:
-    '400':
-      description: Bad Request
     '401':
       description: Unauthorized
+    '400':
+      description: Bad Request
     '500':
       description: Internal Server Error
   securitySchemes:
