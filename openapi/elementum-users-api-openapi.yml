@@ -150,21 +150,38 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '422':
-      description: Unprocessable Entity
-    '429':
-      description: Too Many Requests
-    '403':
-      description: Forbidden
+    '500':
+      description: Internal Server Error
     '401':
       description: Unauthorized
     '404':
       description: Not Found
-    '500':
-      description: Internal Server Error
+    '403':
+      description: Forbidden
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
     '400':
       description: Bad Request
   parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
     userId:
       name: userId
       in: path
@@ -173,13 +190,6 @@ components:
       schema:
         type: string
         format: uuid
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
     filter:
       name: filter
       in: query
@@ -255,13 +265,6 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
     first:
       name: first
       in: query
@@ -273,29 +276,38 @@ components:
         type: integer
         format: int32
         default: 100
-    last:
-      name: last
+    before:
+      name: before
       in: query
-      description: The number of elements to retrieve before the 'before' cursor location
+      description: The starting cursor to begin searching, defaults to the end of the list
       required: false
       schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
+        type: string
   schemas:
-    UserPagedList:
+    User:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
     PagingState:
       type: object
       properties:
@@ -331,30 +343,18 @@ components:
           description: The user's email address
           format: email
       example: '{jobTitle=Engineer, email=jane@example.com, firstName=Jane, lastName=Doe}'
-    User:
+    UserPagedList:
       type: object
       properties:
-        lastName:
-          type: string
-          description: The user's last name
-        firstName:
-          type: string
-          description: The user's first name
-        id:
-          type: string
-          description: The user ID
-          format: uuid
-        status:
-          type: string
-          description: The user's organization status (ACTIVE, INACTIVE)
-        email:
-          type: string
-          description: The user's email address
-          format: email
-        jobTitle:
-          type: string
-          description: The user's job title
-      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
   securitySchemes:
     ClientCredentials:
       type: oauth2

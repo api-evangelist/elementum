@@ -114,21 +114,64 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '422':
-      description: Unprocessable Entity
-    '429':
-      description: Too Many Requests
-    '403':
-      description: Forbidden
+    '500':
+      description: Internal Server Error
     '401':
       description: Unauthorized
     '404':
       description: Not Found
-    '500':
-      description: Internal Server Error
+    '403':
+      description: Forbidden
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
     '400':
       description: Bad Request
+  parameters:
+    itemId:
+      name: itemId
+      in: path
+      description: The ID of the related item
+      required: true
+      schema:
+        type: string
+        format: string
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    recordId:
+      name: id
+      in: path
+      description: The record ID
+      required: true
+      schema:
+        type: string
+        format: string
   schemas:
+    RelatedItemInput:
+      required:
+      - id
+      type: object
+      properties:
+        alias:
+          type: string
+        id:
+          type: string
+      example: '{alias=itmanagement, id=ITM-4}'
     RelatedListItem:
       type: object
       properties:
@@ -151,16 +194,6 @@ components:
           type: string
         has_next_page:
           type: boolean
-    RelatedItemInput:
-      required:
-      - id
-      type: object
-      properties:
-        alias:
-          type: string
-        id:
-          type: string
-      example: '{alias=itmanagement, id=ITM-4}'
     RelatedPagedList:
       type: object
       properties:
@@ -174,39 +207,6 @@ components:
           items:
             $ref: '#/components/schemas/RelatedListItem'
       example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{id=TSK-4, type=TASK, alias=tasks, cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=}, {id=ITM-4, type=APP, alias=itmanagement, cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=}]}'
-  parameters:
-    itemId:
-      name: itemId
-      in: path
-      description: The ID of the related item
-      required: true
-      schema:
-        type: string
-        format: string
-    recordId:
-      name: id
-      in: path
-      description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
-      required: true
-      schema:
-        type: string
-        format: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

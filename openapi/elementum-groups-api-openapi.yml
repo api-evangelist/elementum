@@ -335,22 +335,65 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
-  responses:
-    '403':
-      description: Forbidden
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '400':
-      description: Bad Request
-    '422':
-      description: Unprocessable Entity
-    '500':
-      description: Internal Server Error
   schemas:
+    GroupPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    GroupDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email domain
+        id:
+          type: string
+          description: The auto-assignment rule ID
+          format: uuid
+      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
+    GroupDomainsInput:
+      required:
+      - domains
+      type: object
+      properties:
+        domains:
+          type: array
+          description: Email domains for auto-assignment
+          items:
+            type: string
+      example: '{domains=[example.com]}'
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
     GroupUserIdsInput:
       required:
       - userIds
@@ -362,6 +405,21 @@ components:
             type: string
             format: uuid
       example: '{userIds=[550e8400-e29b-41d4-a716-446655440000]}'
+    GroupDomainList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupDomain'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     GroupRequest:
       type: object
       properties:
@@ -437,22 +495,6 @@ components:
           type: boolean
           description: Whether the group is dynamic
       example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
-    GroupPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-    GroupDomainList:
-      type: array
-      items:
-        $ref: '#/components/schemas/GroupDomain'
     UserPagedList:
       type: object
       properties:
@@ -465,64 +507,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
-    User:
-      type: object
-      properties:
-        lastName:
-          type: string
-          description: The user's last name
-        firstName:
-          type: string
-          description: The user's first name
-        id:
-          type: string
-          description: The user ID
-          format: uuid
-        status:
-          type: string
-          description: The user's organization status (ACTIVE, INACTIVE)
-        email:
-          type: string
-          description: The user's email address
-          format: email
-        jobTitle:
-          type: string
-          description: The user's job title
-      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
-    GroupDomainsInput:
-      required:
-      - domains
-      type: object
-      properties:
-        domains:
-          type: array
-          description: Email domains for auto-assignment
-          items:
-            type: string
-      example: '{domains=[example.com]}'
-    GroupDomain:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The email domain
-        id:
-          type: string
-          description: The auto-assignment rule ID
-          format: uuid
-      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
+  responses:
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
   parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
     groupId:
       name: groupId
       in: path
@@ -538,16 +559,6 @@ components:
       required: false
       schema:
         type: string
-    last:
-      name: last
-      in: query
-      description: The number of elements to retrieve before the 'before' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
     after:
       name: after
       in: query
@@ -555,17 +566,6 @@ components:
       required: false
       schema:
         type: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
   securitySchemes:
     ClientCredentials:
       type: oauth2

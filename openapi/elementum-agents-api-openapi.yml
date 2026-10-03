@@ -127,21 +127,6 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
-  responses:
-    '403':
-      description: Forbidden
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '400':
-      description: Bad Request
-    '422':
-      description: Unprocessable Entity
-    '500':
-      description: Internal Server Error
   schemas:
     AgentUpdateInput:
       type: object
@@ -149,76 +134,16 @@ components:
         elementum:
           $ref: '#/components/schemas/AgentSubtypeUpdateInput'
       description: Discriminator wrapper. Exactly one subtype field must be populated.
-    AgentSubtypeUpdateInput:
+    PassthroughObject:
       type: object
-      properties:
-        avatarAttachmentId:
-          type: string
-          description: Attachment ID for the agent's avatar image
-          format: uuid
-        maxLength:
-          type: integer
-          description: Maximum tokens the model may return per turn
-          format: int32
-        firstMessage:
-          type: string
-          description: Opening message the agent posts when a conversation starts
-        reasoningEffort:
-          type: string
-          description: How much hidden reasoning the model is allowed before answering
-          enum:
-          - MINIMAL
-          - LOW
-          - MEDIUM
-          - HIGH
-        name:
-          type: string
-          description: The agent's display name
-        description:
-          type: string
-          description: Short summary shown to users picking an agent
-        aiProviderConnectorId:
-          type: string
-          description: ID of the AI provider connector the agent uses
-          format: uuid
-        temperature:
-          type: number
-          description: Model sampling temperature; typical range 0.0–2.0
-        instructions:
-          type: string
-          description: System prompt steering the agent's behavior
       additionalProperties: true
-      description: Agent update input. Only fields you wish to change need to be included; omitted fields keep their current value. Less common fields (voiceConfig, agentAuthentication, runAs, startingActions, skillAccessConfig, systemToolsConfig, a2aStreaming, a2aRecordConfig, conversationIdleTimeout) are accepted and forwarded as-is.
+      description: Free-form JSON object forwarded to/from the downstream service.
     AgentCreateInput:
       type: object
       properties:
         elementum:
           $ref: '#/components/schemas/AgentSubtypeCreateInput'
       description: Discriminator wrapper. Exactly one subtype field must be populated.
-    AgentBundleUpdateRequest:
-      required:
-      - agent
-      type: object
-      properties:
-        tools:
-          type: array
-          description: Optional tool list. If present, the agent's existing tools are replaced with this list.
-          items:
-            type: object
-            additionalProperties: true
-        a2aSkills:
-          type: array
-          description: Optional A2A skill list. If present, the agent's existing A2A skills are replaced with this list.
-          items:
-            type: object
-            additionalProperties: true
-        agent:
-          $ref: '#/components/schemas/AgentUpdateInput'
-      description: Body for PUT /v1/apps/{alias}/agents/{id}.
-    PassthroughObject:
-      type: object
-      additionalProperties: true
-      description: Free-form JSON object forwarded to/from the downstream service.
     Agent:
       type: object
       properties:
@@ -251,38 +176,6 @@ components:
           type: number
           description: Model sampling temperature; typical range 0.0–2.0
       description: An agent returned by the agents list endpoint (summary projection).
-    AgentBundleCreateRequest:
-      required:
-      - agent
-      type: object
-      properties:
-        tools:
-          type: array
-          description: Optional tools to attach to the new agent
-          items:
-            type: object
-            additionalProperties: true
-        a2aSkills:
-          type: array
-          description: Optional A2A skills to attach to the new agent
-          items:
-            type: object
-            additionalProperties: true
-        agent:
-          $ref: '#/components/schemas/AgentCreateInput'
-      description: Body for POST /v1/apps/{alias}/agents.
-    AgentPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agent'
     PagingState:
       type: object
       properties:
@@ -334,14 +227,114 @@ components:
           description: System prompt steering the agent's behavior
       additionalProperties: true
       description: Agent creation input. Less common fields (voiceConfig, agentAuthentication, runAs, startingActions, skillAccessConfig, systemToolsConfig, a2aStreaming, a2aRecordConfig, conversationIdleTimeout) are accepted and forwarded as-is.
+    AgentBundleCreateRequest:
+      required:
+      - agent
+      type: object
+      properties:
+        tools:
+          type: array
+          description: Optional tools to attach to the new agent
+          items:
+            type: object
+            additionalProperties: true
+        a2aSkills:
+          type: array
+          description: Optional A2A skills to attach to the new agent
+          items:
+            type: object
+            additionalProperties: true
+        agent:
+          $ref: '#/components/schemas/AgentCreateInput'
+      description: Body for POST /v1/apps/{alias}/agents.
+    AgentBundleUpdateRequest:
+      required:
+      - agent
+      type: object
+      properties:
+        tools:
+          type: array
+          description: Optional tool list. If present, the agent's existing tools are replaced with this list.
+          items:
+            type: object
+            additionalProperties: true
+        a2aSkills:
+          type: array
+          description: Optional A2A skill list. If present, the agent's existing A2A skills are replaced with this list.
+          items:
+            type: object
+            additionalProperties: true
+        agent:
+          $ref: '#/components/schemas/AgentUpdateInput'
+      description: Body for PUT /v1/apps/{alias}/agents/{id}.
+    AgentSubtypeUpdateInput:
+      type: object
+      properties:
+        avatarAttachmentId:
+          type: string
+          description: Attachment ID for the agent's avatar image
+          format: uuid
+        maxLength:
+          type: integer
+          description: Maximum tokens the model may return per turn
+          format: int32
+        firstMessage:
+          type: string
+          description: Opening message the agent posts when a conversation starts
+        reasoningEffort:
+          type: string
+          description: How much hidden reasoning the model is allowed before answering
+          enum:
+          - MINIMAL
+          - LOW
+          - MEDIUM
+          - HIGH
+        name:
+          type: string
+          description: The agent's display name
+        description:
+          type: string
+          description: Short summary shown to users picking an agent
+        aiProviderConnectorId:
+          type: string
+          description: ID of the AI provider connector the agent uses
+          format: uuid
+        temperature:
+          type: number
+          description: Model sampling temperature; typical range 0.0–2.0
+        instructions:
+          type: string
+          description: System prompt steering the agent's behavior
+      additionalProperties: true
+      description: Agent update input. Only fields you wish to change need to be included; omitted fields keep their current value. Less common fields (voiceConfig, agentAuthentication, runAs, startingActions, skillAccessConfig, systemToolsConfig, a2aStreaming, a2aRecordConfig, conversationIdleTimeout) are accepted and forwarded as-is.
+    AgentPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+  responses:
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
   parameters:
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
     last:
       name: last
       in: query
@@ -352,29 +345,6 @@ components:
         minimum: 1
         type: integer
         format: int32
-    passthroughId:
-      name: id
-      in: path
-      description: The resource ID
-      required: true
-      schema:
-        type: string
-        format: string
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
     filter:
       name: filter
       in: query
@@ -450,6 +420,22 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    passthroughId:
+      name: id
+      in: path
+      description: The resource ID
+      required: true
+      schema:
+        type: string
+        format: string
     first:
       name: first
       in: query
@@ -461,6 +447,20 @@ components:
         type: integer
         format: int32
         default: 100
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

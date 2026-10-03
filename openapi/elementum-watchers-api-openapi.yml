@@ -122,82 +122,31 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
-  responses:
-    '403':
-      description: Forbidden
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '400':
-      description: Bad Request
-    '422':
-      description: Unprocessable Entity
-    '500':
-      description: Internal Server Error
-  parameters:
-    recordId:
-      name: id
-      in: path
-      description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
-      required: true
-      schema:
-        type: string
-        format: string
-    last:
-      name: last
-      in: query
-      description: The number of elements to retrieve before the 'before' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
   schemas:
+    WatcherPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Watcher'
+      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{target={firstName=Jane, id=550e8400-e29b-41d4-a716-446655440001, lastName=Doe, email=jane@example.com, type=User}, id=550e8400-e29b-41d4-a716-446655440000}, {target={name=Engineering, id=550e8400-e29b-41d4-a716-446655440003, type=Group}, id=550e8400-e29b-41d4-a716-446655440002}]}'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     WatcherTarget:
       type: object
       properties:
@@ -229,19 +178,6 @@ components:
             type: string
             format: email
       example: '{users=[user1@email.com, user2@email.com]}'
-    WatcherPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Watcher'
-      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{target={firstName=Jane, id=550e8400-e29b-41d4-a716-446655440001, lastName=Doe, email=jane@example.com, type=User}, id=550e8400-e29b-41d4-a716-446655440000}, {target={name=Engineering, id=550e8400-e29b-41d4-a716-446655440003, type=Group}, id=550e8400-e29b-41d4-a716-446655440002}]}'
     Watcher:
       type: object
       properties:
@@ -251,17 +187,81 @@ components:
           type: string
           description: The watcher ID
           format: uuid
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
+  responses:
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
+  parameters:
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    recordId:
+      name: id
+      in: path
+      description: The record ID
+      required: true
+      schema:
+        type: string
+        format: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

@@ -163,45 +163,65 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  schemas:
+    RecordListItem:
+      type: object
+      properties:
+        cursor:
+          type: string
+        data:
+          $ref: '#/components/schemas/Record'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    RecordPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordListItem'
+      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, data={severity=High, description=Complaint received for 3 pallets of product that was shipped on Bad Pallets., title=Order ID 23456 Logistics CHH Warehouse}}, {cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, data={severity=Low, description=Complaint received for 1 pallet of product that was shipped on a Bad Pallet., title=Order ID 1472 Logistics CHH Warehouse}}]}'
+    Record:
+      type: object
+      additionalProperties:
+        type: string
+      example:
+        Severity: High
+        Description: Complaint received for 3 pallets of product that was shipped on Bad Pallets.
+        Title: Order ID 23456 Logistics CHH Warehouse
+        Created on: '2020-04-04'
+        Assignee: elroy@elementum.com
+        Status: In Progress
   responses:
     '403':
       description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
     '401':
       description: Unauthorized
     '404':
       description: Not Found
     '429':
       description: Too Many Requests
-    '400':
-      description: Bad Request
     '422':
       description: Unprocessable Entity
-    '500':
-      description: Internal Server Error
   parameters:
-    recordId:
-      name: id
-      in: path
-      description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
-      required: true
-      schema:
-        type: string
-        format: string
     last:
       name: last
       in: query
@@ -212,21 +232,6 @@ components:
         minimum: 1
         type: integer
         format: int32
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
     filter:
       name: filter
       in: query
@@ -302,6 +307,30 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    recordId:
+      name: id
+      in: path
+      description: The record ID
+      required: true
+      schema:
+        type: string
+        format: string
     first:
       name: first
       in: query
@@ -313,49 +342,20 @@ components:
         type: integer
         format: int32
         default: 100
-  schemas:
-    RecordListItem:
-      type: object
-      properties:
-        cursor:
-          type: string
-        data:
-          $ref: '#/components/schemas/Record'
-    RecordPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecordListItem'
-      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, data={severity=High, description=Complaint received for 3 pallets of product that was shipped on Bad Pallets., title=Order ID 23456 Logistics CHH Warehouse}}, {cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, data={severity=Low, description=Complaint received for 1 pallet of product that was shipped on a Bad Pallet., title=Order ID 1472 Logistics CHH Warehouse}}]}'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    Record:
-      type: object
-      additionalProperties:
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
         type: string
-      example:
-        Severity: High
-        Description: Complaint received for 3 pallets of product that was shipped on Bad Pallets.
-        Title: Order ID 23456 Logistics CHH Warehouse
-        Created on: '2020-04-04'
-        Assignee: elroy@elementum.com
-        Status: In Progress
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

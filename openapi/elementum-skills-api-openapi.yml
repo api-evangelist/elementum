@@ -130,29 +130,19 @@ components:
   responses:
     '403':
       description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
     '401':
       description: Unauthorized
     '404':
       description: Not Found
     '429':
       description: Too Many Requests
-    '400':
-      description: Bad Request
     '422':
       description: Unprocessable Entity
-    '500':
-      description: Internal Server Error
   schemas:
-    AspectCategoryRef:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The category name
-        id:
-          type: string
-          description: The category ID
-          format: uuid
     SkillCreateInput:
       required:
       - name
@@ -187,6 +177,45 @@ components:
           type: string
           description: System prompt steering the skill's behavior
       description: The skill to create. Owner (ownerType/ownerId) is derived from the URL alias.
+    SkillPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+    SkillDiscoveryProperties:
+      type: object
+      properties:
+        routingPriority:
+          type: number
+          description: Tie-breaker weight when multiple skills match
+        negativeKeywords:
+          type: array
+          description: Keywords that disfavour selecting this skill
+          items:
+            type: string
+        positiveKeywords:
+          type: array
+          description: Keywords that favour selecting this skill
+          items:
+            type: string
+        aliases:
+          type: array
+          description: Alternate names the skill can be referred to by
+          items:
+            type: string
+        exampleUtterances:
+          type: array
+          description: Sample phrases that should route to this skill
+          items:
+            type: string
+      description: Optional metadata that tunes how the skill is discovered and routed to.
     SkillUpdateInput:
       type: object
       properties:
@@ -219,6 +248,17 @@ components:
           type: string
           description: System prompt steering the skill's behavior
       description: Skill fields to change. Omitted fields keep their current value.
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     Aspect:
       type: object
       properties:
@@ -273,17 +313,6 @@ components:
             type: object
             additionalProperties: true
       description: Body for POST /v1/apps/{alias}/skills.
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
     Skill:
       type: object
       properties:
@@ -324,51 +353,22 @@ components:
         app:
           $ref: '#/components/schemas/Aspect'
       description: A skill returned by the skills endpoints.
+    AspectCategoryRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The category name
+        id:
+          type: string
+          description: The category ID
+          format: uuid
     AspectSourceType:
       type: string
       description: Where an aspect's data lives. ELEMENTUM = native; SNOWFLAKE = imported from a connected Snowflake table.
       enum:
       - ELEMENTUM
       - SNOWFLAKE
-    SkillDiscoveryProperties:
-      type: object
-      properties:
-        routingPriority:
-          type: number
-          description: Tie-breaker weight when multiple skills match
-        negativeKeywords:
-          type: array
-          description: Keywords that disfavour selecting this skill
-          items:
-            type: string
-        positiveKeywords:
-          type: array
-          description: Keywords that favour selecting this skill
-          items:
-            type: string
-        aliases:
-          type: array
-          description: Alternate names the skill can be referred to by
-          items:
-            type: string
-        exampleUtterances:
-          type: array
-          description: Sample phrases that should route to this skill
-          items:
-            type: string
-      description: Optional metadata that tunes how the skill is discovered and routed to.
-    SkillPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Skill'
     SkillBundleUpdateRequest:
       required:
       - skill
@@ -384,13 +384,6 @@ components:
             additionalProperties: true
       description: Body for PUT /v1/apps/{alias}/skills/{id}.
   parameters:
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
     last:
       name: last
       in: query
@@ -401,29 +394,6 @@ components:
         minimum: 1
         type: integer
         format: int32
-    passthroughId:
-      name: id
-      in: path
-      description: The resource ID
-      required: true
-      schema:
-        type: string
-        format: string
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
     filter:
       name: filter
       in: query
@@ -499,6 +469,22 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    passthroughId:
+      name: id
+      in: path
+      description: The resource ID
+      required: true
+      schema:
+        type: string
+        format: string
     first:
       name: first
       in: query
@@ -510,6 +496,20 @@ components:
         type: integer
         format: int32
         default: 100
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ClientCredentials:
       type: oauth2
