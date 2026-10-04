@@ -335,19 +335,62 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  parameters:
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    groupId:
+      name: groupId
+      in: path
+      description: The group ID (UUID)
+      required: true
+      schema:
+        type: string
+        format: uuid
+    last:
+      name: last
+      in: query
+      description: The number of elements to retrieve before the 'before' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
   schemas:
-    GroupPagedList:
+    GroupUserIdsInput:
+      required:
+      - userIds
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
+        userIds:
           type: array
           items:
-            $ref: '#/components/schemas/Group'
+            type: string
+            format: uuid
+      example: '{userIds=[550e8400-e29b-41d4-a716-446655440000]}'
     GroupDomain:
       type: object
       properties:
@@ -359,17 +402,6 @@ components:
           description: The auto-assignment rule ID
           format: uuid
       example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
-    GroupDomainsInput:
-      required:
-      - domains
-      type: object
-      properties:
-        domains:
-          type: array
-          description: Email domains for auto-assignment
-          items:
-            type: string
-      example: '{domains=[example.com]}'
     User:
       type: object
       properties:
@@ -394,32 +426,17 @@ components:
           type: string
           description: The user's job title
       example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
-    GroupUserIdsInput:
+    GroupDomainsInput:
       required:
-      - userIds
+      - domains
       type: object
       properties:
-        userIds:
+        domains:
           type: array
+          description: Email domains for auto-assignment
           items:
             type: string
-            format: uuid
-      example: '{userIds=[550e8400-e29b-41d4-a716-446655440000]}'
-    GroupDomainList:
-      type: array
-      items:
-        $ref: '#/components/schemas/GroupDomain'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
+      example: '{domains=[example.com]}'
     GroupRequest:
       type: object
       properties:
@@ -464,6 +481,17 @@ components:
           type: boolean
           description: Whether the group can act as an approver
       example: '{name=Engineering, assignable=true, watchable=true, approver=false, mentionable=true, dynamic=false, dataAccess=false, userIds=[550e8400-e29b-41d4-a716-446655440000]}'
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     Group:
       type: object
       properties:
@@ -507,65 +535,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
+    GroupPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    GroupDomainList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupDomain'
   responses:
-    '403':
-      description: Forbidden
-    '400':
-      description: Bad Request
     '500':
       description: Internal Server Error
-    '401':
-      description: Unauthorized
     '404':
       description: Not Found
     '429':
       description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
     '422':
       description: Unprocessable Entity
-  parameters:
-    last:
-      name: last
-      in: query
-      description: The number of elements to retrieve before the 'before' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-    groupId:
-      name: groupId
-      in: path
-      description: The group ID (UUID)
-      required: true
-      schema:
-        type: string
-        format: uuid
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
+    '400':
+      description: Bad Request
   securitySchemes:
     ClientCredentials:
       type: oauth2

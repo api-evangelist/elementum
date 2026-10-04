@@ -395,19 +395,112 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
-    TableFieldsV3UpdateDeleteInput:
-      required:
-      - id
+    TableFieldsV3UpdateInput:
       type: object
       properties:
+        updates:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableFieldsV3UpdateSetInput'
+        deletes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableFieldsV3UpdateDeleteInput'
+        creates:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableFieldsV3UpdateCreateInput'
+    TableFieldAggregatableCreateInput:
+      required:
+      - field
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name for the table field
+        field:
+          type: string
+          description: Source aspect-field UUID this reference points at
+          format: uuid
+        expanded:
+          $ref: '#/components/schemas/TableFieldExpanded'
+        aggregation:
+          $ref: '#/components/schemas/TableFieldAggregation'
+        tags:
+          type: array
+          items:
+            type: string
+    TableFieldAggregatableUpdateInput:
+      type: object
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/TableFieldAggregation'
+        name:
+          type: string
+        field:
+          type: string
+          format: uuid
+        tags:
+          type: array
+          items:
+            type: string
+    TableDataView:
+      type: object
+      properties:
+        __typename:
+          type: string
+          description: The data-view variant (TableDataViewSnowflake)
         id:
           type: string
           format: uuid
+        clientHandle:
+          type: string
+          description: Portable cross-environment identifier (client handle)
+        name:
+          type: string
+        schemaName:
+          type: string
+        databaseName:
+          type: string
+    TableFieldSnowflakeInput:
+      required:
+      - columnName
+      - type
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/AspectFieldType'
+        columnName:
+          type: string
+          description: Source column name
     TableCalculationUpdateInput:
       type: object
       properties:
         text:
           type: string
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    TableJoinMappingDeleteInput:
+      required:
+      - entries
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableJoinMappingDeleteEntryInput'
+    TableFieldCloudUpdateInput:
+      required:
+      - name
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/TableFieldSnowflakeInput'
         name:
           type: string
         tags:
@@ -425,6 +518,124 @@ components:
       - NOT_SET
       - STANDARD_DEVIATION
       - SUM
+    TableJoinMappingInput:
+      required:
+      - entries
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableJoinMappingEntryInput'
+    TableDataViewCreateInput:
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/TableDataViewSnowflakeCreateInput'
+    TableCalculationCreateInput:
+      required:
+      - name
+      - text
+      type: object
+      properties:
+        text:
+          type: string
+          description: Calculation expression
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    TableJoin:
+      type: object
+      properties:
+        onFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableJoinFields'
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/TableJoinType'
+        clientHandle:
+          type: string
+          description: Portable cross-environment identifier (client handle)
+        filter:
+          type: object
+        source:
+          $ref: '#/components/schemas/Table'
+    TableJoinUpdateInput:
+      type: object
+      properties:
+        source:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/TableJoinType'
+        joinOn:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableJoinFieldInput'
+        filter:
+          type: object
+    TableUpdateRequest:
+      type: object
+      properties:
+        icon:
+          type: string
+        orderBy:
+          type: object
+        fields:
+          $ref: '#/components/schemas/TableFieldsV3UpdateInput'
+        description:
+          type: string
+        source:
+          type: string
+          format: uuid
+        cloudMapping:
+          $ref: '#/components/schemas/TableCloudMappingInput'
+        categoryId:
+          type: string
+          format: uuid
+        dataView:
+          $ref: '#/components/schemas/TableDataViewUpdateInput'
+        limit:
+          type: object
+        color:
+          type: string
+        name:
+          type: string
+        filter:
+          type: object
+    TableFieldsV3UpdateDeleteInput:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    TableJoinMappingEntryInput:
+      required:
+      - source
+      - target
+      type: object
+      properties:
+        target:
+          type: string
+          description: Target-side value the source maps to
+        source:
+          type: string
+          description: Source-side value to map
+    TableJoinMappingDeleteEntryInput:
+      required:
+      - source
+      type: object
+      properties:
+        source:
+          type: string
     Table:
       type: object
       properties:
@@ -460,110 +671,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TableField'
-    TableDataViewUpdateInput:
-      type: object
-      properties:
-        snowflake:
-          $ref: '#/components/schemas/TableDataViewSnowflakeUpdateInput'
-    TableFieldAggregatableCreateInput:
+    TableJoinInput:
       required:
-      - field
-      - name
+      - joinOn
+      - source
+      - type
       type: object
       properties:
-        name:
+        source:
           type: string
-          description: Display name for the table field
-        field:
-          type: string
-          description: Source aspect-field UUID this reference points at
+          description: Source table to join in
           format: uuid
-        expanded:
-          $ref: '#/components/schemas/TableFieldExpanded'
-        aggregation:
-          $ref: '#/components/schemas/TableFieldAggregation'
-        tags:
+        type:
+          $ref: '#/components/schemas/TableJoinType'
+        joinOn:
           type: array
           items:
-            type: string
-    TableField:
+            $ref: '#/components/schemas/TableJoinFieldInput'
+        filter:
+          type: object
+          description: Optional filter applied to the joined table; opaque RSQL/Filter JSON
+    TableJoinFields:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        calculation:
-          $ref: '#/components/schemas/TableCalculation'
-        tags:
-          type: array
-          items:
-            type: string
-        semanticTags:
-          type: array
-          items:
-            type: string
-        expanded:
-          $ref: '#/components/schemas/TableFieldExpanded'
         clientHandle:
           type: string
           description: Portable cross-environment identifier (client handle)
-        fieldType:
-          $ref: '#/components/schemas/AspectFieldType'
-        name:
-          type: string
-        aggregation:
-          $ref: '#/components/schemas/TableFieldAggregation'
-        columnName:
-          type: string
-          description: Backing warehouse column (cloud fields only)
-        __typename:
-          type: string
-          description: The table-field variant (TableFieldReference, TableFieldCloud, TableFieldCalculation, TableFieldPicklist, TableFieldMultiPicklist)
-        field:
-          $ref: '#/components/schemas/TableField'
-    TableFieldAggregatableUpdateInput:
-      type: object
-      properties:
-        aggregation:
-          $ref: '#/components/schemas/TableFieldAggregation'
-        name:
-          type: string
-        field:
+        id:
           type: string
           format: uuid
-        tags:
-          type: array
-          items:
-            type: string
-    TableSnowflakeMappingInput:
-      required:
-      - databaseName
-      - schemaName
-      - tableName
-      type: object
-      properties:
-        databaseName:
-          type: string
-          description: Source database name
-        tableName:
-          type: string
-          description: Source table name
-        schemaName:
-          type: string
-          description: Source schema name
-    TableDataViewSnowflakeCreateInput:
-      required:
-      - databaseName
-      - name
-      - schemaName
-      type: object
-      properties:
-        databaseName:
-          type: string
-        name:
-          type: string
-        schemaName:
-          type: string
+        rightField:
+          $ref: '#/components/schemas/TableField'
+        joinMappings:
+          type: object
+          additionalProperties: true
+          description: Connection of join-field value mappings
+        leftField:
+          $ref: '#/components/schemas/TableField'
+    TableFieldExpanded:
+      type: string
+      enum:
+      - GROUP_NAME
+      - MULTI_PICKLIST_LABEL
+      - PICKLIST_LABEL
+      - STAGE_NAME
+      - USER_EMAIL
+      - USER_FIRST_NAME
+      - USER_LAST_NAME
+    TableJoinType:
+      type: string
+      enum:
+      - FULL
+      - INNER
+      - LEFT
+      - RIGHT
     TableDataViewSnowflakeUpdateInput:
       type: object
       properties:
@@ -573,11 +734,6 @@ components:
           type: string
         schemaName:
           type: string
-    TableDataViewCreateInput:
-      type: object
-      properties:
-        snowflake:
-          $ref: '#/components/schemas/TableDataViewSnowflakeCreateInput'
     TableFieldCreateInput:
       type: object
       properties:
@@ -588,158 +744,6 @@ components:
         calculation:
           $ref: '#/components/schemas/TableCalculationCreateInput'
       description: 'Tagged union: set exactly one of `reference`, `cloud`, or `calculation`.'
-    TableJoinMappingEntryInput:
-      required:
-      - source
-      - target
-      type: object
-      properties:
-        target:
-          type: string
-          description: Target-side value the source maps to
-        source:
-          type: string
-          description: Source-side value to map
-    TableJoinMappingDeleteInput:
-      required:
-      - entries
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableJoinMappingDeleteEntryInput'
-    TableJoinUpdateInput:
-      type: object
-      properties:
-        source:
-          type: string
-          format: uuid
-        type:
-          $ref: '#/components/schemas/TableJoinType'
-        joinOn:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableJoinFieldInput'
-        filter:
-          type: object
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    TableFieldCloudUpdateInput:
-      required:
-      - name
-      type: object
-      properties:
-        snowflake:
-          $ref: '#/components/schemas/TableFieldSnowflakeInput'
-        name:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-    TableJoinFieldInput:
-      required:
-      - leftFieldId
-      - rightFieldId
-      type: object
-      properties:
-        leftFieldId:
-          type: string
-          description: Field on the parent table side of the join
-          format: uuid
-        rightFieldId:
-          type: string
-          description: Field on the joined table side of the join
-          format: uuid
-    TableCalculation:
-      type: object
-      properties:
-        text:
-          type: string
-          description: Calculation expression
-    TableFieldsV3UpdateCreateInput:
-      required:
-      - field
-      type: object
-      properties:
-        field:
-          $ref: '#/components/schemas/TableFieldCreateInput'
-        index:
-          type: integer
-          format: int32
-    TableDataView:
-      type: object
-      properties:
-        __typename:
-          type: string
-          description: The data-view variant (TableDataViewSnowflake)
-        id:
-          type: string
-          format: uuid
-        clientHandle:
-          type: string
-          description: Portable cross-environment identifier (client handle)
-        name:
-          type: string
-        schemaName:
-          type: string
-        databaseName:
-          type: string
-    TableDatabricksMappingInput:
-      required:
-      - databaseName
-      - schemaName
-      - tableName
-      type: object
-      properties:
-        databaseName:
-          type: string
-          description: Source database name
-        tableName:
-          type: string
-          description: Source table name
-        schemaName:
-          type: string
-          description: Source schema name
-    TableUpdateRequest:
-      type: object
-      properties:
-        icon:
-          type: string
-        orderBy:
-          type: object
-        fields:
-          $ref: '#/components/schemas/TableFieldsV3UpdateInput'
-        description:
-          type: string
-        source:
-          type: string
-          format: uuid
-        cloudMapping:
-          $ref: '#/components/schemas/TableCloudMappingInput'
-        categoryId:
-          type: string
-          format: uuid
-        dataView:
-          $ref: '#/components/schemas/TableDataViewUpdateInput'
-        limit:
-          type: object
-        color:
-          type: string
-        name:
-          type: string
-        filter:
-          type: object
     TableFieldsV3UpdateSetInput:
       required:
       - field
@@ -754,6 +758,41 @@ components:
           format: uuid
         field:
           $ref: '#/components/schemas/TableFieldUpdateInput'
+    TableJoinFieldInput:
+      required:
+      - leftFieldId
+      - rightFieldId
+      type: object
+      properties:
+        leftFieldId:
+          type: string
+          description: Field on the parent table side of the join
+          format: uuid
+        rightFieldId:
+          type: string
+          description: Field on the joined table side of the join
+          format: uuid
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    TableFieldUpdateInput:
+      type: object
+      properties:
+        cloud:
+          $ref: '#/components/schemas/TableFieldCloudUpdateInput'
+        reference:
+          $ref: '#/components/schemas/TableFieldAggregatableUpdateInput'
+        calculation:
+          $ref: '#/components/schemas/TableCalculationUpdateInput'
+      description: 'Tagged union: set exactly one of `reference`, `cloud`, or `calculation`.'
     TableCreateRequest:
       required:
       - categoryId
@@ -806,42 +845,57 @@ components:
           description: Table display name
         dataView:
           $ref: '#/components/schemas/TableDataViewCreateInput'
-    TableFieldExpanded:
-      type: string
-      enum:
-      - GROUP_NAME
-      - MULTI_PICKLIST_LABEL
-      - PICKLIST_LABEL
-      - STAGE_NAME
-      - USER_EMAIL
-      - USER_FIRST_NAME
-      - USER_LAST_NAME
-    TableFieldSnowflakeInput:
+    TableDataViewSnowflakeCreateInput:
       required:
-      - columnName
-      - type
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/AspectFieldType'
-        columnName:
-          type: string
-          description: Source column name
-    TableCalculationCreateInput:
-      required:
+      - databaseName
       - name
-      - text
+      - schemaName
       type: object
       properties:
-        text:
+        databaseName:
           type: string
-          description: Calculation expression
         name:
           type: string
-        tags:
-          type: array
-          items:
-            type: string
+        schemaName:
+          type: string
+    TableFieldsV3UpdateCreateInput:
+      required:
+      - field
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/TableFieldCreateInput'
+        index:
+          type: integer
+          format: int32
+    TableDatabricksMappingInput:
+      required:
+      - databaseName
+      - schemaName
+      - tableName
+      type: object
+      properties:
+        databaseName:
+          type: string
+          description: Source database name
+        tableName:
+          type: string
+          description: Source table name
+        schemaName:
+          type: string
+          description: Source schema name
+    TableBigQueryMappingInput:
+      required:
+      - datasetName
+      - tableName
+      type: object
+      properties:
+        tableName:
+          type: string
+          description: Source table name
+        datasetName:
+          type: string
+          description: Source dataset name
     TablePagedList:
       type: object
       properties:
@@ -854,37 +908,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Table'
-    TableCloudMappingInput:
-      required:
-      - cloudLinkId
-      type: object
-      properties:
-        databricksMapping:
-          $ref: '#/components/schemas/TableDatabricksMappingInput'
-        snowflake:
-          $ref: '#/components/schemas/TableSnowflakeMappingInput'
-        cloudLinkId:
-          type: string
-          description: The cloud link backing this table
-          format: uuid
-        bigQueryMapping:
-          $ref: '#/components/schemas/TableBigQueryMappingInput'
-    TableJoinType:
-      type: string
-      enum:
-      - FULL
-      - INNER
-      - LEFT
-      - RIGHT
-    TableJoinMappingInput:
-      required:
-      - entries
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableJoinMappingEntryInput'
     TableFieldBigQueryInput:
       required:
       - columnName
@@ -896,85 +919,6 @@ components:
         columnName:
           type: string
           description: Source column name
-    TableJoin:
-      type: object
-      properties:
-        onFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableJoinFields'
-        id:
-          type: string
-          format: uuid
-        type:
-          $ref: '#/components/schemas/TableJoinType'
-        clientHandle:
-          type: string
-          description: Portable cross-environment identifier (client handle)
-        filter:
-          type: object
-        source:
-          $ref: '#/components/schemas/Table'
-    TableJoinMappingDeleteEntryInput:
-      required:
-      - source
-      type: object
-      properties:
-        source:
-          type: string
-    TableJoinFields:
-      type: object
-      properties:
-        clientHandle:
-          type: string
-          description: Portable cross-environment identifier (client handle)
-        id:
-          type: string
-          format: uuid
-        rightField:
-          $ref: '#/components/schemas/TableField'
-        joinMappings:
-          type: object
-          additionalProperties: true
-          description: Connection of join-field value mappings
-        leftField:
-          $ref: '#/components/schemas/TableField'
-    TableJoinInput:
-      required:
-      - joinOn
-      - source
-      - type
-      type: object
-      properties:
-        source:
-          type: string
-          description: Source table to join in
-          format: uuid
-        type:
-          $ref: '#/components/schemas/TableJoinType'
-        joinOn:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableJoinFieldInput'
-        filter:
-          type: object
-          description: Optional filter applied to the joined table; opaque RSQL/Filter JSON
-    TableFieldCloudCreateInput:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Display name for the table field
-        snowflake:
-          $ref: '#/components/schemas/TableFieldSnowflakeInput'
-        tags:
-          type: array
-          items:
-            type: string
-        bigQuery:
-          $ref: '#/components/schemas/TableFieldBigQueryInput'
     AspectFieldType:
       type: string
       description: The Elementum field data type
@@ -993,56 +937,129 @@ components:
       - PICKLIST
       - TEXT
       - USER_ID
-    TableBigQueryMappingInput:
+    TableCloudMappingInput:
       required:
-      - datasetName
+      - cloudLinkId
+      type: object
+      properties:
+        databricksMapping:
+          $ref: '#/components/schemas/TableDatabricksMappingInput'
+        snowflake:
+          $ref: '#/components/schemas/TableSnowflakeMappingInput'
+        cloudLinkId:
+          type: string
+          description: The cloud link backing this table
+          format: uuid
+        bigQueryMapping:
+          $ref: '#/components/schemas/TableBigQueryMappingInput'
+    TableCalculation:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Calculation expression
+    TableFieldCloudCreateInput:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name for the table field
+        snowflake:
+          $ref: '#/components/schemas/TableFieldSnowflakeInput'
+        tags:
+          type: array
+          items:
+            type: string
+        bigQuery:
+          $ref: '#/components/schemas/TableFieldBigQueryInput'
+    TableDataViewUpdateInput:
+      type: object
+      properties:
+        snowflake:
+          $ref: '#/components/schemas/TableDataViewSnowflakeUpdateInput'
+    TableSnowflakeMappingInput:
+      required:
+      - databaseName
+      - schemaName
       - tableName
       type: object
       properties:
+        databaseName:
+          type: string
+          description: Source database name
         tableName:
           type: string
           description: Source table name
-        datasetName:
+        schemaName:
           type: string
-          description: Source dataset name
-    TableFieldsV3UpdateInput:
+          description: Source schema name
+    TableField:
       type: object
       properties:
-        updates:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableFieldsV3UpdateSetInput'
-        deletes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableFieldsV3UpdateDeleteInput'
-        creates:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableFieldsV3UpdateCreateInput'
-    TableFieldUpdateInput:
-      type: object
-      properties:
-        cloud:
-          $ref: '#/components/schemas/TableFieldCloudUpdateInput'
-        reference:
-          $ref: '#/components/schemas/TableFieldAggregatableUpdateInput'
+        id:
+          type: string
+          format: uuid
         calculation:
-          $ref: '#/components/schemas/TableCalculationUpdateInput'
-      description: 'Tagged union: set exactly one of `reference`, `cloud`, or `calculation`.'
+          $ref: '#/components/schemas/TableCalculation'
+        tags:
+          type: array
+          items:
+            type: string
+        semanticTags:
+          type: array
+          items:
+            type: string
+        expanded:
+          $ref: '#/components/schemas/TableFieldExpanded'
+        clientHandle:
+          type: string
+          description: Portable cross-environment identifier (client handle)
+        fieldType:
+          $ref: '#/components/schemas/AspectFieldType'
+        name:
+          type: string
+        aggregation:
+          $ref: '#/components/schemas/TableFieldAggregation'
+        columnName:
+          type: string
+          description: Backing warehouse column (cloud fields only)
+        __typename:
+          type: string
+          description: The table-field variant (TableFieldReference, TableFieldCloud, TableFieldCalculation, TableFieldPicklist, TableFieldMultiPicklist)
+        field:
+          $ref: '#/components/schemas/TableField'
   parameters:
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
     tableId:
       name: id
       in: path
       description: The table ID (UUID)
-      required: true
-      schema:
-        type: string
-        format: uuid
-    joinFieldsId:
-      name: joinFieldsId
-      in: path
-      description: The table-join-fields ID (UUID); identifies a single (leftField, rightField) pair inside a join
       required: true
       schema:
         type: string
@@ -1065,46 +1082,29 @@ components:
       schema:
         type: string
         format: uuid
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
+    joinFieldsId:
+      name: joinFieldsId
+      in: path
+      description: The table-join-fields ID (UUID); identifies a single (leftField, rightField) pair inside a join
+      required: true
       schema:
         type: string
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
+        format: uuid
   responses:
-    '403':
-      description: Forbidden
-    '400':
-      description: Bad Request
     '500':
       description: Internal Server Error
-    '401':
-      description: Unauthorized
     '404':
       description: Not Found
     '429':
       description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
     '422':
       description: Unprocessable Entity
+    '400':
+      description: Bad Request
   securitySchemes:
     ClientCredentials:
       type: oauth2

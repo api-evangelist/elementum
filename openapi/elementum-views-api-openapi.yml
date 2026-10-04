@@ -164,6 +164,41 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
+    PassthroughObject:
+      type: object
+      additionalProperties: true
+      description: Free-form JSON object forwarded to/from the downstream service.
+    AspectViewVariantInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The view's display name
+        allowRecordCreation:
+          type: boolean
+          description: Whether records can be created from this view
+        filter:
+          type: object
+          description: Opaque Filter JSON scoping the view's records
+        sort:
+          type: object
+          description: Opaque Sort JSON ordering the view's records
+      additionalProperties: true
+      description: View configuration. Common fields are listed; type-specific fields (columns, density, rows, displayByField, allowedFilterFields, agentId, dashboardId) are accepted and forwarded as-is.
+    AspectViewCreateRequest:
+      required:
+      - handle
+      - view
+      type: object
+      properties:
+        handle:
+          type: string
+          description: Portable cross-environment identifier naming the new view; resolved to the view id (minted if first seen)
+        share:
+          $ref: '#/components/schemas/AspectViewShareInput'
+        view:
+          $ref: '#/components/schemas/AspectViewInput'
+      description: 'View create body: the handle that names the view, its full desired state, plus an optional share set.'
     GroupDomain:
       type: object
       properties:
@@ -175,20 +210,6 @@ components:
           description: The auto-assignment rule ID
           format: uuid
       example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
-    AspectViewUpdateRequest:
-      required:
-      - view
-      type: object
-      properties:
-        view:
-          $ref: '#/components/schemas/AspectViewInput'
-        share:
-          $ref: '#/components/schemas/AspectViewShareInput'
-      description: 'View update body: the full desired view state plus an optional share set (the view''s handle is on the path).'
-    PassthroughObject:
-      type: object
-      additionalProperties: true
-      description: Free-form JSON object forwarded to/from the downstream service.
     User:
       type: object
       properties:
@@ -213,6 +234,72 @@ components:
           type: string
           description: The user's job title
       example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+    AspectViewShareInput:
+      type: object
+      properties:
+        groups:
+          type: array
+          description: Client handles of groups to share with
+          items:
+            type: string
+        users:
+          type: array
+          description: Client handles of users to share with
+          items:
+            type: string
+      description: Declarative share set. Omit to leave sharing untouched; present is a full-replace resync.
+    PagingState:
+      type: object
+      properties:
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    AspectViewUpdateRequest:
+      required:
+      - view
+      type: object
+      properties:
+        view:
+          $ref: '#/components/schemas/AspectViewInput'
+        share:
+          $ref: '#/components/schemas/AspectViewShareInput'
+      description: 'View update body: the full desired view state plus an optional share set (the view''s handle is on the path).'
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The group name
+        id:
+          type: string
+          description: The group ID
+          format: uuid
+        assignable:
+          type: boolean
+          description: Whether the group can be assigned to records
+        watchable:
+          type: boolean
+          description: Whether the group can be used as a watcher
+        mentionable:
+          type: boolean
+          description: Whether the group can be mentioned
+        domains:
+          type: array
+          description: Email auto-assignment domains (dynamic groups only)
+          items:
+            $ref: '#/components/schemas/GroupDomain'
+        managed:
+          type: boolean
+          description: Whether the group is system-managed
+        dynamic:
+          type: boolean
+          description: Whether the group is dynamic
+      example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
     AspectView:
       type: object
       properties:
@@ -285,57 +372,6 @@ components:
           description: The view ID
           format: uuid
       description: An app view returned by the views endpoints.
-    AspectViewCreateRequest:
-      required:
-      - handle
-      - view
-      type: object
-      properties:
-        handle:
-          type: string
-          description: Portable cross-environment identifier naming the new view; resolved to the view id (minted if first seen)
-        share:
-          $ref: '#/components/schemas/AspectViewShareInput'
-        view:
-          $ref: '#/components/schemas/AspectViewInput'
-      description: 'View create body: the handle that names the view, its full desired state, plus an optional share set.'
-    AspectViewPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AspectView'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    AspectViewShareInput:
-      type: object
-      properties:
-        groups:
-          type: array
-          description: Client handles of groups to share with
-          items:
-            type: string
-        users:
-          type: array
-          description: Client handles of users to share with
-          items:
-            type: string
-      description: Declarative share set. Omit to leave sharing untouched; present is a full-replace resync.
     AspectViewInput:
       type: object
       properties:
@@ -350,80 +386,19 @@ components:
         dashboard:
           $ref: '#/components/schemas/AspectViewVariantInput'
       description: Discriminator wrapper. Exactly one variant field (list, kanban, calendar, dashboard, agent) must be populated.
-    Group:
+    AspectViewPagedList:
       type: object
       properties:
-        name:
-          type: string
-          description: The group name
-        id:
-          type: string
-          description: The group ID
-          format: uuid
-        assignable:
-          type: boolean
-          description: Whether the group can be assigned to records
-        watchable:
-          type: boolean
-          description: Whether the group can be used as a watcher
-        mentionable:
-          type: boolean
-          description: Whether the group can be mentioned
-        domains:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
           type: array
-          description: Email auto-assignment domains (dynamic groups only)
           items:
-            $ref: '#/components/schemas/GroupDomain'
-        managed:
-          type: boolean
-          description: Whether the group is system-managed
-        dynamic:
-          type: boolean
-          description: Whether the group is dynamic
-      example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
-    AspectViewVariantInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The view's display name
-        allowRecordCreation:
-          type: boolean
-          description: Whether records can be created from this view
-        filter:
-          type: object
-          description: Opaque Filter JSON scoping the view's records
-        sort:
-          type: object
-          description: Opaque Sort JSON ordering the view's records
-      additionalProperties: true
-      description: View configuration. Common fields are listed; type-specific fields (columns, density, rows, displayByField, allowedFilterFields, agentId, dashboardId) are accepted and forwarded as-is.
-  responses:
-    '403':
-      description: Forbidden
-    '400':
-      description: Bad Request
-    '500':
-      description: Internal Server Error
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '422':
-      description: Unprocessable Entity
+            $ref: '#/components/schemas/AspectView'
   parameters:
-    last:
-      name: last
-      in: query
-      description: The number of elements to retrieve before the 'before' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
     alias:
       name: alias
       in: path
@@ -432,14 +407,13 @@ components:
       schema:
         type: string
         format: string
-    passthroughId:
-      name: id
-      in: path
-      description: The resource ID
-      required: true
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
       schema:
         type: string
-        format: string
     first:
       name: first
       in: query
@@ -458,13 +432,39 @@ components:
       required: false
       schema:
         type: string
-    after:
-      name: after
+    last:
+      name: last
       in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
+      description: The number of elements to retrieve before the 'before' cursor location
       required: false
       schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+    passthroughId:
+      name: id
+      in: path
+      description: The resource ID
+      required: true
+      schema:
         type: string
+        format: string
+  responses:
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
+    '400':
+      description: Bad Request
   securitySchemes:
     ClientCredentials:
       type: oauth2

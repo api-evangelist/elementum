@@ -40,26 +40,7 @@ paths:
       - url: /
       x-codegen-request-body-name: body
 components:
-  responses:
-    '500':
-      description: Internal Server Error
-    '401':
-      description: Unauthorized
-    '400':
-      description: Bad Request
   schemas:
-    AccessTokenResponse:
-      required:
-      - grant_type
-      type: object
-      properties:
-        access_token:
-          type: string
-        expires_in:
-          type: number
-        token_type:
-          type: string
-      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
     AccessTokenRequest:
       required:
       - client_id
@@ -78,6 +59,25 @@ components:
         client_id:
           type: string
           description: Your client id
+    AccessTokenResponse:
+      required:
+      - grant_type
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: number
+        token_type:
+          type: string
+      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
+  responses:
+    '500':
+      description: Internal Server Error
+    '400':
+      description: Bad Request
+    '401':
+      description: Unauthorized
   securitySchemes:
     ClientCredentials:
       type: oauth2

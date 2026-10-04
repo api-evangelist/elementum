@@ -89,22 +89,22 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  responses:
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
+    '404':
+      description: Not Found
+    '429':
+      description: Too Many Requests
+    '422':
+      description: Unprocessable Entity
+    '401':
+      description: Unauthorized
   schemas:
-    EmailDomainInput:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The email-send domain
-      example: '{domain=mail.example.com}'
-    OrganizationDomainRequest:
-      type: object
-      properties:
-        emailDomain:
-          $ref: '#/components/schemas/EmailDomainInput'
-        managedDomain:
-          $ref: '#/components/schemas/ManagedDomainInput'
-      description: Exactly one of managedDomain or emailDomain must be set
     OrganizationDomain:
       type: object
       properties:
@@ -162,21 +162,21 @@ components:
           type: boolean
           description: Whether the domain is approved
       example: '{domain=example.com, name=Example}'
-  responses:
-    '500':
-      description: Internal Server Error
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '403':
-      description: Forbidden
-    '429':
-      description: Too Many Requests
-    '422':
-      description: Unprocessable Entity
-    '400':
-      description: Bad Request
+    EmailDomainInput:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email-send domain
+      example: '{domain=mail.example.com}'
+    OrganizationDomainRequest:
+      type: object
+      properties:
+        emailDomain:
+          $ref: '#/components/schemas/EmailDomainInput'
+        managedDomain:
+          $ref: '#/components/schemas/ManagedDomainInput'
+      description: Exactly one of managedDomain or emailDomain must be set
   parameters:
     domainId:
       name: domainId
