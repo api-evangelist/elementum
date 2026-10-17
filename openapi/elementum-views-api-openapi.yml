@@ -164,27 +164,6 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
-    PassthroughObject:
-      type: object
-      additionalProperties: true
-      description: Free-form JSON object forwarded to/from the downstream service.
-    AspectViewVariantInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The view's display name
-        allowRecordCreation:
-          type: boolean
-          description: Whether records can be created from this view
-        filter:
-          type: object
-          description: Opaque Filter JSON scoping the view's records
-        sort:
-          type: object
-          description: Opaque Sort JSON ordering the view's records
-      additionalProperties: true
-      description: View configuration. Common fields are listed; type-specific fields (columns, density, rows, displayByField, allowedFilterFields, agentId, dashboardId) are accepted and forwarded as-is.
     AspectViewCreateRequest:
       required:
       - handle
@@ -199,41 +178,18 @@ components:
         view:
           $ref: '#/components/schemas/AspectViewInput'
       description: 'View create body: the handle that names the view, its full desired state, plus an optional share set.'
-    GroupDomain:
+    AspectViewPagedList:
       type: object
       properties:
-        domain:
-          type: string
-          description: The email domain
-        id:
-          type: string
-          description: The auto-assignment rule ID
-          format: uuid
-      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
-    User:
-      type: object
-      properties:
-        lastName:
-          type: string
-          description: The user's last name
-        firstName:
-          type: string
-          description: The user's first name
-        id:
-          type: string
-          description: The user ID
-          format: uuid
-        status:
-          type: string
-          description: The user's organization status (ACTIVE, INACTIVE)
-        email:
-          type: string
-          description: The user's email address
-          format: email
-        jobTitle:
-          type: string
-          description: The user's job title
-      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AspectView'
     AspectViewShareInput:
       type: object
       properties:
@@ -300,6 +256,52 @@ components:
           type: boolean
           description: Whether the group is dynamic
       example: '{id=550e8400-e29b-41d4-a716-446655440001, dynamic=false, assignable=true, managed=false, name=Engineering, mentionable=true, watchable=true}'
+    AspectViewVariantInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The view's display name
+        allowRecordCreation:
+          type: boolean
+          description: Whether records can be created from this view
+        filter:
+          type: object
+          description: Opaque Filter JSON scoping the view's records
+        sort:
+          type: object
+          description: Opaque Sort JSON ordering the view's records
+      additionalProperties: true
+      description: View configuration. Common fields are listed; type-specific fields (columns, density, rows, displayByField, allowedFilterFields, agentId, dashboardId) are accepted and forwarded as-is.
+    PassthroughObject:
+      type: object
+      additionalProperties: true
+      description: Free-form JSON object forwarded to/from the downstream service.
+    GroupDomain:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email domain
+        id:
+          type: string
+          description: The auto-assignment rule ID
+          format: uuid
+      example: '{domain=example.com, id=550e8400-e29b-41d4-a716-446655440000}'
+    AspectViewInput:
+      type: object
+      properties:
+        agent:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        calendar:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        list:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        kanban:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+        dashboard:
+          $ref: '#/components/schemas/AspectViewVariantInput'
+      description: Discriminator wrapper. Exactly one variant field (list, kanban, calendar, dashboard, agent) must be populated.
     AspectView:
       type: object
       properties:
@@ -372,41 +374,46 @@ components:
           description: The view ID
           format: uuid
       description: An app view returned by the views endpoints.
-    AspectViewInput:
+    User:
       type: object
       properties:
-        agent:
-          $ref: '#/components/schemas/AspectViewVariantInput'
-        calendar:
-          $ref: '#/components/schemas/AspectViewVariantInput'
-        list:
-          $ref: '#/components/schemas/AspectViewVariantInput'
-        kanban:
-          $ref: '#/components/schemas/AspectViewVariantInput'
-        dashboard:
-          $ref: '#/components/schemas/AspectViewVariantInput'
-      description: Discriminator wrapper. Exactly one variant field (list, kanban, calendar, dashboard, agent) must be populated.
-    AspectViewPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AspectView'
+        lastName:
+          type: string
+          description: The user's last name
+        firstName:
+          type: string
+          description: The user's first name
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+        status:
+          type: string
+          description: The user's organization status (ACTIVE, INACTIVE)
+        email:
+          type: string
+          description: The user's email address
+          format: email
+        jobTitle:
+          type: string
+          description: The user's job title
+      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+  responses:
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
   parameters:
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
     after:
       name: after
       in: query
@@ -414,17 +421,6 @@ components:
       required: false
       schema:
         type: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
     before:
       name: before
       in: query
@@ -442,6 +438,25 @@ components:
         minimum: 1
         type: integer
         format: int32
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
     passthroughId:
       name: id
       in: path
@@ -450,21 +465,6 @@ components:
       schema:
         type: string
         format: string
-  responses:
-    '500':
-      description: Internal Server Error
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '422':
-      description: Unprocessable Entity
-    '400':
-      description: Bad Request
   securitySchemes:
     ClientCredentials:
       type: oauth2

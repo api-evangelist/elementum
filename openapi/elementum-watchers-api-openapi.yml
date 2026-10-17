@@ -122,16 +122,33 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  responses:
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
   schemas:
-    WatcherListInput:
+    PagingState:
       type: object
       properties:
-        users:
-          type: array
-          items:
-            type: string
-            format: email
-      example: '{users=[user1@email.com, user2@email.com]}'
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     WatcherTarget:
       type: object
       properties:
@@ -176,26 +193,16 @@ components:
           type: string
           description: The watcher ID
           format: uuid
-    PagingState:
+    WatcherListInput:
       type: object
       properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
+        users:
+          type: array
+          items:
+            type: string
+            format: email
+      example: '{users=[user1@email.com, user2@email.com]}'
   parameters:
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
     after:
       name: after
       in: query
@@ -203,25 +210,6 @@ components:
       required: false
       schema:
         type: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
-      required: true
-      schema:
-        type: string
-        format: string
     before:
       name: before
       in: query
@@ -247,21 +235,33 @@ components:
       schema:
         type: string
         format: string
-  responses:
-    '500':
-      description: Internal Server Error
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '422':
-      description: Unprocessable Entity
-    '400':
-      description: Bad Request
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

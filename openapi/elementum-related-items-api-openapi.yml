@@ -114,21 +114,34 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '403':
-      description: Forbidden
     '400':
       description: Bad Request
-    '500':
-      description: Internal Server Error
-    '404':
-      description: Not Found
     '429':
       description: Too Many Requests
     '422':
       description: Unprocessable Entity
     '401':
       description: Unauthorized
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
+    '403':
+      description: Forbidden
   schemas:
+    RelatedPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedListItem'
+      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{id=TSK-4, type=TASK, alias=tasks, cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=}, {id=ITM-4, type=APP, alias=itmanagement, cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=}]}'
     RelatedItemInput:
       required:
       - id
@@ -161,19 +174,6 @@ components:
           type: string
         has_next_page:
           type: boolean
-    RelatedPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelatedListItem'
-      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{id=TSK-4, type=TASK, alias=tasks, cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=}, {id=ITM-4, type=APP, alias=itmanagement, cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=}]}'
   parameters:
     recordId:
       name: id

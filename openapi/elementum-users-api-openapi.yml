@@ -150,21 +150,33 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '403':
-      description: Forbidden
     '400':
       description: Bad Request
-    '500':
-      description: Internal Server Error
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
     '429':
       description: Too Many Requests
     '422':
       description: Unprocessable Entity
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
+    '403':
+      description: Forbidden
   schemas:
+    UserPagedList:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingState'
+        total:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -189,18 +201,17 @@ components:
           type: string
           description: The user's job title
       example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
-    UserPagedList:
+    PagingState:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+        has_previous_page:
+          type: boolean
+        start_cursor:
+          type: string
+        end_cursor:
+          type: string
+        has_next_page:
+          type: boolean
     CreateUserInput:
       required:
       - email
@@ -225,25 +236,7 @@ components:
           description: The user's email address
           format: email
       example: '{jobTitle=Engineer, email=jane@example.com, firstName=Jane, lastName=Doe}'
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
   parameters:
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
     last:
       name: last
       in: query
@@ -254,13 +247,17 @@ components:
         minimum: 1
         type: integer
         format: int32
-    after:
-      name: after
+    first:
+      name: first
       in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
+      description: The number of elements to retrieve after the 'after' cursor location
       required: false
       schema:
-        type: string
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
     userId:
       name: userId
       in: path
@@ -344,17 +341,20 @@ components:
           summary: GreaterThan
           description: Greater than exclusive
           value: Created At=gt=2022-03-15T07:58:30.000Z
-    first:
-      name: first
+    before:
+      name: before
       in: query
-      description: The number of elements to retrieve after the 'after' cursor location
+      description: The starting cursor to begin searching, defaults to the end of the list
       required: false
       schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
+        type: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ClientCredentials:
       type: oauth2

@@ -162,20 +162,52 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
+  responses:
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
+  parameters:
+    aspectSearchTableId:
+      name: id
+      in: path
+      description: The search-table ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+    aspectId:
+      name: aspectId
+      in: path
+      description: The aspect ID (UUID)
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
-    SearchTableField:
+    AspectSearchTableUpdateInput:
       type: object
       properties:
-        name:
-          type: string
-          description: The field name
-        id:
-          type: string
-          description: The field ID
-          format: uuid
-        type:
-          type: string
-          description: The aspect field variant (e.g. AspectTextField, AspectNumberField)
+        snowflake:
+          $ref: '#/components/schemas/AspectSearchTableSnowflakeUpdateInput'
+    SearchTableTimeUnit:
+      type: string
+      description: Time unit for search-table refresh duration.
+      enum:
+      - SECONDS
+      - MINUTES
+      - HOURS
+      - DAYS
     AiProviderConnectorRef:
       type: object
       properties:
@@ -183,20 +215,51 @@ components:
           type: string
           description: The AI provider connector ID
           format: uuid
-    VectorIndexInput:
-      required:
-      - aiProviderConnectorId
-      - fieldId
+    VectorIndex:
       type: object
       properties:
+        field:
+          $ref: '#/components/schemas/SearchTableField'
+        aiProviderConnector:
+          $ref: '#/components/schemas/AiProviderConnectorRef'
+    AspectSearchTableSnowflakeCreateRequest:
+      required:
+      - attributeFieldIds
+      - duration
+      - targetLag
+      type: object
+      properties:
+        attributeFieldIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        warehouse:
+          type: string
+          description: Snowflake warehouse used to maintain the table
         fieldId:
           type: string
-          description: The aspect field to vectorize
+          description: Legacy single-index field; prefer vectorIndexes for new tables
           format: uuid
+        duration:
+          $ref: '#/components/schemas/SearchTableTimeUnit'
+        textIndexFieldIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        targetLag:
+          type: integer
+          description: Refresh target-lag amount
+          format: int32
         aiProviderConnectorId:
           type: string
-          description: The embedding provider connector for this index
+          description: Legacy single-index embedding provider; prefer vectorIndexes
           format: uuid
+        vectorIndexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorIndexInput'
     SearchTable:
       type: object
       properties:
@@ -250,38 +313,20 @@ components:
           type: string
           description: The search-table ID
           format: uuid
-    SearchTableTimeUnit:
-      type: string
-      description: Time unit for search-table refresh duration.
-      enum:
-      - SECONDS
-      - MINUTES
-      - HOURS
-      - DAYS
-    VectorIndex:
+    VectorIndexInput:
+      required:
+      - aiProviderConnectorId
+      - fieldId
       type: object
       properties:
-        field:
-          $ref: '#/components/schemas/SearchTableField'
-        aiProviderConnector:
-          $ref: '#/components/schemas/AiProviderConnectorRef'
-    AspectSearchTableUpdateInput:
-      type: object
-      properties:
-        snowflake:
-          $ref: '#/components/schemas/AspectSearchTableSnowflakeUpdateInput'
-    AspectSearchTableSnowflakeUpdateInput:
-      type: object
-      properties:
-        warehouse:
+        fieldId:
           type: string
-          description: Snowflake warehouse used to maintain the table
-        targetLag:
-          type: integer
-          description: Refresh target-lag amount
-          format: int32
-        duration:
-          $ref: '#/components/schemas/SearchTableTimeUnit'
+          description: The aspect field to vectorize
+          format: uuid
+        aiProviderConnectorId:
+          type: string
+          description: The embedding provider connector for this index
+          format: uuid
     AspectLinkedSearchTableCreateRequest:
       required:
       - cloudLinkId
@@ -306,76 +351,31 @@ components:
         serviceName:
           type: string
           description: Name of the existing Cortex Search Service
-    AspectSearchTableSnowflakeCreateRequest:
-      required:
-      - attributeFieldIds
-      - duration
-      - targetLag
+    SearchTableField:
       type: object
       properties:
-        attributeFieldIds:
-          type: array
-          items:
-            type: string
-            format: uuid
+        name:
+          type: string
+          description: The field name
+        id:
+          type: string
+          description: The field ID
+          format: uuid
+        type:
+          type: string
+          description: The aspect field variant (e.g. AspectTextField, AspectNumberField)
+    AspectSearchTableSnowflakeUpdateInput:
+      type: object
+      properties:
         warehouse:
           type: string
           description: Snowflake warehouse used to maintain the table
-        fieldId:
-          type: string
-          description: Legacy single-index field; prefer vectorIndexes for new tables
-          format: uuid
-        duration:
-          $ref: '#/components/schemas/SearchTableTimeUnit'
-        textIndexFieldIds:
-          type: array
-          items:
-            type: string
-            format: uuid
         targetLag:
           type: integer
           description: Refresh target-lag amount
           format: int32
-        aiProviderConnectorId:
-          type: string
-          description: Legacy single-index embedding provider; prefer vectorIndexes
-          format: uuid
-        vectorIndexes:
-          type: array
-          items:
-            $ref: '#/components/schemas/VectorIndexInput'
-  parameters:
-    aspectId:
-      name: aspectId
-      in: path
-      description: The aspect ID (UUID)
-      required: true
-      schema:
-        type: string
-        format: uuid
-    aspectSearchTableId:
-      name: id
-      in: path
-      description: The search-table ID
-      required: true
-      schema:
-        type: string
-        format: uuid
-  responses:
-    '500':
-      description: Internal Server Error
-    '404':
-      description: Not Found
-    '429':
-      description: Too Many Requests
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '422':
-      description: Unprocessable Entity
-    '400':
-      description: Bad Request
+        duration:
+          $ref: '#/components/schemas/SearchTableTimeUnit'
   securitySchemes:
     ClientCredentials:
       type: oauth2

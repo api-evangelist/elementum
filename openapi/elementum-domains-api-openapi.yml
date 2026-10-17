@@ -90,21 +90,28 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '403':
-      description: Forbidden
     '400':
       description: Bad Request
-    '500':
-      description: Internal Server Error
-    '404':
-      description: Not Found
     '429':
       description: Too Many Requests
     '422':
       description: Unprocessable Entity
     '401':
       description: Unauthorized
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
+    '403':
+      description: Forbidden
   schemas:
+    EmailDomainInput:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The email-send domain
+      example: '{domain=mail.example.com}'
     OrganizationDomain:
       type: object
       properties:
@@ -137,6 +144,14 @@ components:
           type: boolean
           description: Whether SSO is enabled (managed only)
       example: '{name=Example, domain=example.com, id=550e8400-e29b-41d4-a716-446655440001, type=MANAGED}'
+    OrganizationDomainRequest:
+      type: object
+      properties:
+        emailDomain:
+          $ref: '#/components/schemas/EmailDomainInput'
+        managedDomain:
+          $ref: '#/components/schemas/ManagedDomainInput'
+      description: Exactly one of managedDomain or emailDomain must be set
     ManagedDomainInput:
       type: object
       properties:
@@ -162,21 +177,6 @@ components:
           type: boolean
           description: Whether the domain is approved
       example: '{domain=example.com, name=Example}'
-    EmailDomainInput:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The email-send domain
-      example: '{domain=mail.example.com}'
-    OrganizationDomainRequest:
-      type: object
-      properties:
-        emailDomain:
-          $ref: '#/components/schemas/EmailDomainInput'
-        managedDomain:
-          $ref: '#/components/schemas/ManagedDomainInput'
-      description: Exactly one of managedDomain or emailDomain must be set
   parameters:
     domainId:
       name: domainId
