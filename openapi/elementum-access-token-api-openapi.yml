@@ -41,12 +41,12 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
+    '500':
+      description: Internal Server Error
     '400':
       description: Bad Request
     '401':
       description: Unauthorized
-    '500':
-      description: Internal Server Error
   schemas:
     AccessTokenRequest:
       required:
@@ -55,29 +55,32 @@ components:
       - grant_type
       type: object
       properties:
-        client_secret:
+        client_id:
           type: string
-          description: Your client secret
+          description: Your client id
         grant_type:
           type: string
           description: Must be set to 'client_credentials'
           enum:
           - client_credentials
-        client_id:
+        client_secret:
           type: string
-          description: Your client id
+          description: Your client secret
     AccessTokenResponse:
       required:
       - grant_type
       type: object
       properties:
-        access_token:
+        token_type:
           type: string
         expires_in:
           type: number
-        token_type:
+        access_token:
           type: string
-      example: '{access_token=2YotnFZFEjr1zCsicMWpAA, expires_in=3600, token_type=Bearer}'
+      example:
+        token_type: Bearer
+        expires_in: 3600
+        access_token: 2YotnFZFEjr1zCsicMWpAA
   securitySchemes:
     ClientCredentials:
       type: oauth2

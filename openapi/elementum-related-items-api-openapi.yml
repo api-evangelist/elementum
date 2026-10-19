@@ -114,79 +114,96 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '400':
-      description: Bad Request
-    '429':
-      description: Too Many Requests
     '422':
       description: Unprocessable Entity
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
     '500':
       description: Internal Server Error
     '403':
       description: Forbidden
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
   schemas:
+    RelatedListItem:
+      type: object
+      properties:
+        cursor:
+          type: string
+        alias:
+          type: string
+        type:
+          type: string
+        id:
+          type: string
     RelatedPagedList:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
         items:
           type: array
           items:
             $ref: '#/components/schemas/RelatedListItem'
-      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{id=TSK-4, type=TASK, alias=tasks, cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=}, {id=ITM-4, type=APP, alias=itmanagement, cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=}]}'
+        total:
+          type: integer
+          format: int32
+        paging:
+          $ref: '#/components/schemas/PagingState'
+      example:
+        items:
+        - cursor: Ijf7eqZc0RlZmluaXRpb25zfDA=
+          alias: tasks
+          type: TASK
+          id: TSK-4
+        - cursor: cHJvY2Vzc0RlZmluaXRpb25zfDA=
+          alias: itmanagement
+          type: APP
+          id: ITM-4
+        total: 2
+        paging:
+          has_next_page: false
+          end_cursor: cHJvY2Vzc0RlZmluaXRpb25zfDA=
+          start_cursor: Ijf7eqZc0RlZmluaXRpb25zfDA=
+          has_previous_page: false
     RelatedItemInput:
       required:
       - id
       type: object
       properties:
-        alias:
-          type: string
         id:
-          type: string
-      example: '{alias=itmanagement, id=ITM-4}'
-    RelatedListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
           type: string
         alias:
           type: string
-        cursor:
-          type: string
+      example:
+        id: ITM-4
+        alias: itmanagement
     PagingState:
       type: object
       properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
         has_next_page:
           type: boolean
+        end_cursor:
+          type: string
+        start_cursor:
+          type: string
+        has_previous_page:
+          type: boolean
   parameters:
-    recordId:
-      name: id
-      in: path
-      description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
     itemId:
       name: itemId
       in: path
       description: The ID of the related item
+      required: true
+      schema:
+        type: string
+        format: string
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
       required: true
       schema:
         type: string
@@ -199,10 +216,10 @@ components:
       schema:
         type: string
         format: string
-    recordType:
-      name: recordType
+    recordId:
+      name: id
       in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      description: The record ID
       required: true
       schema:
         type: string

@@ -122,98 +122,53 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
-  responses:
-    '400':
-      description: Bad Request
-    '429':
-      description: Too Many Requests
-    '401':
-      description: Unauthorized
-    '403':
-      description: Forbidden
-    '422':
-      description: Unprocessable Entity
-    '404':
-      description: Not Found
-    '500':
-      description: Internal Server Error
-  schemas:
-    PagingState:
-      type: object
-      properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    WatcherTarget:
-      type: object
-      properties:
-        lastName:
-          type: string
-          description: The user's last name (User targets only)
-        firstName:
-          type: string
-          description: The user's first name (User targets only)
-        id:
-          type: string
-          description: The target ID
-          format: uuid
-        type:
-          type: string
-          description: The watcher target type (User or Group)
-        email:
-          type: string
-          description: The user's email (User targets only)
-        name:
-          type: string
-          description: The group name (Group targets only)
-    WatcherPagedList:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Watcher'
-      example: '{paging={has_previous_page=false, start_cursor=Ijf7eqZc0RlZmluaXRpb25zfDA=, end_cursor=cHJvY2Vzc0RlZmluaXRpb25zfDA=, has_next_page=false}, total=2, items=[{target={firstName=Jane, id=550e8400-e29b-41d4-a716-446655440001, lastName=Doe, email=jane@example.com, type=User}, id=550e8400-e29b-41d4-a716-446655440000}, {target={name=Engineering, id=550e8400-e29b-41d4-a716-446655440003, type=Group}, id=550e8400-e29b-41d4-a716-446655440002}]}'
-    Watcher:
-      type: object
-      properties:
-        target:
-          $ref: '#/components/schemas/WatcherTarget'
-        id:
-          type: string
-          description: The watcher ID
-          format: uuid
-    WatcherListInput:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            type: string
-            format: email
-      example: '{users=[user1@email.com, user2@email.com]}'
   parameters:
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
       schema:
         type: string
+        format: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
     before:
       name: before
       in: query
       description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    recordId:
+      name: id
+      in: path
+      description: The record ID
+      required: true
+      schema:
+        type: string
+        format: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
       required: false
       schema:
         type: string
@@ -227,41 +182,108 @@ components:
         minimum: 1
         type: integer
         format: int32
-    recordId:
-      name: id
-      in: path
-      description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
-      required: true
-      schema:
-        type: string
-        format: string
+  schemas:
+    PagingState:
+      type: object
+      properties:
+        has_next_page:
+          type: boolean
+        end_cursor:
+          type: string
+        start_cursor:
+          type: string
+        has_previous_page:
+          type: boolean
+    WatcherPagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Watcher'
+        total:
+          type: integer
+          format: int32
+        paging:
+          $ref: '#/components/schemas/PagingState'
+      example:
+        items:
+        - id: 550e8400-e29b-41d4-a716-446655440000
+          target:
+            firstName: Jane
+            type: User
+            email: jane@example.com
+            lastName: Doe
+            id: 550e8400-e29b-41d4-a716-446655440001
+        - id: 550e8400-e29b-41d4-a716-446655440002
+          target:
+            type: Group
+            id: 550e8400-e29b-41d4-a716-446655440003
+            name: Engineering
+        total: 2
+        paging:
+          has_next_page: false
+          end_cursor: cHJvY2Vzc0RlZmluaXRpb25zfDA=
+          start_cursor: Ijf7eqZc0RlZmluaXRpb25zfDA=
+          has_previous_page: false
+    WatcherTarget:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The target ID
+          format: uuid
+        firstName:
+          type: string
+          description: The user's first name (User targets only)
+        lastName:
+          type: string
+          description: The user's last name (User targets only)
+        name:
+          type: string
+          description: The group name (Group targets only)
+        email:
+          type: string
+          description: The user's email (User targets only)
+        type:
+          type: string
+          description: The watcher target type (User or Group)
+    WatcherListInput:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+            format: email
+      example:
+        users:
+        - user1@email.com
+        - user2@email.com
+    Watcher:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The watcher ID
+          format: uuid
+        target:
+          $ref: '#/components/schemas/WatcherTarget'
+  responses:
+    '401':
+      description: Unauthorized
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '404':
+      description: Not Found
+    '500':
+      description: Internal Server Error
+    '403':
+      description: Forbidden
+    '422':
+      description: Unprocessable Entity
   securitySchemes:
     ClientCredentials:
       type: oauth2

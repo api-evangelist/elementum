@@ -175,20 +175,6 @@ apis:
     url: https://docs.elementum.io/api-reference/api-introduction
   - type: APIReference
     url: https://docs.elementum.io/api-reference/api-introduction
-- aid: elementum:elementum-elements-api
-  name: Elementum Elements API
-  description: Manage elements imported from connected cloud sources
-  humanURL: https://docs.elementum.io/api-reference/api-introduction
-  baseURL: https://api.elementum.io/v1
-  tags:
-  - Elements
-  properties:
-  - type: OpenAPI
-    url: openapi/elementum-elements-api-openapi.yml
-  - type: Documentation
-    url: https://docs.elementum.io/api-reference/api-introduction
-  - type: APIReference
-    url: https://docs.elementum.io/api-reference/api-introduction
 - aid: elementum:elementum-flows-api
   name: Elementum Flows API
   description: Manage flows

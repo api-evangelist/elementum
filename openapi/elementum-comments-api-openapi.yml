@@ -91,89 +91,167 @@ paths:
       x-codegen-request-body-name: body
 components:
   responses:
-    '400':
-      description: Bad Request
-    '429':
-      description: Too Many Requests
     '422':
       description: Unprocessable Entity
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
     '500':
       description: Internal Server Error
     '403':
       description: Forbidden
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
   schemas:
-    Comment:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The comment ID
-          format: uuid
-        createdAt:
-          type: string
-          description: When the comment was created
-          format: date-time
-        source:
-          type: string
-          description: The source of the comment (WEB, API, WORKFLOW, etc.)
-        contents:
-          type: string
-          description: The comment text
-        createdBy:
-          $ref: '#/components/schemas/User'
-      example: '{id=550e8400-e29b-41d4-a716-446655440000, createdAt=2026-04-04T03:25:38.045Z, source=API, contents=Shipment delayed due to weather, createdBy={firstName=Jane, email=jane@example.com, id=550e8400-e29b-41d4-a716-446655440001, lastName=Doe}}'
     User:
       type: object
       properties:
-        lastName:
+        jobTitle:
           type: string
-          description: The user's last name
-        firstName:
-          type: string
-          description: The user's first name
-        id:
-          type: string
-          description: The user ID
-          format: uuid
-        status:
-          type: string
-          description: The user's organization status (ACTIVE, INACTIVE)
+          description: The user's job title
         email:
           type: string
           description: The user's email address
           format: email
-        jobTitle:
+        status:
           type: string
-          description: The user's job title
-      example: '{lastName=Doe, firstName=Jane, id=550e8400-e29b-41d4-a716-446655440000, status=ACTIVE, email=jane@example.com, jobTitle=Engineer}'
+          description: The user's organization status (ACTIVE, INACTIVE)
+        createdAt:
+          type: string
+          description: When the user was created
+          format: date-time
+        firstName:
+          type: string
+          description: The user's first name
+        lastName:
+          type: string
+          description: The user's last name
+        name:
+          type: string
+          description: The user's display name
+        phoneNumber:
+          type: string
+          description: The user's phone number
+        lastLoginAt:
+          type: string
+          description: When the user last logged in (null if never)
+          format: date-time
+        locked:
+          type: boolean
+          description: Whether the user account is locked
+        id:
+          type: string
+          description: The user ID
+          format: uuid
+      example:
+        jobTitle: Engineer
+        email: jane@example.com
+        status: ACTIVE
+        createdAt: '2026-01-15T09:30:00Z'
+        firstName: Jane
+        lastName: Doe
+        name: John Doe
+        phoneNumber: +1-555-0100
+        lastLoginAt: '2026-05-06T12:00:00Z'
+        locked: false
+        id: 550e8400-e29b-41d4-a716-446655440000
     CommentPagedList:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingState'
-        total:
-          type: integer
-          format: int32
         items:
           type: array
           items:
             $ref: '#/components/schemas/Comment'
+        total:
+          type: integer
+          format: int32
+        paging:
+          $ref: '#/components/schemas/PagingState'
     PagingState:
       type: object
       properties:
-        has_previous_page:
-          type: boolean
-        start_cursor:
-          type: string
-        end_cursor:
-          type: string
         has_next_page:
           type: boolean
+        end_cursor:
+          type: string
+        start_cursor:
+          type: string
+        has_previous_page:
+          type: boolean
+    Comment:
+      type: object
+      properties:
+        createdBy:
+          $ref: '#/components/schemas/User'
+        contents:
+          type: string
+          description: The comment text
+        source:
+          type: string
+          description: The source of the comment (WEB, API, WORKFLOW, etc.)
+        createdAt:
+          type: string
+          description: When the comment was created
+          format: date-time
+        id:
+          type: string
+          description: The comment ID
+          format: uuid
+      example:
+        createdBy:
+          firstName: Jane
+          lastName: Doe
+          id: 550e8400-e29b-41d4-a716-446655440001
+          email: jane@example.com
+        contents: Shipment delayed due to weather
+        source: API
+        createdAt: '2026-04-04T03:25:38.045Z'
+        id: 550e8400-e29b-41d4-a716-446655440000
   parameters:
+    first:
+      name: first
+      in: query
+      description: The number of elements to retrieve after the 'after' cursor location
+      required: false
+      schema:
+        maximum: 1000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 100
+    recordType:
+      name: recordType
+      in: path
+      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
+      required: true
+      schema:
+        type: string
+        format: string
+    after:
+      name: after
+      in: query
+      description: The starting cursor to begin searching, defaults to the beginning of the list
+      required: false
+      schema:
+        type: string
+    alias:
+      name: alias
+      in: path
+      description: The app's namespace or its UUID
+      required: true
+      schema:
+        type: string
+        format: string
+    before:
+      name: before
+      in: query
+      description: The starting cursor to begin searching, defaults to the end of the list
+      required: false
+      schema:
+        type: string
     last:
       name: last
       in: query
@@ -188,47 +266,6 @@ components:
       name: id
       in: path
       description: The record ID
-      required: true
-      schema:
-        type: string
-        format: string
-    first:
-      name: first
-      in: query
-      description: The number of elements to retrieve after the 'after' cursor location
-      required: false
-      schema:
-        maximum: 1000
-        minimum: 1
-        type: integer
-        format: int32
-        default: 100
-    before:
-      name: before
-      in: query
-      description: The starting cursor to begin searching, defaults to the end of the list
-      required: false
-      schema:
-        type: string
-    alias:
-      name: alias
-      in: path
-      description: The app's namespace or its UUID
-      required: true
-      schema:
-        type: string
-        format: string
-    after:
-      name: after
-      in: query
-      description: The starting cursor to begin searching, defaults to the beginning of the list
-      required: false
-      schema:
-        type: string
-    recordType:
-      name: recordType
-      in: path
-      description: '''apps'', ''elements'', ''tasks'', or ''transactions'''
       required: true
       schema:
         type: string

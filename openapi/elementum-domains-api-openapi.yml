@@ -89,94 +89,105 @@ paths:
       - ClientCredentials: []
       x-codegen-request-body-name: body
 components:
-  responses:
-    '400':
-      description: Bad Request
-    '429':
-      description: Too Many Requests
-    '422':
-      description: Unprocessable Entity
-    '401':
-      description: Unauthorized
-    '404':
-      description: Not Found
-    '500':
-      description: Internal Server Error
-    '403':
-      description: Forbidden
   schemas:
+    OrganizationDomainRequest:
+      type: object
+      properties:
+        managedDomain:
+          $ref: '#/components/schemas/ManagedDomainInput'
+        emailDomain:
+          $ref: '#/components/schemas/EmailDomainInput'
+      description: Exactly one of managedDomain or emailDomain must be set
+      example:
+        managedDomain:
+          name: Example
+          domain: example.com
+    OrganizationDomain:
+      type: object
+      properties:
+        sso:
+          type: boolean
+          description: Whether SSO is enabled (managed only)
+        type:
+          type: string
+          description: MANAGED or EMAIL
+        name:
+          type: string
+          description: Display name (managed only)
+        selfRegistration:
+          type: boolean
+          description: Whether self-registration is allowed (managed only)
+        startUrl:
+          type: string
+          description: SSO start URL (managed only)
+        id:
+          type: string
+          description: The domain ID
+          format: uuid
+        approved:
+          type: boolean
+          description: Whether the domain is approved (managed only)
+        internal:
+          type: boolean
+          description: Whether users on this domain are internal (managed only)
+        domain:
+          type: string
+          description: The domain
+      example:
+        name: Example
+        type: MANAGED
+        id: 550e8400-e29b-41d4-a716-446655440001
+        domain: example.com
     EmailDomainInput:
       type: object
       properties:
         domain:
           type: string
           description: The email-send domain
-      example: '{domain=mail.example.com}'
-    OrganizationDomain:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The domain
-        internal:
-          type: boolean
-          description: Whether users on this domain are internal (managed only)
-        approved:
-          type: boolean
-          description: Whether the domain is approved (managed only)
-        id:
-          type: string
-          description: The domain ID
-          format: uuid
-        startUrl:
-          type: string
-          description: SSO start URL (managed only)
-        selfRegistration:
-          type: boolean
-          description: Whether self-registration is allowed (managed only)
-        name:
-          type: string
-          description: Display name (managed only)
-        type:
-          type: string
-          description: MANAGED or EMAIL
-        sso:
-          type: boolean
-          description: Whether SSO is enabled (managed only)
-      example: '{name=Example, domain=example.com, id=550e8400-e29b-41d4-a716-446655440001, type=MANAGED}'
-    OrganizationDomainRequest:
-      type: object
-      properties:
-        emailDomain:
-          $ref: '#/components/schemas/EmailDomainInput'
-        managedDomain:
-          $ref: '#/components/schemas/ManagedDomainInput'
-      description: Exactly one of managedDomain or emailDomain must be set
+      example:
+        domain: mail.example.com
     ManagedDomainInput:
       type: object
       properties:
-        domain:
-          type: string
-          description: The domain, e.g. example.com
-        sso:
-          type: boolean
-          description: Whether SSO is enabled (mutually exclusive with selfRegistration)
-        internal:
-          type: boolean
-          description: Whether users on this domain are internal to the org
-        startUrl:
-          type: string
-          description: SSO start URL
-        selfRegistration:
-          type: boolean
-          description: Whether self-registration is allowed (mutually exclusive with sso)
-        name:
-          type: string
-          description: Display name
         approved:
           type: boolean
           description: Whether the domain is approved
-      example: '{domain=example.com, name=Example}'
+        name:
+          type: string
+          description: Display name
+        selfRegistration:
+          type: boolean
+          description: Whether self-registration is allowed (mutually exclusive with sso)
+        startUrl:
+          type: string
+          description: SSO start URL
+        internal:
+          type: boolean
+          description: Whether users on this domain are internal to the org
+        sso:
+          type: boolean
+          description: Whether SSO is enabled (mutually exclusive with selfRegistration)
+        domain:
+          type: string
+          description: The domain, e.g. example.com
+      example:
+        name: Example
+        domain: example.com
+  responses:
+    '422':
+      description: Unprocessable Entity
+    '500':
+      description: Internal Server Error
+    '403':
+      description: Forbidden
+    '400':
+      description: Bad Request
+    '429':
+      description: Too Many Requests
+    '401':
+      description: Unauthorized
+    '404':
+      description: Not Found
   parameters:
     domainId:
       name: domainId
